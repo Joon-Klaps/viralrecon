@@ -21,7 +21,8 @@ WorkflowIllumina.initialise(params, log, valid_params)
 def checkPathParamList = [
     params.input, params.fasta, params.gff, params.bowtie2_index,
     params.kraken2_db, params.primer_bed, params.primer_fasta,
-    params.blast_db, params.spades_hmm, params.multiqc_config
+    params.blast_db, params.spades_hmm, params.multiqc_config,
+    params.freyja_barcodes, params.freyja_lineages
 ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
 
@@ -66,16 +67,17 @@ include { MULTIQC_TSV_FROM_LIST as MULTIQC_TSV_NEXTCLADE          } from '../mod
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
-include { INPUT_CHECK         } from '../subworkflows/local/input_check'
-include { PREPARE_GENOME      } from '../subworkflows/local/prepare_genome_illumina'
-include { VARIANTS_IVAR       } from '../subworkflows/local/variants_ivar'
-include { VARIANTS_BCFTOOLS   } from '../subworkflows/local/variants_bcftools'
-include { CONSENSUS_IVAR      } from '../subworkflows/local/consensus_ivar'
-include { CONSENSUS_BCFTOOLS  } from '../subworkflows/local/consensus_bcftools'
-include { VARIANTS_LONG_TABLE } from '../subworkflows/local/variants_long_table'
-include { ASSEMBLY_SPADES     } from '../subworkflows/local/assembly_spades'
-include { ASSEMBLY_UNICYCLER  } from '../subworkflows/local/assembly_unicycler'
-include { ASSEMBLY_MINIA      } from '../subworkflows/local/assembly_minia'
+include { INPUT_CHECK                   } from '../subworkflows/local/input_check'
+include { PREPARE_GENOME                } from '../subworkflows/local/prepare_genome_illumina'
+include { VARIANTS_IVAR                 } from '../subworkflows/local/variants_ivar'
+include { VARIANTS_BCFTOOLS             } from '../subworkflows/local/variants_bcftools'
+include { CONSENSUS_IVAR                } from '../subworkflows/local/consensus_ivar'
+include { CONSENSUS_BCFTOOLS            } from '../subworkflows/local/consensus_bcftools'
+include { VARIANTS_LONG_TABLE           } from '../subworkflows/local/variants_long_table'
+include { ASSEMBLY_SPADES               } from '../subworkflows/local/assembly_spades'
+include { ASSEMBLY_UNICYCLER            } from '../subworkflows/local/assembly_unicycler'
+include { ASSEMBLY_MINIA                } from '../subworkflows/local/assembly_minia'
+include { BAM_VARIANT_DEMIX_BOOT_FREYJA } from '../subworkflows/local/bam_variant_demix_boot_freyja/main.nf'
 
 /*
 ========================================================================================
@@ -451,6 +453,21 @@ workflow ILLUMINA {
         ch_snpeff_multiqc         = VARIANTS_BCFTOOLS.out.snpeff_csv
         ch_snpsift_txt            = VARIANTS_BCFTOOLS.out.snpsift_txt
         ch_versions               = ch_versions.mix(VARIANTS_BCFTOOLS.out.versions)
+    }
+
+    //
+    // SUBWORKFLOW: Determine variants with Freyja
+    //
+    if (!params.skip_variants && !params.skip_freyja) {
+        BAM_VARIANT_DEMIX_BOOT_FREYJA(
+            ch_bam,
+            PREPARE_GENOME.out.fasta,
+            params.freyja_repeats,
+            params.freyja_db_name,
+            params.freyja_barcodes,
+            params.freyja_lineages,
+        )
+        ch_versions= ch_versions.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.versions)
     }
 
     //

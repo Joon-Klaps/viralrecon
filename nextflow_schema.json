@@ -426,6 +426,40 @@
                     "fa_icon": "fas fa-fast-forward",
                     "description": "Skip iVar primer trimming step. Not recommended for --protocol amplicon."
                 },
+                "skip_freyja": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-save",
+                    "description": "Skip freyja deep SARS-CoV variant analysis."
+                },
+                "freyja_db": {
+                    "type": "string",
+                    "default": "freyja_db",
+                    "hidden": true,
+                    "fa_icon": "fas fa-phone-volume",
+                    "description": "Specify the name where to store UShER database (default: 'freyja_db')."
+                },
+                "freyja_repeats": {
+                    "type": "integer",
+                    "default": 1000,
+                    "fa_icon": "fas fa-microchip",
+                    "description": "Specify the number of bootstrap repats to do."
+                },
+                "freyja_barcodes": {
+                    "type": "string",
+                    "format": "path",
+                    "hidden": true,
+                    "default": "[]",
+                    "fa_icon": "fas fa-microchip",
+                    "description": "Lineage defining barcodes, default is most recent from UShER database."
+                },
+                "freyja_lineages": {
+                    "type": "string",
+                    "format": "path",
+                    "default": "[]",
+                    "hidden": true,
+                    "fa_icon": "fas fa-microchip",
+                    "description": "Metadata of lineages that match barcode, default is most recent from UShER database."
+                },
                 "skip_markduplicates": {
                     "type": "boolean",
                     "default": true,
