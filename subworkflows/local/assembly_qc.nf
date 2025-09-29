@@ -16,6 +16,7 @@ workflow ASSEMBLY_QC {
     blast_db              // channel: /path/to/blast_db/
     blast_header          // channel: /path/to/blast_header.txt
     blast_filtered_header // channel: /path/to/blast_filtered_header.txt
+    taxidlist             // channel: /path/to/taxidlist.txt
 
     main:
 
@@ -29,7 +30,10 @@ workflow ASSEMBLY_QC {
     if (!params.skip_blast) {
         BLAST_BLASTN (
             scaffolds,
-            blast_db
+            blast_db,
+            taxidlist,
+            [],
+            []
         )
         ch_versions  = ch_versions.mix(BLAST_BLASTN.out.versions.first())
 
