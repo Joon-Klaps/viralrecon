@@ -114,6 +114,7 @@ include { BAM_TRIM_PRIMERS_IVAR   } from '../subworkflows/local/bam_trim_primers
 include { FASTQ_TRIM_FASTP_FASTQC } from '../subworkflows/local/fastq_trim_fastp_fastqc'
 include { SNPEFF_SNPSIFT          } from '../subworkflows/local/snpeff_snpsift'
 include { FILTER_BAM_SAMTOOLS     } from '../subworkflows/local/filter_bam_samtools'
+include { HIV_RESISTANCE          } from '../subworkflows/local/hiv_resitance_detection'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -535,6 +536,7 @@ workflow VIRALRECON {
         //
         ch_nextclade_report = Channel.empty()
         ch_pangolin_report  = Channel.empty()
+        ch_consensus_genome = Channel.empty()
 
         if (!params.skip_consensus && params.consensus_caller == 'ivar') {
             CONSENSUS_IVAR (
@@ -545,6 +547,7 @@ workflow VIRALRECON {
             )
             ch_nextclade_report = CONSENSUS_IVAR.out.nextclade_report
             ch_pangolin_report  = CONSENSUS_IVAR.out.pangolin_report
+            ch_consensus_genome = CONSENSUS_IVAR.out.consensus
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_report.collect{it[1]}.ifEmpty([]))
             ch_multiqc_files    = ch_multiqc_files.mix(CONSENSUS_IVAR.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_versions         = ch_versions.mix(CONSENSUS_IVAR.out.versions)
@@ -565,6 +568,7 @@ workflow VIRALRECON {
 
             ch_nextclade_report = CONSENSUS_BCFTOOLS.out.nextclade_report
             ch_pangolin_report  = CONSENSUS_BCFTOOLS.out.pangolin_report
+            ch_consensus_genome = CONSENSUS_BCFTOOLS.out.consensus
             ch_multiqc_files    = ch_multiqc_files.mix(CONSENSUS_BCFTOOLS.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_report.collect{it[1]}.ifEmpty([]))
             ch_versions         = ch_versions.mix(CONSENSUS_BCFTOOLS.out.versions)
@@ -618,6 +622,17 @@ workflow VIRALRECON {
 
             )
             ch_versions = ch_versions.mix(ADDITIONAL_ANNOTATION.out.versions)
+        }
+
+        //
+        // SUBWORKFLOW: HIV resistance detection
+        //
+
+        if (params.perform_sierralocal) {
+            HIV_RESISTANCE (
+                ch_consensus_genome
+            )
+            ch_versions = ch_versions.mix(HIV_RESISTANCE.out.versions)
         }
 
         //
