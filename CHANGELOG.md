@@ -40,6 +40,8 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 - [[PR #491](https://github.com/nf-core/viralrecon/pull/491)] - Remove asciiigenome
 - [[PR #491](https://github.com/nf-core/viralrecon/pull/494)] - Partial update of nf-core modules
 - [[PR #411](https://github.com/nf-core/viralrecon/issues/411)] - Standerdised the use of Multiqc across illumina & nanopore workflow and added pangolin updatedata
+- [[PR #509](https://github.com/nf-core/viralrecon/issues/465)] - Fix local component structure for modules and subworkflows
+- [[PR #511]](https://github.com/nf-core/viralrecon/pull/511) - Fixed nf-core pipeline lint and updated nf-core modules and subworflows
 
 ### Parameters
 
@@ -69,26 +71,30 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 
 | Dependency      | Old version | New version |
 | --------------- | ----------- | ----------- |
+| `asciigenome`   | 1.16.0      |             |
 | `bandage`       | 0.8.1       | 0.9.0       |
-| `bcftools`      | 1.20        | 1.21        |
+| `bcftools`      | 1.20        | 1.22        |
 | `biopython`     | 1.79        | 1.85        |
 | `biostrings`    | 2.58.0      | 2.66.0      |
 | `blast`         | 2.15.0      | 2.16.0      |
 | `bowtie2`       | 2.5.2       | 2.5.4       |
+| `coreutils`     | 9.4         | 9.5         |
 | `cutadapt`      |             | 5.0         |
-| `fastp`         | 0.23.2      | 0.24.0      |
+| `fastp`         | 0.23.2      | 1.0.1       |
 | `freyja`        |             | 1.5.3       |
-| `htslib`        | 1.20        | 1.21        |
+| `htslib`        | 1.20        | 1.22        |
 | `ivar`          | 1.4.3       | 1.4.4       |
-| `kraken2`       | 2.1.3       | 2.1.3       |
+| `kraken2`       | 2.1.3       | 2.1.6       |
 | `matplotlib`    | 3.5.1       | 3.10.1      |
+| `mosdepth`      | 0.3.10      | 0.3.11      |
 | `multiqc`       | 1.14        | 1.19        |
-| `nanoplot`      | 1.41.6      | 1.44.1      |
+| `nanoplot`      | 1.41.6      | 1.46.1      |
 | `nf-schema`     |             | 2.2.1       |
 | `nextclade`     | 2.12.0      | 3.11.0      |
 | `pangolin`      | 4.2         | 4.3         |
 | `pangolin-data` | 1.30        | 1.30        |
 | `pandas`        | 1.3.5       | 2.2.3       |
+| `picard`        | 3.3.0       | 3.4.0       |
 | `python`        | 3.9.5       | 3.13.2      |
 | `quast`         | 5.2.0       | 5.3.0       |
 | `regex`         | 2021.11.10  | 2024.11.6   |
@@ -100,7 +106,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | `r-sys`         | 3.4         | 3.4.3       |
 | `r-tidyverse`   | 1.3.0       | 1.3.2       |
 | `r-viridis`     | 0.5.1       | 0.6.5       |
-| `samtools`      | 1.18        | 1.21        |
+| `samtools`      | 1.18        | 1.22        |
 | `scipy`         | 1.7.3       | 1.15.2      |
 | `sed`           | 4.7         | 4.8         |
 | `snakemake`     | 7.30.1      | 8.30.0      |

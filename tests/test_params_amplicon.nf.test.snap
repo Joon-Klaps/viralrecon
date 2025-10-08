@@ -10,19 +10,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -54,13 +54,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -105,7 +105,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -116,16 +116,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -140,19 +140,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -1033,9 +1033,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -1091,7 +1091,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -1131,22 +1131,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -1156,9 +1156,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -1190,9 +1190,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -1200,7 +1200,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T21:48:43.190727776"
+        "timestamp": "2025-10-02T17:41:11.637973354"
     },
     "-profile test --skip_noninternal_primers --threeprime_adapters": {
         "content": [
@@ -1213,19 +1213,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -1257,13 +1257,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -1308,7 +1308,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -1319,16 +1319,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -1343,19 +1343,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -2236,9 +2236,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -2294,7 +2294,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -2334,22 +2334,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -2359,9 +2359,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -2393,9 +2393,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -2403,7 +2403,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T18:03:51.724372093"
+        "timestamp": "2025-10-03T18:51:28.247683519"
     },
     "-profile test --skip_plasmidid false": {
         "content": [
@@ -2416,19 +2416,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -2460,13 +2460,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -2511,7 +2511,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -2522,16 +2522,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -2546,19 +2546,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -3439,9 +3439,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -3497,7 +3497,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -3537,22 +3537,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -3562,9 +3562,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -3596,9 +3596,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -3606,7 +3606,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T17:07:03.215638147"
+        "timestamp": "2025-10-02T21:15:00.849558801"
     },
     "-profile test --skip_kraken2": {
         "content": [
@@ -3619,19 +3619,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -3663,13 +3663,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -3714,7 +3714,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -3725,16 +3725,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -3749,19 +3749,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -4642,9 +4642,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -4700,7 +4700,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -4740,22 +4740,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -4765,9 +4765,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -4799,9 +4799,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -4809,7 +4809,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T22:46:02.097740131"
+        "timestamp": "2025-10-03T13:32:35.406867807"
     },
     "-profile test --spades_mode corona": {
         "content": [
@@ -4822,19 +4822,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -4866,13 +4866,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -4917,7 +4917,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -4928,16 +4928,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -4952,19 +4952,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -5845,9 +5845,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -5903,7 +5903,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -5943,22 +5943,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -5968,9 +5968,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -6002,9 +6002,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -6012,7 +6012,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T23:27:21.820624759"
+        "timestamp": "2025-10-02T20:04:57.807986145"
     },
     "-profile test --bowtie2_index https://github.com/nf-core/test-datasets/raw/refs/heads/viralrecon/genome/MN908947.3/GCA_009858895.3_ASM985889v3_genomic.200409.bt2.index.tar.gz": {
         "content": [
@@ -6025,19 +6025,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -6069,13 +6069,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -6120,7 +6120,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -6131,16 +6131,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -6155,19 +6155,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -7048,9 +7048,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -7106,7 +7106,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -7146,22 +7146,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -7171,9 +7171,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -7205,9 +7205,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -7215,7 +7215,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T17:44:43.588755928"
+        "timestamp": "2025-10-03T18:06:30.999788476"
     },
     "-profile test --skip_cutadapt --skip_snpeff": {
         "content": [
@@ -7228,19 +7228,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -7272,13 +7272,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -7323,7 +7323,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -7334,16 +7334,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -7358,19 +7358,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -8251,9 +8251,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -8309,7 +8309,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -8349,22 +8349,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -8374,9 +8374,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -8408,9 +8408,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -8418,7 +8418,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T22:26:18.076171266"
+        "timestamp": "2025-10-02T18:52:18.79695515"
     },
     "-profile test --spades_mode metaviral": {
         "content": [
@@ -8431,19 +8431,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -8475,13 +8475,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -8526,7 +8526,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -8537,16 +8537,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -8561,19 +8561,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -9454,9 +9454,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -9512,7 +9512,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -9552,22 +9552,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -9577,9 +9577,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -9611,9 +9611,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -9621,7 +9621,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T23:46:40.381979655"
+        "timestamp": "2025-10-02T20:39:53.007965229"
     },
     "-profile test --skip_variants": {
         "content": [
@@ -9634,19 +9634,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -9678,13 +9678,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -9729,7 +9729,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -9740,16 +9740,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -9764,19 +9764,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -10657,9 +10657,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -10715,7 +10715,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -10755,22 +10755,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -10780,9 +10780,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -10814,9 +10814,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -10824,7 +10824,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T22:07:24.894883098"
+        "timestamp": "2025-10-02T18:16:40.038153862"
     },
     "-profile test --additional_annotation https://github.com/nf-core/test-datasets/raw/refs/heads/viralrecon/genome/MN908947.3/GCA_009858895.3_ASM985889v3_genomic.200409.gtf.gz": {
         "content": [
@@ -10837,19 +10837,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -10881,13 +10881,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -10932,7 +10932,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -10943,16 +10943,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -10967,19 +10967,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -11860,9 +11860,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -11918,7 +11918,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -11958,22 +11958,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -11983,9 +11983,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -12017,9 +12017,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -12027,7 +12027,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T17:25:48.033538539"
+        "timestamp": "2025-10-03T17:20:36.267156423"
     },
     "-profile test --consensus_caller ivar": {
         "content": [
@@ -12040,19 +12040,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -12084,13 +12084,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -12135,7 +12135,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -12146,16 +12146,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -12170,19 +12170,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -13063,9 +13063,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -13121,7 +13121,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -13161,22 +13161,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -13186,9 +13186,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -13220,9 +13220,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -13230,7 +13230,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T21:10:54.718339776"
+        "timestamp": "2025-10-02T17:01:37.12752038"
     },
     "-profile test --skip_assembly": {
         "content": [
@@ -13243,19 +13243,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -13287,13 +13287,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -13338,7 +13338,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -13349,16 +13349,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -13373,19 +13373,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -14266,9 +14266,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -14324,7 +14324,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -14364,22 +14364,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -14389,9 +14389,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -14423,9 +14423,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -14433,7 +14433,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T23:05:13.241727058"
+        "timestamp": "2025-10-02T19:29:25.969274967"
     },
     "-profile test --variant_caller bcftools --consensus_caller ivar": {
         "content": [
@@ -14446,19 +14446,19 @@
                     "bandage": "0.9.0"
                 },
                 "BCFTOOLS_CONSENSUS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_FILTER": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_QUERY": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_SORT": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BCFTOOLS_STATS": {
-                    "bcftools": 1.21
+                    "bcftools": 1.22
                 },
                 "BEDTOOLS_GETFASTA": {
                     "bedtools": "2.31.1"
@@ -14490,13 +14490,13 @@
                     "python": "3.13.2"
                 },
                 "CUSTOM_GETCHROMSIZES": {
-                    "getchromsizes": 1.21
+                    "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
                     "cutadapt": 5.0
                 },
                 "FASTP": {
-                    "fastp": "0.24.0"
+                    "fastp": "1.0.1"
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -14541,7 +14541,7 @@
                     "python": "3.13.2"
                 },
                 "KRAKEN2_KRAKEN2": {
-                    "kraken2": "2.1.5",
+                    "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
                 "MAKE_BED_MASK": {
@@ -14552,16 +14552,16 @@
                     "python": "3.13.2"
                 },
                 "MOSDEPTH_AMPLICON": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "MOSDEPTH_GENOME": {
-                    "mosdepth": "0.3.10"
+                    "mosdepth": "0.3.11"
                 },
                 "PANGOLIN_UPDATEDATA": {
                     "pangolin": "4.3.1"
                 },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
-                    "picard": "3.3.0"
+                    "picard": "3.4.0"
                 },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
@@ -14576,19 +14576,19 @@
                     "sed": 4.9
                 },
                 "SAMTOOLS_FLAGSTAT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_IDXSTATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_SORT": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SNPEFF_ANN": {
                     "snpeff": "5.0e"
@@ -15469,9 +15469,9 @@
                 "SAMPLE3_SE.filter.blastn.txt:md5,9d044a2c80a501819f2c3f590e887026",
                 "SAMPLE3_SE.results.blastn.txt:md5,1a18e3cdf7bfaa4094e59654986f52b4",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.fastp.json:md5,cf41354b14edade70736df8bca19b20c",
-                "SAMPLE2_PE.fastp.json:md5,f59b95f0fba91adc11293508ec521b69",
-                "SAMPLE3_SE.fastp.json:md5,40f5bd35020687e23d327b9e0bbd7e79",
+                "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
+                "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
+                "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -15527,7 +15527,7 @@
                 "multiqc_bowtie2.yaml:md5,5060f240b4210f8cf0cc7718748a6f9b",
                 "multiqc_citations.yaml:md5,6604be3c186cd954ce9a4bdd68c0aa8c",
                 "multiqc_cutadapt.yaml:md5,67acfd19c604038934d687e92f68dda9",
-                "multiqc_fastp.yaml:md5,638bc2e38ef988f30f067f6a30b950ca",
+                "multiqc_fastp.yaml:md5,03fe85f0a212166d35a0a7376fec4bf4",
                 "multiqc_fastqc.yaml:md5,7b74e5229b298fac53ec73b7194bb2f0",
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
@@ -15567,22 +15567,22 @@
                 "SAMPLE3_SE.mosdepth.summary.txt:md5,27f7f5f8a2caef36dcc1dd504dd4f581",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.flagstat:md5,175a8826b10890b304fd7a30335b98a0",
                 "SAMPLE1_PE.ivar_trim.sorted.bam.idxstats:md5,461869ebfe660675af9e5b2b30bec52c",
-                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,8af861827971213da3be2ad61a9644cd",
+                "SAMPLE1_PE.ivar_trim.sorted.bam.stats:md5,761ca2412bb2eef70180a8acb4e29d12",
                 "SAMPLE1_PE.sorted.bam.flagstat:md5,b71fa417d19a1c64e53a7a4bbb9a66a3",
                 "SAMPLE1_PE.sorted.bam.idxstats:md5,d3f51babb7c8757456be63c9b75ee3d0",
-                "SAMPLE1_PE.sorted.bam.stats:md5,bafbe8deaf2a815bce61974a4c4b85cc",
+                "SAMPLE1_PE.sorted.bam.stats:md5,7fe1d815439ac2d09b19cca2caa4a702",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.flagstat:md5,47616687e389589e8fe1d596bbe4a332",
                 "SAMPLE2_PE.ivar_trim.sorted.bam.idxstats:md5,5f9def3fdb732d1da43650235b5e00e2",
-                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,e217aaab226cdc7ce677341c55f1462d",
+                "SAMPLE2_PE.ivar_trim.sorted.bam.stats:md5,c3a8970b99627490048d755f53cb6296",
                 "SAMPLE2_PE.sorted.bam.flagstat:md5,041ab8f42dae5f155ee9d7d2a2f23442",
                 "SAMPLE2_PE.sorted.bam.idxstats:md5,72e323cef6b90aea7741eb88cfa843ee",
-                "SAMPLE2_PE.sorted.bam.stats:md5,94e1f73dda2b85d488bab6d6e87104f2",
+                "SAMPLE2_PE.sorted.bam.stats:md5,a058e985778393d9b04d00542f08444f",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.flagstat:md5,6a2d2647c43aa48506d8d1536e498dc5",
                 "SAMPLE3_SE.ivar_trim.sorted.bam.idxstats:md5,6be1ee32c50c77d6a853f02cd42307ba",
-                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,0c30ddbae652d3380c42b29912c66b9d",
+                "SAMPLE3_SE.ivar_trim.sorted.bam.stats:md5,35932731986c2b253d049515807d8bd5",
                 "SAMPLE3_SE.sorted.bam.flagstat:md5,0ae9908cf4840b0ec4ae74afbd395244",
                 "SAMPLE3_SE.sorted.bam.idxstats:md5,184d8ad417ee4242377f18880675165b",
-                "SAMPLE3_SE.sorted.bam.stats:md5,cd8399ec10187278dd3abf37af7d1d35",
+                "SAMPLE3_SE.sorted.bam.stats:md5,441c95b9f49327ec7e244af8b5ef2a55",
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE1_PE.vcf.gz:md5,9aafa01bb1f76e93134858b0925df5a6",
                 "SAMPLE1_PE.vcf.gz.tbi:md5,b8a56afca77cc154e8573fc4ff5e90a1",
@@ -15592,9 +15592,9 @@
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
                 "SAMPLE3_SE.vcf.gz:md5,0e341aa5bfdd7eed1fbf2826d2519442",
                 "SAMPLE3_SE.vcf.gz.tbi:md5,5f9630fde9a4d6b478ac1bfe54231266",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,b66b2b7377370b60662199f4740109fe",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,e225d9efe1e2312590e79067ac0d6878",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,c51693ebb90902b213a18a0157c1d56a",
+                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
+                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
+                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.consensus.fa:md5,c5e132e6eb734d77f729ff04f8350873",
                 "SAMPLE2_PE.consensus.fa:md5,8b9608797e3f74b335a721d2506906f7",
                 "SAMPLE3_SE.consensus.fa:md5,9e9e92afafe787e7672a4e8e80245383",
@@ -15626,9 +15626,9 @@
                 "SAMPLE3_SE.snpeff.vcf.gz:md5,7d1affc6fe1afacb5c3254013c9eead9",
                 "SAMPLE3_SE.snpeff.vcf.gz.tbi:md5,21c8e523f82fe3012ee614a138b9de47",
                 "SAMPLE3_SE.snpsift.txt:md5,3a49e80957d30c5819e3e72964d890f4",
-                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,9b642712205d1b5eda2f4d60d82003eb",
-                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,65e1ca09eded9328a91c09bc9f0fd249",
-                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,910d0b7c71d84d389722f6d8a94ba564",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
                 "variants_long_table.csv:md5,4f18039f0146a8fb967769881e6e6635"
             ]
         ],
@@ -15636,6 +15636,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-09-23T14:31:00.757481233"
+        "timestamp": "2025-10-03T10:57:48.551389889"
     }
 }
