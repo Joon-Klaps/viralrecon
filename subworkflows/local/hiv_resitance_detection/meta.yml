@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "hiv_resistance"
+description: HIV resistance detecton
+keywords:
+  - hiv
+  - resistance
+  - fasta
+components:
+  - sierralocal
+  - resistance_report
+input:
+  - consensus:
+      description: |
+        Consensus fasta file
+        Structure: [ val(meta), [ consensus ] ]
+output:
+  - sierralocal_results:
+      description: |
+        HIV resistance json file from sierralocal
+        Structure: [ val(meta), [ json ] ]
+  - sam2codfreq_results:
+      description: |
+        Codfreq files generated from BAM files
+        Structure: [ val(meta), [ codfreq ] ]
+  - resistance_report:
+      description: |
+        HIV resistance report table integrating sierralocal and codfreq data
+        Structure: [ val(meta), [ csv ] ]
+  - versions:
+      description: |
+        Files containing software versions
+        Structure: [ path(versions.yml) ]
+authors:
+  - "@svarona"
+maintainers:
+  - "@svarona"

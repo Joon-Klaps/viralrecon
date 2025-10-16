@@ -60,6 +60,8 @@ if (!variant_caller) { variant_caller = params.protocol == 'amplicon' ? 'ivar' :
 if (params.fast5_dir)               { ch_fast5_dir          = file(params.fast5_dir)               } else { ch_fast5_dir          = [] }
 if (params.sequencing_summary)      { ch_sequencing_summary = file(params.sequencing_summary)      } else { ch_sequencing_summary = [] }
 
+if (params.profile_json)   { ch_profile_json     = file(params.profile_json)   } else { ch_profile_json = file("$projectDir/assets/HIV1.json", checkIfExists: true) }
+
 // Need to stage medaka model properly depending on whether it is a string or a file
 ch_medaka_model = Channel.empty()
 if (params.artic_minion_caller == 'medaka') {
@@ -630,7 +632,9 @@ workflow VIRALRECON {
 
         if (params.perform_sierralocal) {
             HIV_RESISTANCE (
-                ch_consensus_genome
+                ch_consensus_genome,
+                ch_bam.join(ch_bai, by: [0]),
+                ch_profile_json
             )
             ch_versions = ch_versions.mix(HIV_RESISTANCE.out.versions)
         }

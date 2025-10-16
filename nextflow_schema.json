@@ -650,6 +650,15 @@
                     "type": "boolean",
                     "fa_icon": "fas fa-fast-forward",
                     "description": "Wether to perform sierra local HIV resistance analysis."
+                },
+                "profile_json": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "application/json",
+                    "pattern": "^\\S+\\.json$",
+                    "fa_icon": "fas fa-file",
+                    "description": "Path to JSON file with HIV profile information.",
+                    "help_text": "This file is used by codfreq adapted scripts. If not provided, the JSON file in viralrecon assets will be used."
                 }
             }
         },
