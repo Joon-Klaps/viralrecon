@@ -12,9 +12,9 @@ Usage:
     python sam2codfreq.py --bam input.bam --profile profile.json --output output.codfreq [options]
 
 Inputs:
-    --bam          Path to SAM/BAM file (required)
-    --profile      Path to JSON profile defining fragments and sequence assembly (required)
-    --output       Path to output codfreq CSV (required)
+    --bam          Path to mapping BAM file (required)
+    --profile      Path to JSON profile with fragmentConfig (required)
+    --output       Path to output codfreq file (required)
 
 Optional arguments:
     --site-quality-cutoff  Minimum base quality to include a base (default: 0)
@@ -200,7 +200,7 @@ def translate_codon(nas: bytes) -> str:
     return "".join(aas)
 
 # -------------------------------
-# Main sam2codfreq function
+# sam2codfreq function
 # -------------------------------
 def sam2codfreq_all(bamfile: str, profile_obj: dict, site_quality_cutoff: int = 0, output_codfreq: str = "output.codfreq"):
     """
