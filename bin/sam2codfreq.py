@@ -234,17 +234,27 @@ def sam2codfreq_all(bamfile: str, profile_obj: dict, site_quality_cutoff: int = 
         writer = csv.writer(f)
         writer.writerow(["gene", "position", "total", "codon", "count", "total_quality_score", "aa_codon"])
 
-        for (frag, aapos, codon), stats in sorted(
-            codon_stats.items(),
-            key=lambda x: (frag_order.get(x[0][0], 9999), x[0][1])
-        ):
+        # Group by (fragment, position)
+        grouped_positions = defaultdict(list)
+        for (frag, aapos, codon), stats in codon_stats.items():
+            grouped_positions[(frag, aapos)].append((codon, stats))
+
+        # Iterate keeping fragment order
+        for frag, aapos in sorted(total_per_pos.keys(), key=lambda x: (frag_order.get(x[0], 9999), x[1])):
+            entries = grouped_positions[(frag, aapos)]
+
+            # Sort by count descending
+            entries_sorted = sorted(entries, key=lambda e: e[1]["count"], reverse=True)
+
             total = total_per_pos[(frag, aapos)]
-            aa_codon = translate_codon(codon) if len(codon) % 3 == 0 else ""
-            writer.writerow([frag, aapos, total, codon.decode("utf-8"), stats["count"], stats["total_quality_score"], aa_codon])
+            for codon, stats in entries_sorted:
+                aa_codon = translate_codon(codon) if len(codon) % 3 == 0 else ""
+                writer.writerow([frag, aapos, total, codon.decode("utf-8"), stats["count"], stats["total_quality_score"], aa_codon])
 
     print(f".codfreq file written to {output_codfreq}")
+
 # -------------------------------
-# CLI
+# MAIN
 # -------------------------------
 def main():
     parser = argparse.ArgumentParser(description="Convert SAM/BAM into codfreq CSV")
