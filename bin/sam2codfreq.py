@@ -252,10 +252,38 @@ def main():
     parser.add_argument("--profile", required=True, help="Profile JSON with fragmentConfig and sequenceAssemblyConfig")
     parser.add_argument("--output", required=True, help="Output codfreq CSV file")
     parser.add_argument("--site-quality-cutoff", type=int, default=0, help="Minimum base quality")
+
     args = parser.parse_args()
 
     with open(args.profile) as f:
         profile_obj = json.load(f)
+
+    with pysam.AlignmentFile(args.bam, "rb") as bam_fp:
+        bam_references = list(bam_fp.references)
+
+    json_fragments = [frag.get("fromFragment") for frag in profile_obj.get("fragmentConfig", []) if frag.get("fromFragment")]
+
+    if not json_fragments:
+        raise ValueError("JSON profile file need a 'fromFragment' field to verify references with .bam files.")
+
+    # Verificar si alguna referencia del BAM coincide con los 'fromFragment' del JSON
+    unique_json_ref = set(json_fragments)
+    if len(unique_json_ref) > 1:
+        raise ValueError(f"JSON file contains multiple 'fromFragment': {unique_json_ref}. Only one expected")
+
+    json_ref = list(unique_json_ref)[0]
+
+    if len(set(bam_references)) > 1:
+        raise ValueError(f"BAM file contains multiple references: {bam_references}. Only one expected.")
+
+    bam_ref = bam_references[0]
+
+    if bam_ref != json_ref:
+        raise ValueError(
+            f"Error: BAM reference ({bam_ref}) does not match JSON reference ({json_ref})."
+        )
+    else:
+        print(f"✔ Reference check OK: {bam_ref} matches {json_ref}")
 
     sam2codfreq_all(args.bam, profile_obj, args.site_quality_cutoff, args.output)
 
