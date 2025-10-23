@@ -27,7 +27,7 @@ process FILTER_BLASTN {
 
     """
     cat $header $hits > ${prefix}.results.blastn.txt
-    awk 'BEGIN{OFS=\"\\t\";FS=\"\\t\"}{print \$0,\$6/\$16,\$6/\$15}' $hits | awk 'BEGIN{OFS=\"\\t\";FS=\"\\t\"} \$16 > ${min_contig_length} && \$18 > ${min_perc_contig_aligned} && \$1 !~ /phage/ {print \$0}' > tmp.out
+    awk 'BEGIN{OFS=\"\\t\";FS=\"\\t\"}{print \$0,\$7/\$17,\$7/\$16}' $hits | awk 'BEGIN{OFS=\"\\t\";FS=\"\\t\"} \$17 > ${min_contig_length} && \$19 > ${min_perc_contig_aligned} && \$1 !~ /phage/ {print \$0}' > tmp.out
     cat $filtered_header tmp.out > ${prefix}.filter.blastn.txt
 
     cat <<-END_VERSIONS > versions.yml
