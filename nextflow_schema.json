@@ -527,7 +527,7 @@
                     "description": "Path to directory or tar.gz archive for pre-built BLAST database. For usage with -taxidlist in blastn it has to be built with -taxid_map and include the files taxdb.bt[di]."
                 },
                 "taxidlist": {
-                    "type": "file",
+                    "type": "string",
                     "format": "file-path",
                     "fa-icon": "fas fa-file-alt",
                     "description": "Path to file containing list of tax ids, one per line, for filtering the blast database. Cannot be used with make_blastdb."
