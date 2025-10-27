@@ -42,6 +42,7 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 - [[PR #411](https://github.com/nf-core/viralrecon/issues/411)] - Standerdised the use of Multiqc across illumina & nanopore workflow and added pangolin updatedata
 - [[PR #509](https://github.com/nf-core/viralrecon/issues/465)] - Fix local component structure for modules and subworkflows
 - [[PR #511]](https://github.com/nf-core/viralrecon/pull/511) - Fixed nf-core pipeline lint and updated nf-core modules and subworflows
+- [[PR #541](https://github.com/nf-core/viralrecon/pull/5419)] - Implement new blastn module with taxid filtering in pipeline
 
 ### Parameters
 
@@ -60,6 +61,7 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 |                                 | `--threeprime_adapters`      |
 | `--nextclade_dataset_reference` |                              |
 | `--skip_asciigenome`            |                              |
+|                                 | `--taxidlist`                |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
