@@ -5,12 +5,13 @@
   </picture>
 </h1>
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/nf-core/viralrecon)
 [![GitHub Actions CI Status](https://github.com/nf-core/viralrecon/actions/workflows/nf-test.yml/badge.svg)](https://github.com/nf-core/viralrecon/actions/workflows/nf-test.yml)
 [![GitHub Actions Linting Status](https://github.com/nf-core/viralrecon/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/viralrecon/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/viralrecon/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.3901628-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.3901628)  
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
-[![Nextflow](https://img.shields.io/badge/version-%E2%89%A524.10.5-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
-[![nf-core template version](https://img.shields.io/badge/nf--core_template-3.3.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.3.2)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.04.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![nf-core template version](https://img.shields.io/badge/nf--core_template-3.4.1-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.4.1)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
@@ -41,7 +42,7 @@ A number of improvements were made to the pipeline recently, mainly with regard 
 1. Merge re-sequenced FastQ files ([`cat`](http://www.linfo.org/cat.html))
 2. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
 3. Adapter trimming ([`fastp`](https://github.com/OpenGene/fastp))
-4. Removal of host reads ([`Kraken 2`](http://ccb.jhu.edu/software/kraken2/); _optional_)
+4. Statistics/removal of host reads ([`Kraken 2`](http://ccb.jhu.edu/software/kraken2/); _optional_)
 5. Variant calling
    1. Read alignment ([`Bowtie 2`](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml))
    2. Sort and index alignments ([`SAMtools`](https://sourceforge.net/projects/samtools/files/samtools/))
@@ -73,10 +74,11 @@ A number of improvements were made to the pipeline recently, mainly with regard 
 1. Sequencing QC ([`pycoQC`](https://github.com/a-slide/pycoQC))
 2. Aggregate pre-demultiplexed reads from MinKNOW/Guppy ([`artic guppyplex`](https://artic.readthedocs.io/en/latest/commands/))
 3. Read QC ([`NanoPlot`](https://github.com/wdecoster/NanoPlot))
-4. Align reads, call variants and generate consensus sequence ([`artic minion`](https://artic.readthedocs.io/en/latest/commands/))
-5. Remove unmapped reads and obtain alignment metrics ([`SAMtools`](https://sourceforge.net/projects/samtools/files/samtools/))
-6. Genome-wide and amplicon coverage QC plots ([`mosdepth`](https://github.com/brentp/mosdepth/))
-7. Downstream variant analysis:
+4. Statistics/removal of host reads ([`Kraken 2`](http://ccb.jhu.edu/software/kraken2/); _optional_)
+5. Align reads, call variants and generate consensus sequence ([`artic minion`](https://artic.readthedocs.io/en/latest/commands/))
+6. Remove unmapped reads and obtain alignment metrics ([`SAMtools`](https://sourceforge.net/projects/samtools/files/samtools/))
+7. Genome-wide and amplicon coverage QC plots ([`mosdepth`](https://github.com/brentp/mosdepth/))
+8. Downstream variant analysis:
    - Count metrics ([`BCFTools`](http://samtools.github.io/bcftools/bcftools.html))
    - Variant annotation ([`SnpEff`](http://snpeff.sourceforge.net/SnpEff.html), [`SnpSift`](http://snpeff.sourceforge.net/SnpSift.html))
    - Consensus assessment report ([`QUAST`](http://quast.sourceforge.net/quast))
@@ -84,7 +86,7 @@ A number of improvements were made to the pipeline recently, mainly with regard 
    - Clade assignment, mutation calling and sequence quality checks ([`Nextclade`](https://github.com/nextstrain/nextclade))
    - Recover relative lineage abundances from mixed SARS-CoV-2 samples ([`Freyja`](https://github.com/andersen-lab/Freyja))
    - Create variants long format table collating per-sample information for individual variants ([`BCFTools`](http://samtools.github.io/bcftools/bcftools.html)), functional effect prediction ([`SnpSift`](http://snpeff.sourceforge.net/SnpSift.html)) and lineage analysis ([`Pangolin`](https://github.com/cov-lineages/pangolin))
-8. Present QC, visualisation and custom reporting for sequencing, raw reads, alignment and variant calling results ([`MultiQC`](http://multiqc.info/))
+9. Present QC, visualisation and custom reporting for sequencing, raw reads, alignment and variant calling results ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
@@ -142,7 +144,6 @@ nextflow run nf-core/viralrecon \
    --primer_set 'artic' \
    --primer_set_version 3 \
    --fastq_dir fastq_pass/ \
-   --fast5_dir fast5_pass/ \
    --sequencing_summary sequencing_summary.txt \
    -profile -profile <docker/singularity/.../institute>
 ```

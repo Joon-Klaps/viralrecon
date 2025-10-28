@@ -284,11 +284,15 @@ def main(args=None):
             "multiqc_general_stats.yaml",
             [
                 (
-                    "Coverage median",
-                    ["variants_mosdepth-median_coverage"],
+                    "% Non-host reads (Kraken 2)",
+                    ["kraken-pct_unclassified"],
                 ),
-                ("% Coverage > 1x", ["variants_mosdepth-1_x_pc"]),
-                ("% Coverage > 10x", ["variants_mosdepth-10_x_pc"]),
+                (
+                    "Coverage median",
+                    ["mosdepth-median_coverage"],
+                ),
+                ("% Coverage > 1x", ["mosdepth-1_x_pc"]),
+                ("% Coverage > 10x", ["mosdepth-10_x_pc"]),
             ],
         ),
         (

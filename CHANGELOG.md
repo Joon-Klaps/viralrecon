@@ -3,7 +3,9 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unpublished Version / DEV]
+<!-- Release names are chosen by a combination of Dog + Flower in Code Name Generator -->
+
+## [[3.0.0](https://github.com/nf-core/viralrecon/releases/tag/3.0.0)] Waterdog Hibiscus - 2025-10-21
 
 ### Credits
 
@@ -14,6 +16,11 @@ Special thanks to the following for their code contributions to the release:
 - [Sarai Varona](https://github.com/svarona)
 - [Jaime Ozáez](https://github.com/jaimeozaez)
 - [Sara Monzon](https://github.com/saramonzon)
+- [Matthias Hörtenhuber](https://github.com/mashehu)
+- [Anna Norén](https://github.com/AnnaNoren)
+- [JC Jossart](https://github.com/cjjossart)
+- [Leo Caparica](https://github.com/CaparicaLeo)
+- [Michael L Heuer](https://github.com/heuermh)
 
 Thank you to everyone else that has contributed by reporting bugs, enhancements or in any other way, shape or form.
 
@@ -42,7 +49,11 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 - [[PR #411](https://github.com/nf-core/viralrecon/issues/411)] - Standerdised the use of Multiqc across illumina & nanopore workflow and added pangolin updatedata
 - [[PR #509](https://github.com/nf-core/viralrecon/issues/465)] - Fix local component structure for modules and subworkflows
 - [[PR #511]](https://github.com/nf-core/viralrecon/pull/511) - Fixed nf-core pipeline lint and updated nf-core modules and subworflows
-- [[PR #541](https://github.com/nf-core/viralrecon/pull/5419)] - Implement new blastn module with taxid filtering in pipeline
+- [[PR #520](https://github.com/nf-core/viralrecon/pull/520)] - Update of metro map for illumina workflow
+- [[PR #523]](https://github.com/nf-core/viralrecon/pull/523) - Fixed metro map for Nanopore, updated freyja version, added freyja to full testing, added min_mapped reads filter to Nanopore, added Kraken2 reports to Nanopore's MultiQC, fixed Quast report on Nanopore, re-write nf-test as scenarios.
+- [[PR #538]](https://github.com/nf-core/viralrecon/pull/538) - Fixed some conda versions that were problematic in tests or different from singularity/docker
+- [[PR #540]](https://github.com/nf-core/viralrecon/pull/540) - Updated artic minion, removed support for Fast5 files and fixed snaps.
+- [[PR #541](https://github.com/nf-core/viralrecon/pull/541)] - Implement new blastn module with taxid filtering in pipeline
 
 ### Parameters
 
@@ -59,8 +70,16 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 |                                 | `--min_perc_contig_aligned`  |
 |                                 | `--skip_noninternal_primers` |
 |                                 | `--threeprime_adapters`      |
+|                                 | `--freyja_depthcutoff`       |
+|                                 | `--pango_database`           |
 | `--nextclade_dataset_reference` |                              |
 | `--skip_asciigenome`            |                              |
+| `--asciigenome_read_depth`      |                              |
+| `--asciigenome_window_size`     |                              |
+| `--fast5_dir`                   |                              |
+| `--artic_minion_caller`         |                              |
+| `--artic_minion_aligner`        |                              |
+| `--artic_minion_medaka_model`   | `--artic_minion_model_dir`   |
 |                                 | `--taxidlist`                |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
@@ -71,52 +90,60 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
 
-| Dependency      | Old version | New version |
-| --------------- | ----------- | ----------- |
-| `asciigenome`   | 1.16.0      |             |
-| `bandage`       | 0.8.1       | 0.9.0       |
-| `bcftools`      | 1.20        | 1.22        |
-| `biopython`     | 1.79        | 1.85        |
-| `biostrings`    | 2.58.0      | 2.66.0      |
-| `blast`         | 2.15.0      | 2.16.0      |
-| `bowtie2`       | 2.5.2       | 2.5.4       |
-| `coreutils`     | 9.4         | 9.5         |
-| `cutadapt`      |             | 5.0         |
-| `fastp`         | 0.23.2      | 1.0.1       |
-| `freyja`        |             | 1.5.3       |
-| `htslib`        | 1.20        | 1.22        |
-| `ivar`          | 1.4.3       | 1.4.4       |
-| `kraken2`       | 2.1.3       | 2.1.6       |
-| `matplotlib`    | 3.5.1       | 3.10.1      |
-| `mosdepth`      | 0.3.10      | 0.3.11      |
-| `multiqc`       | 1.14        | 1.19        |
-| `nanoplot`      | 1.41.6      | 1.46.1      |
-| `nf-schema`     |             | 2.2.1       |
-| `nextclade`     | 2.12.0      | 3.11.0      |
-| `pangolin`      | 4.2         | 4.3         |
-| `pangolin-data` | 1.30        | 1.30        |
-| `pandas`        | 1.3.5       | 2.2.3       |
-| `picard`        | 3.3.0       | 3.4.0       |
-| `python`        | 3.9.5       | 3.13.2      |
-| `quast`         | 5.2.0       | 5.3.0       |
-| `regex`         | 2021.11.10  | 2024.11.6   |
-| `r-base`        | 4.0.3       | 4.2         |
-| `r-ggplot2`     | 3.3.3       | 3.5.1       |
-| `r-optparse`    | 1.6.6       | 1.7.5       |
-| `r-reshape2`    | 1.4.4       | 1.4.4       |
-| `r-scales`      | 1.1.1       | 1.3.0       |
-| `r-sys`         | 3.4         | 3.4.3       |
-| `r-tidyverse`   | 1.3.0       | 1.3.2       |
-| `r-viridis`     | 0.5.1       | 0.6.5       |
-| `samtools`      | 1.18        | 1.22        |
-| `scipy`         | 1.7.3       | 1.15.2      |
-| `sed`           | 4.7         | 4.8         |
-| `snakemake`     | 7.30.1      | 8.30.0      |
-| `spades`        | 4.0.0       | 4.1.0       |
-| `tabix`         | 1.20        | 1.21        |
-| `Ubuntu`        | 20.04       | 24.04       |
-| `unicycler`     | 0.5.0       | 0.5.1       |
-| `vcflib`        | 1.0.3       | 1.0.12      |
+| Dependency        | Old version | New version |
+| ----------------- | ----------- | ----------- |
+| `asciigenome`     | 1.16.0      |             |
+| `artic guppyplex` | 1.2.3       | 1.6.2       |
+| `artic minion`    | 1.2.3       | 1.6.2       |
+| `bandage`         | 0.8.1       | 0.9.0       |
+| `bcftools`        | 1.16        | 1.22        |
+| `bedtools`        | 2.30.0      | 2.31.1      |
+| `biopython`       | 1.79        | 1.85        |
+| `biostrings`      | 2.58.0      | 2.66.0      |
+| `blast`           | 2.13.0      | 2.16.0      |
+| `bowtie2`         | 2.4.4       | 2.5.4       |
+| `complexheatmap`  | 2.6.2       | 2.14        |
+| `coreutils`       | 9.4         | 9.5         |
+| `cutadapt`        | 4.2         | 5.0         |
+| `fastp`           | 0.23.2      | 1.0.1       |
+| `fastqc`          | 0.11.9      | 0.12.1      |
+| `freyja`          |             | 2.0.1       |
+| `grep`            | 3.4         | 3.11        |
+| `gzip`            |             | 1.13        |
+| `htslib`          | 1.20        | 1.22.1      |
+| `ivar`            | 1.4         | 1.4.4       |
+| `kraken2`         | 2.1.2       | 2.1.6       |
+| `lbzip2`          |             | 2.5         |
+| `matplotlib`      | 3.5.1       | 3.10.1      |
+| `mosdepth`        | 0.3.3       | 0.3.11      |
+| `multiqc`         | 1.14        | 1.31        |
+| `nanoplot`        | 1.41.0      | 1.46.1      |
+| `nf-schema`       |             | 2.2.1       |
+| `nextclade`       | 2.12.0      | 3.11.0      |
+| `pangolin`        | 4.2         | 4.3.1       |
+| `pangolin-data`   |             | 1.32        |
+| `pandas`          | 1.3.5       | 2.2.3       |
+| `picard`          | 3.0.0       | 3.4.0       |
+| `python`          | 3.9.5       | 3.13.2      |
+| `quast`           | 5.2.0       | 5.3.0       |
+| `regex`           | 2021.11.10  | 2024.11.6   |
+| `r-base`          | 4.0.3       | 4.2.0       |
+| `r-ggplot2`       | 3.3.3       | 3.5.1       |
+| `r-optparse`      | 1.6.6       | 1.7.5       |
+| `r-reshape2`      | 1.4.4       | 1.4.4       |
+| `r-scales`        | 1.1.1       | 1.3.0       |
+| `r-sys`           | 3.4         | 3.4.3       |
+| `r-tidyverse`     | 1.3.0       | 1.3.2       |
+| `r-viridis`       | 0.5.1       | 0.6.5       |
+| `samtools`        | 1.16.1      | 1.22.1      |
+| `scipy`           | 1.7.3       | 1.15.2      |
+| `sed`             | 4.7         | 4.9         |
+| `snakemake`       | 7.30.1      | 8.30.0      |
+| `spades`          | 3.15.5      | 4.1.0       |
+| `tabix`           | 1.11        | 1.21        |
+| `Ubuntu`          | 20.04       | 24.04       |
+| `unicycler`       | 0.4.8       | 0.5.1       |
+| `vcflib`          | 1.0.3       | 1.0.14      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 >

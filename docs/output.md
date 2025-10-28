@@ -12,6 +12,7 @@ The directories listed below will be created in the results directory after the 
     - [Nanopore: pycoQC](#nanopore-pycoqc)
     - [Nanopore: artic guppyplex](#nanopore-artic-guppyplex)
     - [Nanopore: NanoPlot](#nanopore-nanoplot)
+    - [Nanopore: Kraken2](#nanopore-kraken2)
   - [Nanopore: Variant calling](#nanopore-variant-calling)
     - [Nanopore: artic minion](#nanopore-artic-minion)
   - [Nanopore: Downstream analysis](#nanopore-downstream-analysis)
@@ -30,7 +31,7 @@ The directories listed below will be created in the results directory after the 
 
 ## Nanopore: Preprocessing
 
-A file called `summary_variants_metrics_mqc.csv` containing a selection of read alignment and variant calling metrics will be saved in the `multiqc/<CALLER>/` output directory which is determined by the `--artic_minion_caller` parameter (Default: `nanopolish/`). The same metrics will also be added to the top of the MultiQC report.
+A file called `summary_variants_metrics_mqc.csv` containing a selection of read alignment and variant calling metrics will be saved in the `multiqc/` output directory. The same metrics will also be added to the top of the MultiQC report.
 
 ### Nanopore: pycoQC
 
@@ -82,6 +83,24 @@ The [artic guppyplex](https://artic.readthedocs.io/en/latest/commands/) tool fro
 
 <p align="center"><img src="images/nanoplot_readlengthquality.png" alt="Nanoplot - Read quality vs read length" width="600"></p>
 
+### Nanoplot: Kraken2
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `kraken2/`
+  - `*.kraken2.report.txt`: Kraken 2 taxonomic report. See [here](https://ccb.jhu.edu/software/kraken2/index.shtml?t=manual#sample-report-output-format) for a detailed description of the format.
+  - `*.classified.fastq.gz`: Fastq file with reads that classified with the database.
+  - `*.unclassified.fastq.gz`: Fastq file with reads that were not classified with the database.
+
+</details>
+
+[Kraken 2](https://ccb.jhu.edu/software/kraken2/index.shtml?t=manual) is a sequence classifier that assigns taxonomic labels to DNA sequences. Kraken 2 examines the k-mers within a query sequence and uses the information within those k-mers to query a database. That database maps k-mers to the lowest common ancestor (LCA) of all genomes known to contain a given k-mer.
+
+We use a Kraken 2 database in this workflow to filter out reads specific to the host genome before performing the _de novo_ assembly steps in the pipeline. This filtering is not performed in the variant calling arm of the pipeline by default but Kraken 2 is still run to obtain an estimate of host reads, however, the filtering can be amended via the `--kraken2_variants_host_filter` parameter.
+
+![MultiQC - Kraken 2 classification plot](images/mqc_kraken2_plot.png)
+
 ## Nanopore: Variant calling
 
 ### Nanopore: artic minion
@@ -105,11 +124,9 @@ The [artic guppyplex](https://artic.readthedocs.io/en/latest/commands/) tool fro
   - `*.primertrimmed.rg.sorted.bam`: BAM file generated after primer-binding site trimming.
   - `*.primertrimmed.rg.sorted.bam.bai`: BAM index file generated after primer-binding site trimming.
 
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
-
 </details>
 
-The [artic minion](https://artic.readthedocs.io/en/latest/commands/) tool from the [ARTIC field bioinformatics pipeline](https://github.com/artic-network/fieldbioinformatics) is used to align reads, call variants and to generate the consensus sequence. By default, artic minion uses [Minimap2](https://github.com/lh3/minimap2) to align the reads to the viral genome, however you can use [BWA](https://github.com/lh3/bwa) instead using the `--artic_minion_aligner bwa` parameter. Similarly, the default variant caller used by artic minion is [Nanopolish](https://github.com/jts/nanopolish), however, you can use [Medaka](https://github.com/nanoporetech/medaka) instead via the `--artic_minion_caller medaka` parameter. Medaka is faster than Nanopolish, performs mostly the same and can be run directly from `fastq` input files as opposed to requiring the `fastq`, `fast5` and `sequencing_summary.txt` files required to run Nanopolish. You must provide the appropriate [Medaka model](https://github.com/nanoporetech/medaka#models) via the `--artic_minion_medaka_model` parameter if using `--artic_minion_caller medaka`.
+The [artic minion](https://artic.readthedocs.io/en/latest/commands/) tool from the [ARTIC field bioinformatics pipeline](https://github.com/artic-network/fieldbioinformatics) is used to align reads, call variants and to generate the consensus sequence. You can provide the appropriate clair3 models via the `--artic_minion_model_dir` parameter, else, defaults to models packaged with conda/singularity/docker installation .
 
 ## Nanopore: Downstream analysis
 
@@ -118,13 +135,11 @@ The [artic minion](https://artic.readthedocs.io/en/latest/commands/) tool from t
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/`
+- `artic_minion/`
   - `*.mapped.sorted.bam`: Coordinate sorted BAM file containing read alignment information.
   - `*.mapped.sorted.bam.bai`: Index file for coordinate sorted BAM file.
-- `<CALLER>/samtools_stats/`
+- `artic_minion/samtools_stats/`
   - SAMtools `*.mapped.sorted.bam.flagstat`, `*.mapped.sorted.bam.idxstats` and `*.mapped.sorted.bam.stats` files generated from the alignment files.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -137,19 +152,17 @@ BAM files containing the original alignments from either Minimap2 or BWA are fur
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/mosdepth/genome/`
+- `artic_minion/mosdepth/genome/`
   - `all_samples.mosdepth.coverage.tsv`: File aggregating genome-wide coverage values across all samples used for plotting.
   - `*.mosdepth.coverage.pdf`: Whole-genome coverage plot.
   - `*.mosdepth.coverage.tsv`: File containing coverage values for the above plot.
   - `*.mosdepth.summary.txt`: Summary metrics including mean, min and max coverage values.
-- `<CALLER>/mosdepth/amplicon/`
+- `artic_minion/mosdepth/amplicon/`
   - `all_samples.mosdepth.coverage.tsv`: File aggregating per-amplicon coverage values across all samples used for plotting.
   - `all_samples.mosdepth.heatmap.pdf`: Heatmap showing per-amplicon coverage across all samples.
   - `*.mosdepth.coverage.pdf`: Bar plot showing per-amplicon coverage for an individual sample.
   - `*.mosdepth.coverage.tsv`: File containing per-amplicon coverage values for the above plot.
   - `*.mosdepth.summary.txt`: Summary metrics including mean, min and max coverage values.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -166,10 +179,8 @@ BAM files containing the original alignments from either Minimap2 or BWA are fur
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/bcftools_stats/`
+- `artic_minion/bcftools_stats/`
   - `*.bcftools_stats.txt`: Statistics and counts obtained from VCF file.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -182,17 +193,15 @@ BAM files containing the original alignments from either Minimap2 or BWA are fur
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/snpeff/`
+- `artic_minion/snpeff/`
   - `*.snpeff.csv`: Variant annotation csv file.
   - `*.snpeff.genes.txt`: Gene table for annotated variants.
   - `*.snpeff.summary.html`: Summary html file for variants.
   - `*.snpeff.vcf.gz`: VCF file with variant annotations.
   - `*.snpeff.vcf.gz.tbi`: Index for VCF file with variant annotations.
   - `*.snpsift.txt`: SnpSift summary table.
-- `<CALLER>/snpeff/bcftools_stats/`
+- `artic_minion/snpeff/bcftools_stats/`
   - `*.snpeff.bcftools_stats.txt`: Statistics and counts obtained from SnpEff VCF file.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -207,10 +216,8 @@ BAM files containing the original alignments from either Minimap2 or BWA are fur
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/quast/`
+- `artic_minion/quast/`
   - `report.html`: Results report in HTML format. Also available in various other file formats i.e. `report.pdf`, `report.tex`, `report.tsv` and `report.txt`.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -221,10 +228,9 @@ BAM files containing the original alignments from either Minimap2 or BWA are fur
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/pangolin/`
+- `artic_minion/pangolin/`
   - `*.pangolin.csv`: Lineage analysis results from Pangolin.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
+  - `pangolin_db`: When `pango_database` is not provided, pangolin will attempt to auto-update its database before running the pipeline. The used database is stored in this folder and may be useful for replication. Can be given as `pango_database` input directory.
 
 </details>
 
@@ -235,10 +241,8 @@ Phylogenetic Assignment of Named Global Outbreak LINeages ([Pangolin](https://gi
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/nextclade/`
+- `artic_minion/nextclade/`
   - `*.csv`: Analysis results from Nextlade containing genome clade assignment, mutation calling and sequence quality checks.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -249,20 +253,18 @@ Phylogenetic Assignment of Named Global Outbreak LINeages ([Pangolin](https://gi
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/freyja/demix`
+- `artic_minion/freyja/demix`
   - `*.tsv`: Analysis results including the lineages present, their corresponding abundances, and summarization by constellation
-- `<CALLER>/freyja/freyja_db`
+- `artic_minion/freyja/freyja_db`
   - `.json`: dataset containing lineage metadata that correspond to barcodes.
   - `.yml`: dataset containing the lineage topology.
   - `.csv`: dataset containing lineage defining barcodes.
-- `<CALLER>/freyja/variants`
+- `artic_minion/freyja/variants`
   - `*.variants.tsv`: Analysis results including identified variants in a gff-like format
   - `*.depth.tsv`: Analysis results including the depth of the identified variants
-- `<CALLER>/freyja/boot`
+- `artic_minion/freyja/boot`
   - `*lineages.csv` Analysis results inculding lineages present and their corresponding abundances with variation identified through bootstrapping
   - `*summarized.csv`Analysis results inculding lineages present but summarized by constellation and their corresponding abundances with variation identified through bootstrapping
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -275,11 +277,9 @@ Phylogenetic Assignment of Named Global Outbreak LINeages ([Pangolin](https://gi
 <details markdown="1">
 <summary>Output files</summary>
 
-- `<CALLER>/`
+- `artic_minion/`
   - `variants_long_table.csv`: Long format table collating per-sample information for individual variants, functional effect prediction and lineage analysis.
   - `additional_variants_long_table.csv`: Long format table similar to `variants_long_table.csv` for additional annotation file with overlapping annotation features.
-
-**NB:** The value of `<CALLER>` in the output directory name above is determined by the `--artic_minion_caller` parameter (Default: 'nanopolish').
 
 </details>
 
@@ -321,7 +321,7 @@ Table columns:
 <details markdown="1">
 <summary>Output files</summary>
 
-- `multiqc/<CALLER>/`
+- `multiqc/`
   - `multiqc_report.html`: a standalone HTML file that can be viewed in your web browser.
   - `multiqc_data/`: directory containing parsed statistics from the different tools used in the pipeline.
   - `summary_variants_metrics_mqc.csv`: file containing a selection of read alignmnet and variant calling metrics. The same metrics will also be added to the top of the MultiQC report.
@@ -354,10 +354,10 @@ An example MultiQC report generated from a full-sized dataset can be viewed on t
     - [picard MarkDuplicates](#picard-markduplicates)
     - [picard CollectMultipleMetrics](#picard-collectmultiplemetrics)
     - [mosdepth](#mosdepth)
+    - [Freyja](#freyja)
     - [iVar variants](#ivar-variants)
     - [BCFTools call](#bcftools-call)
     - [SnpEff and SnpSift](#snpeff-and-snpsift)
-    - [Freyja](#freyja)
     - [iVar consensus](#ivar-consensus)
     - [BCFTools and BEDTools](#bcftools-and-bedtools)
     - [QUAST](#quast)
@@ -569,6 +569,30 @@ Unless you are using [UMIs](https://emea.illumina.com/science/sequencing-method-
 
 <p align="center"><img src="images/r_amplicon_barplot.png" alt="R - Sample per-amplicon coverage plot"></p>
 
+### Freyja
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `variants/freyja/demix`
+  - `*.tsv`: Analysis results including the lineages present, their corresponding abundances, and summarization by constellation
+- `variants/freyja/freyja_db`
+  - `.json`: dataset containing lineage metadata that correspond to barcodes.
+  - `.yml`: dataset containing the lineage topology.
+  - `barcodes.feather`: dataset containing lineage defining barcodes.
+- `variants/freyja/variants`
+  - `*.variants.tsv`: Analysis results including identified variants in a gff-like format
+  - `*.depth.tsv`: Analysis results including the depth of the identified variants
+- `variants/freyja/bootstrap`
+  - `*lineages.csv` Analysis results inculding lineages present and their corresponding abundances with variation identified through bootstrapping
+  - `*summarized.csv`Analysis results inculding lineages present but summarized by constellation and their corresponding abundances with variation identified through bootstrapping
+
+</details>
+
+[Freyja](https://github.com/andersen-lab/Freyja) is a tool to recover relative lineage abundances from mixed SARS-CoV-2 samples from a sequencing dataset (BAM aligned to the Hu-1 reference). The method uses lineage-determining mutational "barcodes" derived from the [UShER](https://usher-wiki.readthedocs.io/en/latest/#) global phylogenetic tree as a basis set to solve the constrained (unit sum, non-negative) de-mixing problem.
+
+<p align="center"><img src="images/freyja_screenshot.png" alt="Freyja screenshot"></p>
+
 ### iVar variants
 
 <details markdown="1">
@@ -633,30 +657,6 @@ iVar outputs a tsv format which is not compatible with downstream analysis such 
 
 ![MultiQC - SnpEff annotation counts](images/mqc_snpeff_plot.png)
 
-### Freyja
-
-<details markdown="1">
-<summary>Output files</summary>
-
-- `<CALLER>/freyja/demix`
-  - `*.tsv`: Analysis results including the lineages present, their corresponding abundances, and summarization by constellation
-- `<CALLER>/freyja/freyja_db`
-  - `.json`: dataset containing lineage metadata that correspond to barcodes.
-  - `.yml`: dataset containing the lineage topology.
-  - `.csv`: dataset containing lineage defining barcodes.
-- `<CALLER>/freyja/variants`
-  - `*.variants.tsv`: Analysis results including identified variants in a gff-like format
-  - `*.depth.tsv`: Analysis results including the depth of the identified variants
-- `<CALLER>/freyja/boot`
-  - `*lineages.csv` Analysis results inculding lineages present and their corresponding abundances with variation identified through bootstrapping
-  - `*summarized.csv`Analysis results inculding lineages present but summarized by constellation and their corresponding abundances with variation identified through bootstrapping
-
-</details>
-
-[Freyja](https://github.com/andersen-lab/Freyja) is a tool to recover relative lineage abundances from mixed SARS-CoV-2 samples from a sequencing dataset (BAM aligned to the Hu-1 reference). The method uses lineage-determining mutational "barcodes" derived from the [UShER](https://usher-wiki.readthedocs.io/en/latest/#) global phylogenetic tree as a basis set to solve the constrained (unit sum, non-negative) de-mixing problem.
-
-<p align="center"><img src="images/freyja_screenshot.png" alt="Freyja screenshot"></p>
-
 ### iVar consensus
 
 <details markdown="1">
@@ -705,7 +705,7 @@ As described in the [iVar variants](#ivar-variants) section, iVar can be used in
 <details markdown="1">
 <summary>Output files</summary>
 
-- `variants/<VARIANT_CALLER>/consensus/<CONSENSUS_CALLER>/quast/`
+- `variants/<VARIANT_CALLER>/consensus/<CONSENSUS_CALLER>/quast.consensus/`
   - `report.html`: Results report in HTML format. Also available in various other file formats i.e. `report.pdf`, `report.tex`, `report.tsv` and `report.txt`.
 
 **NB:** The value of `<VARIANT_CALLER>` in the output directory name above is determined by the `--variant_caller` parameter (Default: 'ivar' for '--protocol amplicon' and 'bcftools' for '--protocol metagenomic').
@@ -722,6 +722,7 @@ As described in the [iVar variants](#ivar-variants) section, iVar can be used in
 
 - `variants/<VARIANT_CALLER>/consensus/<CONSENSUS_CALLER>/pangolin/`
   - `*.pangolin.csv`: Lineage analysis results from Pangolin.
+  - `pangolin_db`: When `pango_database` is not provided, pangolin will attempt to auto-update its database before running the pipeline. The used database is stored in this folder and may be useful for replication. Can be given as `pango_database` input directory.
 
 **NB:** The value of `<VARIANT_CALLER>` in the output directory name above is determined by the `--variant_caller` parameter (Default: 'ivar' for '--protocol amplicon' and 'bcftools' for '--protocol metagenomic').
 **NB:** The value of `<CONSENSUS_CALLER>` in the output directory name above is determined by the `--consensus_caller` parameter (Default: 'bcftools' for both '--protocol amplicon' and '--protocol metagenomic').
@@ -961,7 +962,7 @@ In the variant calling branch of the pipeline we are using [iVar trim](#ivar-tri
 <details markdown="1">
 <summary>Output files</summary>
 
-- `assembly/<ASSEMBLER>/quast/`
+- `assembly/<ASSEMBLER>/quast.<ASSEMBLER>/`
   - `report.html`: Results report in HTML format. Also available in various other file formats i.e. `report.pdf`, `report.tex`, `report.tsv` and `report.txt`.
 
 **NB:** The value of `<ASSEMBLER>` in the output directory name above is determined by the `--assemblers` parameter (Default: 'spades').

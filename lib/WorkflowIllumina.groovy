@@ -80,25 +80,6 @@ class WorkflowIllumina {
     }
 
     //
-    // Function that parses and returns the number of mapped reasds from flagstat files
-    //
-    public static ArrayList getFlagstatMappedReads(flagstat_file, params) {
-        def mapped_reads = 0
-        flagstat_file.eachLine { line ->
-            if (line.contains(' mapped (')) {
-                mapped_reads = line.tokenize().first().toInteger()
-            }
-        }
-
-        def pass = false
-        def logname = flagstat_file.getBaseName() - 'flagstat'
-        if (mapped_reads > params.min_mapped_reads.toInteger()) {
-            pass = true
-        }
-        return [ mapped_reads, pass ]
-    }
-
-    //
     // Check if the primer BED file supplied to the pipeline is from the SWIFT/SNAP protocol
     //
     public static void checkIfSwiftProtocol(primer_bed_file, name_prefix, log) {

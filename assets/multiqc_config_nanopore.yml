@@ -10,6 +10,7 @@ max_table_rows: 10000
 run_modules:
   - custom_content
   - pycoqc
+  - kraken
   - samtools
   - bcftools
   - mosdepth
@@ -21,12 +22,15 @@ run_modules:
 module_order:
   - pangolin
   - pycoqc
+  - kraken
   - samtools
   - mosdepth
   - freyja
   - bcftools
   - snpeff
-  - quast
+  - quast:
+      path_filters:
+        - "./*/quast/report.tsv"
 
 report_section_order:
   fail_barcodes_no_sample:
@@ -125,6 +129,9 @@ custom_data:
       "# Mapped reads":
         description: "Total number of mapped reads relative to the viral genome"
         format: "{:,.0f}"
+      "% Non-host reads (Kraken 2)":
+        description: "Total number of non-host reads identified by Kraken2"
+        format: "{:,.2f}"
       "Coverage median":
         description: "Median coverage calculated by mosdepth"
         format: "{:,.2f}"
