@@ -21,10 +21,10 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 ### Parameters
 
-| Old parameter                   | New parameter                |
-| ------------------------------- | ---------------------------- |
-|                                 | `--new_param`                |
-| `--old_param`                   |                              |
+| Old parameter | New parameter |
+| ------------- | ------------- |
+|               | `--new_param` |
+| `--old_param` |               |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -34,10 +34,9 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
 
-| Dependency        | Old version | New version |
-| ----------------- | ----------- | ----------- |
-| `software-name`   | x.x.x       | x.x.x       |
-
+| Dependency      | Old version | New version |
+| --------------- | ----------- | ----------- |
+| `software-name` | x.x.x       | x.x.x       |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 >
