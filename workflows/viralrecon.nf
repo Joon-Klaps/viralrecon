@@ -651,6 +651,9 @@ workflow VIRALRECON {
                 PREPARE_GENOME.out.fasta,
                 ch_hiv_sequence,
                 ch_hiv_annotation,
+                ch_vcf,
+                ch_tbi,
+                ch_pangolin_report
             )
             ch_versions = ch_versions.mix(HIV_RESISTANCE.out.versions)
         }

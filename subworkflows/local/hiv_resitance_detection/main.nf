@@ -7,6 +7,7 @@ include { LIFTOFF                                            } from '../../../mo
 include { GFF2JSON                                           } from '../../../modules/local/gff2json'
 include { BAM2CODFREQ                                        } from '../../../modules/local/bam2codfreq'
 include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
+include { ADDITIONAL_ANNOTATION as HIV_RESISTANCE_ANNOTATION } from '../additional_annotation'
 
 workflow HIV_RESISTANCE {
     take:
@@ -15,6 +16,9 @@ workflow HIV_RESISTANCE {
     fasta          // path   : genome.fasta
     hiv_sequence   // path   : /path/to/codfreq.fasta
     hiv_annotation // path   : /path/to/codfreq.gff
+    vcf            // channel: [ val(meta), [ vcf ] ]
+    tbi            // channel: [ val(meta), [ tbi ] ]
+    pangolin       // channel: [ val(meta), [ csv ] ]
 
     main:
     ch_versions = Channel.empty()
@@ -57,6 +61,15 @@ workflow HIV_RESISTANCE {
     )
 
     ch_versions      = ch_versions.mix(RESISTANCE_REPORT.out.versions)
+
+    HIV_RESISTANCE_ANNOTATION (
+        vcf,
+        tbi,
+        fasta,
+        LIFTOFF.out.gff3.map { it[1] },
+        pangolin
+    )
+    ch_versions = ch_versions.mix(HIV_RESISTANCE_ANNOTATION.out.versions)
 
     emit:
     sierralocal_results = SIERRALOCAL.out.json       // channel: [ val(meta), [ json ] ]
