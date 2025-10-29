@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+
+# Copyright (c) 2024 Stanford University HIVDB Team
+# Modifications (c) 2025 Sarai Varona
+#
+# Original code licensed under the MIT License (see LICENSE in project root).
+# This file includes modifications and is distributed under the MIT License.
+
 """
 bam2codfreq.py
 
