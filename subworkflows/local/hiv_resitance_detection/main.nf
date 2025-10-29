@@ -2,15 +2,19 @@
 // HIV resistance detecton
 //
 
-include { SIERRALOCAL         } from '../../../modules/local/sierralocal'
-include { SAM2CODFREQ         } from '../../../modules/local/sam2codfreq'
-include { RESISTANCE_REPORT  } from '../../../modules/local/resistance_report'
+include { SIERRALOCAL                                        } from '../../../modules/local/sierralocal'
+include { LIFTOFF                                            } from '../../../modules/nf-core/liftoff'
+include { GFF2JSON                                           } from '../../../modules/local/gff2json'
+include { SAM2CODFREQ                                        } from '../../../modules/local/sam2codfreq'
+include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
 
 workflow HIV_RESISTANCE {
     take:
-    consensus    // channel: [ val(meta), [ consensus ] ]
-    bam          // channel: [ val(meta), [ bam ], [bai] ]
-    profile_json // path   : /path/to/HIV1.json
+    consensus      // channel: [ val(meta), [ consensus ] ]
+    bam            // channel: [ val(meta), [ bam ], [bai] ]
+    fasta          // path   : genome.fasta
+    hiv_sequence   // path   : /path/to/codfreq.fasta
+    hiv_annotation // path   : /path/to/codfreq.gff
 
     main:
     ch_versions = Channel.empty()
@@ -23,10 +27,29 @@ workflow HIV_RESISTANCE {
 
     ch_versions      = ch_versions.mix(SIERRALOCAL.out.versions)
 
+    LIFTOFF (
+        fasta.map { f -> [ [id: f.baseName], f ] },
+        hiv_sequence,
+        hiv_annotation,
+        []
+    )
+
+    ch_versions      = ch_versions.mix(LIFTOFF.out.versions)
+
+    GFF2JSON (
+        fasta,
+        LIFTOFF.out.gff3
+    )
+
+    ch_versions      = ch_versions.mix(GFF2JSON.out.versions)
+
+
     SAM2CODFREQ (
         bam,
-        profile_json
+        GFF2JSON.out.profile_json
     )
+
+    ch_versions      = ch_versions.mix(SAM2CODFREQ.out.versions)
 
     RESISTANCE_REPORT(
         SIERRALOCAL.out.json.collect{ it[1] }.ifEmpty([]),
