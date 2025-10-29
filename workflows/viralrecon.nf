@@ -615,11 +615,25 @@ workflow VIRALRECON {
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
         if (params.additional_annotation) {
+            ch_annot = Channel.empty()
+            //
+            // Uncompress additional annotation file
+            //
+            if (ch_additional_gtf.endsWith('.gz')) {
+                GUNZIP_GFF (
+                    [ [:], ch_additional_gtf ]
+                )
+                ch_annot       = GUNZIP_GFF.out.gunzip.map { it[1] }
+                ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
+            } else {
+                ch_annot = ch_additional_gtf
+            }
+
             ADDITIONAL_ANNOTATION (
                 ch_vcf,
                 ch_tbi,
                 PREPARE_GENOME.out.fasta,
-                ch_additional_gtf,
+                ch_annot,
                 ch_pangolin_report
 
             )
