@@ -32,7 +32,7 @@ nextflow_pipeline {
             ]
         ],
         [
-            name: "-profile test_nanopore --artic_minion_caller medaka --sequencing_summary false --fast5_dir false",
+            name: "-profile test_nanopore --sequencing_summary false",
             params: [
                 artic_minion_caller: 'medaka',
                 sequencing_summary: false,
@@ -59,9 +59,9 @@ nextflow_pipeline {
                 def outdir = params.outdir
 
                 // stable_name: All files + folders in ${params.outdir}/ with a stable name
-                def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}', 'nanoplot/*/NanoPlot*.log'])
+                def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignoreFile: 'tests/.nftignore_stable_name', ignore: ['pipeline_info/*.{html,json,txt}', 'nanoplot/*/NanoPlot*.log'])
                 // stable_path: All files in ${params.outdir}/ with stable content
-                def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore', ignore: ['**/*.sorted.bam', '**/*.sorted.bam.bai', 'kraken2/*.kraken2.classifiedreads.txt', 'kraken2/*.unclassified.fastq.gz', 'nanopolish/*.{vcf,vcf.gz,vcf.gz.tbi,csv}', 'nanopolish/**/*.{vcf,vcf.gz,vcf.gz.tbi,csv,txt}', 'medaka/*.{vcf,vcf.gz,vcf.gz.tbi,csv}', 'medaka/**/*.{vcf,vcf.gz,vcf.gz.tbi,csv,txt}', '**/multiqc_data/bcftools_stats_vqc_*.yaml', '**/multiqc_data/snpeff_qualities.yaml'])
+                def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore', ignore: ['**/*.sorted.bam', '**/*.sorted.bam.bai', 'kraken2/*.kraken2.classifiedreads.txt', 'kraken2/*.unclassified.fastq.gz', '**/multiqc_data/bcftools_stats_vqc_*.yaml', '**/multiqc_data/snpeff_qualities.yaml'])
                 def softwareYaml = removeNextflowVersion("$outputDir/pipeline_info/nf_core_viralrecon_software_mqc_versions.yml")
                 softwareYaml.remove('NEXTCLADE_RUN')
                 softwareYaml.remove('PLOT_BASE_DENSITY')

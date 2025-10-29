@@ -2,7 +2,7 @@ process FILTER_BLASTN {
     tag "$meta.id"
     label 'process_low'
 
-    conda "conda-forge::sed=4.8"
+    conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/ubuntu:24.04' :
         'nf-core/ubuntu:24.04' }"

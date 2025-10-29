@@ -5,6 +5,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- Release names are chosen by a combination of Dog + Flower in Code Name Generator -->
 
+## [3.1.0dev](https://github.com/nf-core/viralrecon/releases/tag/3.1.0) Dog Flower - yyyy-mm-dd
+
+### Credits
+
+Special thanks to the following for their code contributions to the release:
+
+- [Sarai Varona](https://github.com/svarona)
+
+Thank you to everyone else that has contributed by reporting bugs, enhancements or in any other way, shape or form.
+
+### Enhancements & fixes
+
+- [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
+
+### Parameters
+
+| Old parameter | New parameter |
+| ------------- | ------------- |
+|               | `--new_param` |
+| `--old_param` |               |
+
+> **NB:** Parameter has been **updated** if both old and new parameter information is present.
+> **NB:** Parameter has been **added** if just the new parameter information is present.
+> **NB:** Parameter has been **removed** if new parameter information isn't present.
+
+### Software dependencies
+
+Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
+
+| Dependency      | Old version | New version |
+| --------------- | ----------- | ----------- |
+| `software-name` | x.x.x       | x.x.x       |
+
+> **NB:** Dependency has been **updated** if both old and new version information is present.
+>
+> **NB:** Dependency has been **added** if just the new version information is present.
+>
+> **NB:** Dependency has been **removed** if new version information isn't present.
+
 ## [[3.0.0](https://github.com/nf-core/viralrecon/releases/tag/3.0.0)] Waterdog Hibiscus - 2025-10-21
 
 ### Credits
@@ -51,6 +90,8 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 - [[PR #511]](https://github.com/nf-core/viralrecon/pull/511) - Fixed nf-core pipeline lint and updated nf-core modules and subworflows
 - [[PR #520](https://github.com/nf-core/viralrecon/pull/520)] - Update of metro map for illumina workflow
 - [[PR #523]](https://github.com/nf-core/viralrecon/pull/523) - Fixed metro map for Nanopore, updated freyja version, added freyja to full testing, added min_mapped reads filter to Nanopore, added Kraken2 reports to Nanopore's MultiQC, fixed Quast report on Nanopore, re-write nf-test as scenarios.
+- [[PR #538]](https://github.com/nf-core/viralrecon/pull/538) - Fixed some conda versions that were problematic in tests or different from singularity/docker
+- [[PR #540]](https://github.com/nf-core/viralrecon/pull/540) - Updated artic minion, removed support for Fast5 files and fixed snaps.
 
 ### Parameters
 
@@ -73,6 +114,10 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 | `--skip_asciigenome`            |                              |
 | `--asciigenome_read_depth`      |                              |
 | `--asciigenome_window_size`     |                              |
+| `--fast5_dir`                   |                              |
+| `--artic_minion_caller`         |                              |
+| `--artic_minion_aligner`        |                              |
+| `--artic_minion_medaka_model`   | `--artic_minion_model_dir`   |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -86,6 +131,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | ----------------- | ----------- | ----------- |
 | `asciigenome`     | 1.16.0      |             |
 | `artic guppyplex` | 1.2.3       | 1.6.2       |
+| `artic minion`    | 1.2.3       | 1.6.2       |
 | `bandage`         | 0.8.1       | 0.9.0       |
 | `bcftools`        | 1.16        | 1.22        |
 | `bedtools`        | 2.30.0      | 2.31.1      |
@@ -118,7 +164,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | `python`          | 3.9.5       | 3.13.2      |
 | `quast`           | 5.2.0       | 5.3.0       |
 | `regex`           | 2021.11.10  | 2024.11.6   |
-| `r-base`          | 4.0.3       | 4.2         |
+| `r-base`          | 4.0.3       | 4.2.0       |
 | `r-ggplot2`       | 3.3.3       | 3.5.1       |
 | `r-optparse`      | 1.6.6       | 1.7.5       |
 | `r-reshape2`      | 1.4.4       | 1.4.4       |
@@ -128,7 +174,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | `r-viridis`       | 0.5.1       | 0.6.5       |
 | `samtools`        | 1.16.1      | 1.22.1      |
 | `scipy`           | 1.7.3       | 1.15.2      |
-| `sed`             | 4.7         | 4.8         |
+| `sed`             | 4.7         | 4.9         |
 | `snakemake`       | 7.30.1      | 8.30.0      |
 | `spades`          | 3.15.5      | 4.1.0       |
 | `tabix`           | 1.11        | 1.21        |

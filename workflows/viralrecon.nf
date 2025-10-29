@@ -23,8 +23,6 @@ def valid_params = [
     consensus_callers    : ['ivar', 'bcftools'],
     assemblers           : ['spades', 'unicycler', 'minia'],
     spades_modes         : ['rnaviral', 'corona', 'metaviral', 'meta', 'metaplasmid', 'plasmid', 'isolate', 'rna', 'bio'],
-    artic_minion_caller  : ['nanopolish', 'medaka'],
-    artic_minion_aligner : ['minimap2', 'bwa']
 ]
 
 def checkPathParamList = []
@@ -39,7 +37,7 @@ if (params.platform == 'illumina') {
     ]
 } else if (params.platform == 'nanopore') {
     checkPathParamList = [
-        params.input, params.fastq_dir, params.fast5_dir,
+        params.input, params.fastq_dir,
         params.sequencing_summary, params.gff,
         params.freyja_barcodes, params.freyja_lineages, params.additional_annotation,
         params.kraken2_db
@@ -57,16 +55,10 @@ def assemblers = params.assemblers ? params.assemblers.split(',').collect{ it.tr
 def variant_caller = params.variant_caller
 if (!variant_caller) { variant_caller = params.protocol == 'amplicon' ? 'ivar' : 'bcftools' }
 
-if (params.fast5_dir)               { ch_fast5_dir          = file(params.fast5_dir)               } else { ch_fast5_dir          = [] }
 if (params.sequencing_summary)      { ch_sequencing_summary = file(params.sequencing_summary)      } else { ch_sequencing_summary = [] }
 
-// Need to stage medaka model properly depending on whether it is a string or a file
-ch_medaka_model = Channel.empty()
-if (params.artic_minion_caller == 'medaka') {
-    if (file(params.artic_minion_medaka_model).exists()) {
-        ch_medaka_model = Channel.fromPath(params.artic_minion_medaka_model)
-    }
-}
+// Need to stage artic model properly depending on whether it is a string or a file
+ch_artic_model_dir = params.artic_minion_model_dir ? Channel.value(file(params.artic_minion_model_dir, type: 'dir')) :  []
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -964,16 +956,13 @@ workflow VIRALRECON {
         //
         // MODULE: Run Artic minion
         //
+
         ARTIC_MINION (
             ARTIC_GUPPYPLEX.out.fastq.filter { it[-1].countFastq() > params.min_guppyplex_reads },
-            ch_fast5_dir,
-            ch_sequencing_summary,
-            PREPARE_GENOME.out.fasta.collect(),
-            PREPARE_GENOME.out.primer_bed.collect(),
-            ch_medaka_model.collect().ifEmpty([]),
-            params.artic_minion_medaka_model ?: '',
-            ch_artic_scheme,
-            params.primer_set_version
+            ch_artic_model_dir,
+            params.artic_minion_model,
+            PREPARE_GENOME.out.fasta,
+            PREPARE_GENOME.out.primer_bed
         )
         ch_multiqc_files = ch_multiqc_files.mix(ARTIC_MINION.out.json.collect{it[1]}.ifEmpty([]))
         ch_versions      = ch_versions.mix(ARTIC_MINION.out.versions.first())
@@ -1120,15 +1109,15 @@ workflow VIRALRECON {
         pango_database = Channel.empty()
         ch_pangolin_report = Channel.empty()
 
-        if (!params.pango_database) {
-            PANGOLIN_UPDATEDATA('pangolin_db')
-            pango_database = PANGOLIN_UPDATEDATA.out.db
-            ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
-        } else{
-            pango_database = Channel.value(file(params.pango_database, type: 'dir'))
-        }
         ch_pangolin_multiqc = Channel.empty()
         if (!params.skip_pangolin) {
+            if (!params.pango_database) {
+                PANGOLIN_UPDATEDATA('pangolin_db')
+                pango_database = PANGOLIN_UPDATEDATA.out.db
+                ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
+            } else{
+                pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+            }
             PANGOLIN_RUN (
                 ARTIC_MINION.out.fasta,
                 pango_database

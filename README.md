@@ -144,7 +144,6 @@ nextflow run nf-core/viralrecon \
    --primer_set 'artic' \
    --primer_set_version 3 \
    --fastq_dir fastq_pass/ \
-   --fast5_dir fast5_pass/ \
    --sequencing_summary sequencing_summary.txt \
    -profile -profile <docker/singularity/.../institute>
 ```

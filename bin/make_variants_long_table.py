@@ -301,7 +301,7 @@ def main(args=None):
     make_dir(out_dir)
 
     ## Check correct variant caller has been provided
-    variant_callers = ["ivar", "bcftools", "nanopolish", "medaka"]
+    variant_callers = ["ivar", "bcftools", "artic_minion"]
     if args.variant_caller not in variant_callers:
         logger.error(
             f"Invalid option '--variant caller {args.variant_caller}'. Valid options: " + ", ".join(variant_callers)
@@ -336,10 +336,8 @@ def main(args=None):
             bcftools_table = ivar_bcftools_query_to_table(bcftools_files[sample])
         elif args.variant_caller == "bcftools":
             bcftools_table = bcftools_bcftools_query_to_table(bcftools_files[sample])
-        elif args.variant_caller == "nanopolish":
-            bcftools_table = nanopolish_bcftools_query_to_table(bcftools_files[sample])
-        elif args.variant_caller == "medaka":
-            bcftools_table = medaka_bcftools_query_to_table(bcftools_files[sample])
+        elif args.variant_caller == "artic_minion":
+            bcftools_table = bcftools_bcftools_query_to_table(bcftools_files[sample])
 
         if not bcftools_table.empty:
             ## Read in SnpSift file

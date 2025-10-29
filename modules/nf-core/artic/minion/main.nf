@@ -4,19 +4,15 @@ process ARTIC_MINION {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/artic:1.2.3--pyhdfd78af_0' :
-        'quay.io/biocontainers/artic:1.2.3--pyhdfd78af_0' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5a/5a747cc579edfc0cb2176b749afc02550ab5de678ae6a40d2cfadeba6c0de25d/data' :
+        'community.wave.seqera.io/library/artic:1.6.2--d4956cdc155b8612' }"
 
     input:
     tuple val(meta), path(fastq)
-    path  fast5_dir
-    path  sequencing_summary
-    path  ("primer-schemes/${scheme}/V${scheme_version}/${scheme}.reference.fasta")
-    path  ("primer-schemes/${scheme}/V${scheme_version}/${scheme}.scheme.bed")
-    path  medaka_model_file
-    val   medaka_model_string
-    val   scheme
-    val   scheme_version
+    path(model_dir)
+    val(model)
+    path(fasta)
+    path(bed)
 
     output:
     tuple val(meta), path("${prefix}.*")                              , emit: results
@@ -38,16 +34,11 @@ process ARTIC_MINION {
     script:
     def args = task.ext.args   ?: ''
     prefix   = task.ext.prefix ?: "${meta.id}"
-    def version  = scheme_version.toString().toLowerCase().replaceAll('v','')
-    def fast5    = fast5_dir ? "--fast5-directory $fast5_dir"             : ""
-    def summary  = sequencing_summary ? "--sequencing-summary $sequencing_summary" : ""
-    def model    = ""
-    if (args.tokenize().contains('--medaka')) {
-        fast5   = ""
-        summary = ""
-        model   = medaka_model_file ? "--medaka-model ./$medaka_model_file" : "--medaka-model $medaka_model_string"
-    }
-    def hd5_plugin_path = task.ext.hd5_plugin_path ? "export HDF5_PLUGIN_PATH=" + task.ext.hd5_plugin_path : "export HDF5_PLUGIN_PATH=/usr/local/lib/python3.6/site-packages/ont_fast5_api/vbz_plugin"
+
+    def model_dir_cmd   = model_dir                ? "--model-dir ${model_dir}" : "--model-dir \$(which artic | sed 's/artic/models/')"
+    def hd5_plugin_path = task.ext.hd5_plugin_path ? "export HDF5_PLUGIN_PATH=${task.ext.hd5_plugin_path}" : "export HDF5_PLUGIN_PATH=/usr/local/lib/python3.6/site-packages/ont_fast5_api/vbz_plugin"
+    def model_cmd       = model                    ? "--model ${model}" : ""
+
     """
     ${hd5_plugin_path}
 
@@ -56,12 +47,10 @@ process ARTIC_MINION {
         ${args} \\
         --threads ${task.cpus} \\
         --read-file ${fastq} \\
-        --scheme-directory ./primer-schemes \\
-        --scheme-version ${version} \\
-        ${model} \\
-        ${fast5} \\
-        ${summary} \\
-        ${scheme} \\
+        --bed ${bed} \\
+        --ref ${fasta} \\
+        ${model_dir_cmd} \\
+        ${model_cmd} \\
         ${prefix}
 
     cat <<-END_VERSIONS > versions.yml

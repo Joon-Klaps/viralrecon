@@ -4,4 +4,5 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - bioconda::freyja=2.0.1
+  - bioconda::kraken2=2.1.2
+  - conda-forge::pigz=2.6

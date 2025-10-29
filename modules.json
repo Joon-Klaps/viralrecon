@@ -134,12 +134,12 @@
                     },
                     "freyja/update": {
                         "branch": "master",
-                        "git_sha": "40f00234cca161a9653541c25a7169807b87ecb7",
+                        "git_sha": "e843854cc2f18537ce634c51b38ec7f8a641fdca",
                         "installed_by": ["bam_variant_demix_boot_freyja"]
                     },
                     "freyja/variants": {
                         "branch": "master",
-                        "git_sha": "40f00234cca161a9653541c25a7169807b87ecb7",
+                        "git_sha": "e843854cc2f18537ce634c51b38ec7f8a641fdca",
                         "installed_by": ["bam_variant_demix_boot_freyja"]
                     },
                     "gunzip": {
