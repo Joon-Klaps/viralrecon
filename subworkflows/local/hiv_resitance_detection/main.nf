@@ -5,7 +5,7 @@
 include { SIERRALOCAL                                        } from '../../../modules/local/sierralocal'
 include { LIFTOFF                                            } from '../../../modules/nf-core/liftoff'
 include { GFF2JSON                                           } from '../../../modules/local/gff2json'
-include { SAM2CODFREQ                                        } from '../../../modules/local/sam2codfreq'
+include { BAM2CODFREQ                                        } from '../../../modules/local/bam2codfreq'
 include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
 
 workflow HIV_RESISTANCE {
@@ -44,23 +44,23 @@ workflow HIV_RESISTANCE {
     ch_versions      = ch_versions.mix(GFF2JSON.out.versions)
 
 
-    SAM2CODFREQ (
+    BAM2CODFREQ (
         bam,
         GFF2JSON.out.profile_json
     )
 
-    ch_versions      = ch_versions.mix(SAM2CODFREQ.out.versions)
+    ch_versions      = ch_versions.mix(BAM2CODFREQ.out.versions)
 
     RESISTANCE_REPORT(
         SIERRALOCAL.out.json.collect{ it[1] }.ifEmpty([]),
-        SAM2CODFREQ.out.codfreq.collect{ it[1] }.ifEmpty([])
+        BAM2CODFREQ.out.codfreq.collect{ it[1] }.ifEmpty([])
     )
 
     ch_versions      = ch_versions.mix(RESISTANCE_REPORT.out.versions)
 
     emit:
     sierralocal_results = SIERRALOCAL.out.json       // channel: [ val(meta), [ json ] ]
-    sam2codfreq_results = SAM2CODFREQ.out.codfreq    // channel: [ val(meta), [ codfreq ] ]
+    bam2codfreq_results = BAM2CODFREQ.out.codfreq    // channel: [ val(meta), [ codfreq ] ]
     resistance_report   = RESISTANCE_REPORT.out.csv  // channel: [ val(meta), [ csv  ] ]
 
     versions            = ch_versions                // channel: [ versions.yml ]

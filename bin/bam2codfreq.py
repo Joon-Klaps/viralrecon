@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sam2codfreq.py
+bam2codfreq.py
 
 Unified script to convert SAM/BAM files into codon frequency tables (.codfreq)
 using a profile JSON defining fragments and genes.
@@ -9,7 +9,7 @@ This script combines all helper modules and functions from codfreq from HIVdb (h
 scripts into a single file. It computes codon frequencies and writes the final output to a CSV file.
 
 Usage:
-    python sam2codfreq.py --bam input.bam --profile profile.json --output output.codfreq [options]
+    python bam2codfreq.py --bam input.bam --profile profile.json --output output.codfreq [options]
 
 Inputs:
     --bam          Path to mapping BAM file (required)
@@ -20,7 +20,7 @@ Optional arguments:
     --site-quality-cutoff  Minimum base quality to include a base (default: 0)
 
 Example:
-    python sam2codfreq.py --bam sample.bam --profile profile.json --output sample.codfreq
+    python bam2codfreq.py --bam sample.bam --profile profile.json --output sample.codfreq
 """
 
 import argparse
@@ -200,9 +200,9 @@ def translate_codon(nas: bytes) -> str:
     return "".join(aas)
 
 # -------------------------------
-# sam2codfreq function
+# bam2codfreq function
 # -------------------------------
-def sam2codfreq_all(bamfile: str, profile_obj: dict, site_quality_cutoff: int = 0, output_codfreq: str = "output.codfreq"):
+def bam2codfreq_all(bamfile: str, profile_obj: dict, site_quality_cutoff: int = 0, output_codfreq: str = "output.codfreq"):
     """
     Process a BAM/SAM file and write codon frequencies to a CSV file (.codfreq).
     The output is ordered according to the fragment order in the profile JSON.
@@ -295,7 +295,7 @@ def main():
     else:
         print(f"✔ Reference check OK: {bam_ref} matches {json_ref}")
 
-    sam2codfreq_all(args.bam, profile_obj, args.site_quality_cutoff, args.output)
+    bam2codfreq_all(args.bam, profile_obj, args.site_quality_cutoff, args.output)
 
 if __name__ == "__main__":
     main()

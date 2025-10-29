@@ -1,4 +1,4 @@
-process SAM2CODFREQ {
+process BAM2CODFREQ {
     tag "$meta.id"
     label 'process_single'
 
@@ -23,7 +23,7 @@ process SAM2CODFREQ {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    sam2codfreq.py \\
+    bam2codfreq.py \\
         --bam $bam \\
         --profile $profile \\
         --output ${prefix}.codfreq \\

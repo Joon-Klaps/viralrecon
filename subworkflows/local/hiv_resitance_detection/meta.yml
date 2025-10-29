@@ -18,7 +18,7 @@ output:
       description: |
         HIV resistance json file from sierralocal
         Structure: [ val(meta), [ json ] ]
-  - sam2codfreq_results:
+  - bam2codfreq_results:
       description: |
         Codfreq files generated from BAM files
         Structure: [ val(meta), [ codfreq ] ]
