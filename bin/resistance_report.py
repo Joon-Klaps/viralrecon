@@ -47,8 +47,8 @@ def parser_args(args=None):
         "-of",
         "--output_file",
         type=str,
-        default="sierralocal_variants_table.csv",
-        help="Full path to output CSV file (default: 'sierralocal_variants_table.csv').",
+        default="hiv_mutation_table.csv",
+        help="Full path to output CSV file (default: 'hiv_mutation_table.csv').",
     )
 
     return parser.parse_args(args)
