@@ -1,7 +1,7 @@
 process RESISTANCE_REPORT {
     label 'process_single'
 
-    conda "conda-forge::python=3.13.2 conda-forge::matplotlib=3.10.1 conda-forge::pandas=2.2.3 conda-forge::r-sys=3.4.3 conda-forge::regex=2024.11.6 conda-forge::scipy=1.15.2"
+    conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/5e/5ee6e81aff2205d76ad8755d2181f8ea1dd747daa92aaf9dcba943b69aa9f458/data' :
         'community.wave.seqera.io/library/matplotlib_pandas_python_r-sys_pruned:23244d66110fcdf2' }"

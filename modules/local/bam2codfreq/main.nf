@@ -2,7 +2,7 @@ process BAM2CODFREQ {
     tag "$meta.id"
     label 'process_single'
 
-    conda "conda-forge::python=3.13.2 bioconda::pysam=0.23.3"
+    conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/pysam:0.23.3--py39hdd5828d_1' :
         'biocontainers/pysam:0.23.3--py39hdd5828d_1' }"
