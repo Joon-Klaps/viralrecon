@@ -136,6 +136,7 @@ include { PANGOLIN_UPDATEDATA           } from '../modules/nf-core/pangolin/upda
 include { PANGOLIN_RUN                  } from '../modules/nf-core/pangolin/run/main'
 include { NEXTCLADE_RUN                 } from '../modules/nf-core/nextclade/run/main'
 include { MULTIQC                       } from '../modules/nf-core/multiqc/main'
+include { GUNZIP as GUNZIP_GFF          } from '../modules/nf-core/gunzip/main'
 
 
 //
@@ -609,7 +610,7 @@ workflow VIRALRECON {
             //
             // Uncompress additional annotation file
             //
-            if (ch_additional_gtf.endsWith('.gz')) {
+            if (params.additional_annotation.endsWith('.gz')) {
                 GUNZIP_GFF (
                     [ [:], ch_additional_gtf ]
                 )
@@ -1232,7 +1233,7 @@ workflow VIRALRECON {
             //
             // Uncompress additional annotation file
             //
-            if (ch_additional_gtf.endsWith('.gz')) {
+            if (params.additional_annotation.endsWith('.gz')) {
                 GUNZIP_GFF (
                     [ [:], ch_additional_gtf ]
                 )
