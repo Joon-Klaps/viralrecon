@@ -576,20 +576,14 @@
                 "SRR4071760.bcftools_stats.txt:md5,c3f8365f9ec3c3d6c0ea978718e15050",
                 "SRR6937100.bcftools_stats.txt:md5,2064197b7860570ee24a88974049df56",
                 "DRR030302.consensus.fa:md5,e55924064f02a8b341abb1d361358b23",
-                "DRR030302.consensus.qual.txt:md5,d73bd77e2e9845b4a71ec37ce89de4e5",
                 "SRR4071760.consensus.fa:md5,99e602421e29d87ff1925d7eb0c779c9",
-                "SRR4071760.consensus.qual.txt:md5,76d0da032f8abbc727992f6fc4c6f7c6",
                 "SRR6937100.consensus.fa:md5,668421a70ad09e09a30c2d0c01f1c955",
-                "SRR6937100.consensus.qual.txt:md5,7c17ec411d8aad7f964400fe055f6f7e",
                 "DRR030302.consensus.N_run.tsv:md5,943f7a39c7bf1ba7c9f1704253e9ca3b",
                 "DRR030302.consensus.base_counts.tsv:md5,1ca7b5eeb0efd5dee77a44aec6d7480b",
                 "SRR4071760.consensus.N_run.tsv:md5,68ce39a7ffd39aa5a0bb02d21e6ae6a6",
                 "SRR4071760.consensus.base_counts.tsv:md5,ea636f0a0f426d6dba20b1877783fb63",
                 "SRR6937100.consensus.N_run.tsv:md5,da00866e35fde969f0a26fa128d0824b",
                 "SRR6937100.consensus.base_counts.tsv:md5,eb0e3541b4ecc5e6c08eff163b232f1a",
-                "DRR030302.codfreq:md5,16910b625377f19fddf8a31d20389d01",
-                "SRR4071760.codfreq:md5,c5c7f3649d143bb3e5a9ba4e26c500ee",
-                "SRR6937100.codfreq:md5,91e72a3cfb99b75aa090334ae0a721c1",
                 "codfreq.json:md5,b4ee85d907400cbf924a9fd629a8b621",
                 "DRR030302_mutation_table.csv:md5,a6c06472f414eee01280fb2264701135",
                 "DRR030302_resistance_table.csv:md5,6e4aecb5140b5564a6e4585b1884df15",
@@ -624,8 +618,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.04.8"
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-05T16:21:28.066330839"
+        "timestamp": "2025-11-05T16:29:57.324498169"
     }
 }
