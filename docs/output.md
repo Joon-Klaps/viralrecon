@@ -758,7 +758,7 @@ Phylogenetic Assignment of Named Global Outbreak LINeages ([Pangolin](https://gi
 
 - `variants/<VARIANT_CALLER>/`
   - `variants_long_table.csv`: Long format table collating per-sample information for individual variants, functional effect prediction and lineage analysis.
-  - `additional_variants_long_table.csv`: Long format table similar to `variants_long_table.csv` for additional annotation file with overlapping annotation features.
+  - `additional_annotation/additional_variants_long_table.csv`: Long format table similar to `variants_long_table.csv` for additional annotation file with overlapping annotation features.
 
 **NB:** The value of `<VARIANT_CALLER>` in the output directory name above is determined by the `--variant_caller` parameter (Default: 'ivar' for '--protocol amplicon' and 'bcftools' for '--protocol metagenomic').
 
