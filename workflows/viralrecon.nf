@@ -634,8 +634,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: HIV resistance detection
         //
-
-        if (params.perform_sierralocal) {
+        if (params.perform_hiv_resistance) {
             ch_hiv_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
             ch_hiv_annotation = file("$projectDir/assets/codfreq.gff"  , checkIfExists: true)
             HIV_RESISTANCE (
