@@ -29,7 +29,7 @@ workflow HIV_RESISTANCE {
 
     SIERRALOCAL (consensus)
 
-    ch_versions      = ch_versions.mix(SIERRALOCAL.out.versions)
+    ch_versions = ch_versions.mix(SIERRALOCAL.out.versions)
 
     LIFTOFF (
         fasta.map { f -> [ [id: f.baseName], f ] },
@@ -37,30 +37,27 @@ workflow HIV_RESISTANCE {
         hiv_annotation,
         []
     )
-
-    ch_versions      = ch_versions.mix(LIFTOFF.out.versions)
+    ch_versions = ch_versions.mix(LIFTOFF.out.versions)
 
     GFF2JSON (
         fasta,
         LIFTOFF.out.gff3
     )
 
-    ch_versions      = ch_versions.mix(GFF2JSON.out.versions)
-
+    ch_versions = ch_versions.mix(GFF2JSON.out.versions)
 
     BAM2CODFREQ (
         bam,
         GFF2JSON.out.profile_json
     )
 
-    ch_versions      = ch_versions.mix(BAM2CODFREQ.out.versions)
+    ch_versions = ch_versions.mix(BAM2CODFREQ.out.versions)
 
     RESISTANCE_REPORT(
-        SIERRALOCAL.out.json.collect{ it[1] }.ifEmpty([]),
-        BAM2CODFREQ.out.codfreq.collect{ it[1] }.ifEmpty([])
+        SIERRALOCAL.out.json.join(BAM2CODFREQ.out.codfreq, by: [0])
     )
 
-    ch_versions      = ch_versions.mix(RESISTANCE_REPORT.out.versions)
+    ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
 
     HIV_RESISTANCE_ANNOTATION (
         vcf,

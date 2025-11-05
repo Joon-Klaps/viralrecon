@@ -1,4 +1,5 @@
 process RESISTANCE_REPORT {
+    tag "$meta.id"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
@@ -7,22 +8,25 @@ process RESISTANCE_REPORT {
         'community.wave.seqera.io/library/matplotlib_pandas_python_r-sys_pruned:23244d66110fcdf2' }"
 
     input:
-    path(json)
-    path(codfreq)
+    tuple val(meta), path(json), path(codfreq)
 
     output:
-    path "*.csv"       , emit: csv
-    path "versions.yml", emit: versions
+    tuple val(meta), path("*.csv"), emit: csv
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:  // This script is bundled with the pipeline, in nf-core/viralrecon/bin/
     def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+
     """
     resistance_report.py \\
-        --sierralocal_dir . \\
-        --codfreq_dir . \\
+        --sierralocal_file $json \\
+        --codfreq_file $codfreq \\
+        --sample_name ${meta.id} \\
+        --output_file ${prefix}_resistance_table.csv \\
         $args
 
     cat <<-END_VERSIONS > versions.yml

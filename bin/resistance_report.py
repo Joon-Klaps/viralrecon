@@ -16,58 +16,38 @@ pd.set_option("display.max_rows", None)
 
 
 def parser_args(args=None):
-    Description = "Parse Sierra-local JSON reports and generate a long table with resistance information."
+    Description = "Parse Sierra-local JSON reports and corresponding codfreq file and generate a long table with resistance information."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_dir . --output_file sierralocal_resistance_table.csv
+    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_file sample_resistance_table.csv
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
     parser.add_argument(
-        "-sd",
-        "--sierralocal_dir",
+        "-sf",
+        "--sierralocal_file",
         type=str,
-        default=".",
-        help="Directory containing Sierra-local JSON files (default: '.').",
+        help="JSON file containing sierra-local report.",
     )
     parser.add_argument(
-        "-cd",
-        "--codfreq_dir",
+        "-cf",
+        "--codfreq_file",
         type=str,
-        default=".",
-        help="Directory containing codfreq files (default: '.').",
+        help="Path to codfreq file.",
     )
     parser.add_argument(
-        "-fs",
-        "--file_suffix",
+        "-s",
+        "--sample_name",
         type=str,
-        default="_resistance.json",
-        help="Suffix to trim off JSON file name to obtain sample name (default: '_resistance.json').",
+        help="Name of the sample",
     )
     parser.add_argument(
         "-of",
         "--output_file",
         type=str,
-        default="hiv_mutation_table.csv",
-        help="Full path to output CSV file (default: 'hiv_mutation_table.csv').",
+        help="Full path to output CSV file.",
     )
 
     return parser.parse_args(args)
-
-
-def make_dir(path):
-    if not len(path) == 0:
-        try:
-            os.makedirs(path)
-        except OSError as exception:
-            if exception.errno != errno.EEXIST:
-                raise
-
-
-def get_file_dict(file_dir, file_suffix):
-    """Return dictionary {sample_name: filepath} for all JSON reports in directory."""
-    files = glob.glob(os.path.join(file_dir, f"*{file_suffix}"))
-    samples = [os.path.basename(x).removesuffix(file_suffix) for x in files]
-    return dict(zip(samples, files))
 
 def parse_codfreq(codfreq_path):
     """Parse a .codfreq file into a pandas DataFrame."""
@@ -86,13 +66,24 @@ def parse_sierra_json(sample_name, json_path):
 
     rows = []
 
+    # Detect warnings
+    warnings_dict = {}
+    for warning in data.get("validationResults", []):
+        msg = warning.get("message", "")
+        if "sequence had" in msg:
+            # Replace "3\u2032-end" with "3'-end"
+            msg = msg.replace("3\u2032-end", "3'-end")
+            # Detect affected protein (RT, PR, or IN)
+            for gene_name in ["RT", "PR", "IN"]:
+                if f"('{gene_name}'," in msg:
+                    warnings_dict[gene_name] = msg
+
     if "alignedGeneSequences" not in data:
         logger.warning(f"No 'alignedGeneSequences' field found in {json_path}")
         return pd.DataFrame()
 
     for gene_entry in data["alignedGeneSequences"]:
         gene_name = gene_entry.get("gene", {}).get("name", "NA")
-        aas_pattern = gene_entry.get("AAs", "NA")
 
         for mut in gene_entry.get("mutations", []):
             consensus = mut.get("consensus", "")
@@ -100,11 +91,11 @@ def parse_sierra_json(sample_name, json_path):
             pos = mut.get("position", "")
             mut_type = mut.get("primaryType", "NA")
 
-            # Comentarios concatenados
+            # Concatenate comments
             comments_list = mut.get("comments", [])
             comments_text = "; ".join([c.get("text", "") for c in comments_list]) if comments_list else ""
 
-            # Si hay varios posibles aminoácidos, crear una fila por cada uno
+            # If there are more than one possible amino acids, create a row for each
             if len(aas) > 1:
                 for aa in aas:
                     mut_text = f"{consensus}{pos}{aa}"
@@ -122,12 +113,13 @@ def parse_sierra_json(sample_name, json_path):
                         "isSDRM": mut.get("isSDRM", False),
                         "hasStop": mut.get("hasStop", False),
                         "Mutation_AF": "NA",
-                        "Mutation_coverage": "NA",
-                        "Sequenced": aas_pattern,
+                        "Coverage": "NA",
+                        "INDEL>5%": "NA",
+                        "Notes": "",  # New column
                     }
                     rows.append(row)
             else:
-                # Si solo hay un aminoácido, dejar una sola fila
+                # If there is only one possible amino acid, keep a single row
                 mut_text = mut.get("text", "NA")
                 row = {
                     "Sample_name": sample_name,
@@ -143,16 +135,34 @@ def parse_sierra_json(sample_name, json_path):
                     "isSDRM": mut.get("isSDRM", False),
                     "hasStop": mut.get("hasStop", False),
                     "Mutation_AF": "NA",
-                    "Mutation_coverage": "NA",
-                    "Sequenced": aas_pattern,
+                    "Coverage": "NA",
+                    "INDEL>5%": "NA",
+                    "Notes": "",  # New column
                 }
                 rows.append(row)
 
     df = pd.DataFrame(rows)
+
+    # Add warning messages only to the first row of each affected protein
+    for gene, msg in warnings_dict.items():
+        protein = df["Gene_name"] == gene
+        if protein.any():
+            first_index = df[protein].index[0]
+            df.loc[first_index, "Notes"] = msg
+
     return df
 
+def check_indel(row):
+    if row["isInsertion"] or row["isDeletion"]:
+        try:
+            return True if float(row["Mutation_AF"]) >= 0.05 else False
+        except Exception:
+            return False
+    else:
+        return "NA"
+
 def integrate_codfreq_info(df_json, codfreq_df):
-    """Update df_json with Mutation_AF and Mutation_coverage from codfreq_df."""
+    """Update df_json with Mutation_AF and Coverage from codfreq_df."""
     if codfreq_df.empty:
         return df_json
 
@@ -163,64 +173,72 @@ def integrate_codfreq_info(df_json, codfreq_df):
         pos = row["Mutations"][1:-1]  # Extract position from format X123Y
         aa = row["Mutations"][-1]  # Extract mutated amino acid
 
-        # Search in codfreq_df
-        subset = codfreq_df[
-            (codfreq_df["gene"] == gene) &
-            (codfreq_df["position"] == int(pos)) &
-            (codfreq_df["aa_codon"] == aa)
-        ]
+        is_indel = row["isInsertion"] or row["isDeletion"]
 
-        if not subset.empty:
-            total = subset["total"].iloc[0]
-            coverage = subset["count"].sum()
-            af = coverage / total if total > 0 else 0
-            row["Mutation_AF"] = round(af, 5)
-            row["Mutation_coverage"] = int(coverage)
+        # Search that position in codfreq
+        candidates = codfreq_df[
+            (codfreq_df["gene"] == gene) &
+            (codfreq_df["position"] == int(pos))
+        ]
+        if candidates.empty:
+            continue
+
+        total = candidates["total"].iloc[0]
+
+        if is_indel:
+            # Take the 10 codons with the highest count at this position
+            if aa == "_" and row["isInsertion"] and not candidates.empty:
+                # Use the insertion with the highest count
+                insertions = candidates[candidates["codon"].apply(lambda x: isinstance(x, str) and len(x) > 3)]
+                best = insertions.loc[insertions["count"].idxmax()]
+                coverage = best["count"]
+            elif row["isInsertion"] and not candidates.empty:
+                # Normal codon close to insertion -> look for the codon corresponding to the AA
+                subset = candidates[candidates["aa_codon"] == aa]
+                coverage = subset["count"].sum() if not subset.empty else 0
+                row["isInsertion"] = False  # Deactivate isInsertion
+            elif row["isDeletion"] and not candidates.empty:
+                raise RuntimeError(f"DELETION case not yet implemented for gene={gene}, pos={pos}, aa={aa}")
+            else:
+                raise RuntimeError(f"NEW CASE SCENARIO not yet implemented for gene={gene}, pos={pos}, aa={aa}")
+        else:
+            # Normal codon
+            subset = candidates[candidates["aa_codon"] == aa]
+            coverage = subset["count"].sum() if not subset.empty else 0
+
+        af = coverage / total if total > 0 else 0
+        row["Mutation_AF"] = round(af, 5)
+        row["Coverage"] = int(total)
+
+        # Add "INDEL>5%" column
+        indel_sum = candidates[candidates["codon"].apply(lambda x: isinstance(x, str) and len(x) > 3)]["count"].sum()
+        if indel_sum / total > 0.05:
+            row["INDEL>5%"] = True
+        else:
+            row["INDEL>5%"] = False
 
         updated_rows.append(row)
 
-    return pd.DataFrame(updated_rows)
+    final_df = pd.DataFrame(updated_rows)
+
+    return final_df
 
 def main(args=None):
     args = parser_args(args)
 
-    # Create output directory if it doesn't exist
-    out_dir = os.path.dirname(args.output_file)
-    make_dir(out_dir)
+    # Load sierra-local JSON files
+    sierralocal_df = parse_sierra_json(args.sample_name, args.sierralocal_file)
 
-    # Search JSON files
-    json_files = get_file_dict(args.sierralocal_dir, args.file_suffix)
+    # Load codfreq files
+    codfreq_df = parse_codfreq(args.codfreq_file)
 
-    if not json_files:
-        logger.error(f"No JSON files found in directory: {args.sierralocal_dir}")
-        sys.exit(1)
+    resistance_df = integrate_codfreq_info(sierralocal_df, codfreq_df)
 
-    # Process each sample
-    all_samples = []
-    for sample, json_path in sorted(json_files.items()):
-        df_json = parse_sierra_json(sample, json_path)
+    if resistance_df.empty:
+        logger.warning(f"No mutations found for sample {args.sample_name}")
 
-        # Search for corresponding codfreq
-        codfreq_path = os.path.join(args.codfreq_dir, f"{sample}.codfreq")
-        if os.path.exists(codfreq_path):
-            codfreq_df = parse_codfreq(codfreq_path)
-            resistance_df = integrate_codfreq_info(df_json, codfreq_df)
-        else:
-            logger.warning(f"No codfreq file found for sample {sample}")
-
-        if not resistance_df.empty:
-            all_samples.append(resistance_df)
-        else:
-            logger.warning(f"No mutations found for sample {sample}")
-
-    # Combinar todas las tablas
-    if all_samples:
-        merged_df = pd.concat(all_samples, ignore_index=True)
-        merged_df.to_csv(args.output_file, index=False, encoding="utf-8-sig")
-        print(f"✅ Sierra-local variants table with codfreq data saved to: {args.output_file}")
-    else:
-        logger.error("No valid data found in any JSON file.")
-        sys.exit(1)
+    resistance_df.to_csv(args.output_file, index=False, encoding="utf-8-sig")
+    print(f"✅ Resistance table saved to {args.output_file}")
 
 
 if __name__ == "__main__":
