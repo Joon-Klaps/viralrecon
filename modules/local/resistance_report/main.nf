@@ -11,8 +11,9 @@ process RESISTANCE_REPORT {
     tuple val(meta), path(json), path(codfreq)
 
     output:
-    tuple val(meta), path("*.csv"), emit: csv
-    path "versions.yml"           , emit: versions
+    tuple val(meta), path("*_mutation_table.csv")   , emit: mutation_csv
+    tuple val(meta), path("*_resistance_table.csv") , emit: resistance_csv
+    path "versions.yml"                             , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -26,7 +27,8 @@ process RESISTANCE_REPORT {
         --sierralocal_file $json \\
         --codfreq_file $codfreq \\
         --sample_name ${meta.id} \\
-        --output_file ${prefix}_mutation_table.csv \\
+        --output_mutation_file ${prefix}_mutation_table.csv \\
+        --output_resistance_file ${prefix}_resistance_table.csv \\
         $args
 
     cat <<-END_VERSIONS > versions.yml

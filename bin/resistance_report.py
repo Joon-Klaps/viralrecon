@@ -18,7 +18,7 @@ pd.set_option("display.max_rows", None)
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding codfreq file and generate a long table with resistance information."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_mutation_file sample_mutation_table.csv
+    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_mutation_file sample_mutation_table.csv --output_resistance_file sample_resistance_table.csv
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -44,7 +44,13 @@ def parser_args(args=None):
         "-om",
         "--output_mutation_file",
         type=str,
-        help="Full path to output CSV file.",
+        help="Full path to output mutation CSV file.",
+    )
+    parser.add_argument(
+        "-or",
+        "--output_resistance_file",
+        type=str,
+        help="Full path to output resistance CSV file.",
     )
 
     return parser.parse_args(args)
@@ -223,6 +229,39 @@ def integrate_codfreq_info(df_json, codfreq_df):
 
     return final_df
 
+def parse_resistance_json(sample_name, json_path):
+    """Parse Sierra-local JSON and return a pandas DataFrame with drug resistance information."""
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)[0]
+
+    rows = []
+
+    if "drugResistance" not in data:
+        logger.warning(f"No 'drugResistance' field found in {json_path}")
+        return pd.DataFrame()
+
+    for entry in data["drugResistance"]:
+        gene_name = entry.get("gene", {}).get("name", "NA")
+
+        for drugscore in entry.get("drugScores", []):
+            drug_class = drugscore.get("drugClass", {}).get("name", "NA")
+            drug_name = drugscore.get("drug", {}).get("displayAbbr", "NA")
+            total_score = drugscore.get("score", "NA")
+            res_status = drugscore.get("text", "NA")
+
+            row = {
+                "Sample_name": sample_name,
+                "Gene_name": gene_name,
+                "Drug_class": drug_class,
+                "Drug_name": drug_name,
+                "Total_score": total_score,
+                "Res_status": res_status,
+            }
+            rows.append(row)
+
+    df = pd.DataFrame(rows)
+    return df
+
 def main(args=None):
     args = parser_args(args)
 
@@ -239,6 +278,15 @@ def main(args=None):
 
     mutation_df.to_csv(args.output_mutation_file, index=False, encoding="utf-8-sig")
     print(f"✅ Resistance table saved to {args.output_mutation_file}")
+
+   # Parse drug resistance info
+    resistance_df = parse_resistance_json(args.sample_name, args.sierralocal_file)
+
+    if resistance_df.empty:
+        logger.warning(f"No resistance information found for sample {args.sample_name}")
+    else:
+        resistance_df.to_csv(args.output_resistance_file, index=False, encoding="utf-8-sig")
+        print(f"✅ Resistance table saved to {args.output_resistance_file}")
 
 if __name__ == "__main__":
     sys.exit(main())
