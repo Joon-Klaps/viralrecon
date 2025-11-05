@@ -14,8 +14,7 @@ workflow HIV_RESISTANCE {
     consensus      // channel: [ val(meta), [ consensus ] ]
     bam            // channel: [ val(meta), [ bam ], [bai] ]
     fasta          // path   : genome.fasta
-    hiv_sequence   // path   : /path/to/codfreq.fasta
-    hiv_annotation // path   : /path/to/codfreq.gff
+    gff            // path   : genome.gff
     vcf            // channel: [ val(meta), [ vcf ] ]
     tbi            // channel: [ val(meta), [ tbi ] ]
     pangolin       // channel: [ val(meta), [ csv ] ]
@@ -31,18 +30,40 @@ workflow HIV_RESISTANCE {
 
     ch_versions = ch_versions.mix(SIERRALOCAL.out.versions)
 
-    LIFTOFF (
-        fasta.map { f -> [ [id: f.baseName], f ] },
-        hiv_sequence,
-        hiv_annotation,
-        []
-    )
-    ch_versions = ch_versions.mix(LIFTOFF.out.versions)
+    if (params.genome != 'codfreq') {
 
-    GFF2JSON (
-        fasta,
-        LIFTOFF.out.gff3
-    )
+        // Not setted as param because we can't changed these files for codfreq and sierralocal to work toghether.
+        // Using the ones in assets instead of the ones in test-datasets to avoid download issues when running offline
+        codfreq_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
+        codfreq_annotation = file("$projectDir/assets/codfreq.gff", checkIfExists: true)
+        LIFTOFF (
+            fasta.map { f -> [ [id: f.baseName], f ] },
+            codfreq_sequence,
+            codfreq_annotation,
+            []
+        )
+        ch_versions = ch_versions.mix(LIFTOFF.out.versions)
+
+        GFF2JSON (
+            fasta,
+            LIFTOFF.out.gff3
+        )
+
+        HIV_RESISTANCE_ANNOTATION (
+            vcf,
+            tbi,
+            fasta,
+            LIFTOFF.out.gff3.map { it[1] },
+            pangolin
+        )
+        ch_versions = ch_versions.mix(HIV_RESISTANCE_ANNOTATION.out.versions)
+
+    } else {
+        GFF2JSON (
+            fasta,
+            gff.map { f -> [ [id: f.baseName], f ] }
+        )
+    }
 
     ch_versions = ch_versions.mix(GFF2JSON.out.versions)
 
@@ -58,15 +79,6 @@ workflow HIV_RESISTANCE {
     )
 
     ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
-
-    HIV_RESISTANCE_ANNOTATION (
-        vcf,
-        tbi,
-        fasta,
-        LIFTOFF.out.gff3.map { it[1] },
-        pangolin
-    )
-    ch_versions = ch_versions.mix(HIV_RESISTANCE_ANNOTATION.out.versions)
 
     emit:
     sierralocal_results = SIERRALOCAL.out.json       // channel: [ val(meta), [ json ] ]
