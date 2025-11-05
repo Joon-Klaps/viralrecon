@@ -634,15 +634,13 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: HIV resistance detection
         //
+
         if (params.perform_hiv_resistance) {
-            ch_hiv_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
-            ch_hiv_annotation = file("$projectDir/assets/codfreq.gff"  , checkIfExists: true)
             HIV_RESISTANCE (
                 ch_consensus_genome,
                 ch_bam.join(ch_bai, by: [0]),
                 PREPARE_GENOME.out.fasta,
-                ch_hiv_sequence,
-                ch_hiv_annotation,
+                PREPARE_GENOME.out.gff,
                 ch_vcf,
                 ch_tbi,
                 ch_pangolin_report
