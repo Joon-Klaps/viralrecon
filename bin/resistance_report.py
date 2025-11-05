@@ -18,7 +18,7 @@ pd.set_option("display.max_rows", None)
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding codfreq file and generate a long table with resistance information."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_file sample_mutation_table.csv
+    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_mutation_file sample_mutation_table.csv
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -41,8 +41,8 @@ def parser_args(args=None):
         help="Name of the sample",
     )
     parser.add_argument(
-        "-of",
-        "--output_file",
+        "-om",
+        "--output_mutation_file",
         type=str,
         help="Full path to output CSV file.",
     )
@@ -232,14 +232,13 @@ def main(args=None):
     # Load codfreq files
     codfreq_df = parse_codfreq(args.codfreq_file)
 
-    resistance_df = integrate_codfreq_info(sierralocal_df, codfreq_df)
+    mutation_df = integrate_codfreq_info(sierralocal_df, codfreq_df)
 
-    if resistance_df.empty:
+    if mutation_df.empty:
         logger.warning(f"No mutations found for sample {args.sample_name}")
 
-    resistance_df.to_csv(args.output_file, index=False, encoding="utf-8-sig")
-    print(f"✅ Resistance table saved to {args.output_file}")
-
+    mutation_df.to_csv(args.output_mutation_file, index=False, encoding="utf-8-sig")
+    print(f"✅ Resistance table saved to {args.output_mutation_file}")
 
 if __name__ == "__main__":
     sys.exit(main())
