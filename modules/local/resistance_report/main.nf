@@ -26,7 +26,7 @@ process RESISTANCE_REPORT {
         --sierralocal_file $json \\
         --codfreq_file $codfreq \\
         --sample_name ${meta.id} \\
-        --output_file ${prefix}_resistance_table.csv \\
+        --output_file ${prefix}_mutation_table.csv \\
         $args
 
     cat <<-END_VERSIONS > versions.yml
