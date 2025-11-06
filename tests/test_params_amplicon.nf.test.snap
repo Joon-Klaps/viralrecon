@@ -1065,9 +1065,6 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
-                "GUNZIP_GFA": {
-                    "gunzip": 1.13
-                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -9822,9 +9819,6 @@
                     "freyja": "2.0.0"
                 },
                 "GUNZIP_FASTA": {
-                    "gunzip": 1.13
-                },
-                "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
                 "GUNZIP_GFF": {
