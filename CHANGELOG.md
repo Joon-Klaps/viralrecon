@@ -40,11 +40,11 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
 
-| Dependency      | Old version | New version |
-| --------------- | ----------- | ----------- |
-| `sierra-local`  |             | 0.4.3       |
-| `liftoff`       |             | 1.6.3       |
-| `pysam`         |             | 0.23.3      |
+| Dependency     | Old version | New version |
+| -------------- | ----------- | ----------- |
+| `sierra-local` |             | 0.4.3       |
+| `liftoff`      |             | 1.6.3       |
+| `pysam`        |             | 0.23.3      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 > **NB:** Dependency has been **added** if just the new version information is present.
