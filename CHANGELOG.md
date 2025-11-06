@@ -18,13 +18,19 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 ### Enhancements & fixes
 
 - [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
+- [[PR #559](https://github.com/nf-core/viralrecon/pull/559)] - Added HIV resistance detection subworkflow
 
 ### Parameters
 
-| Old parameter | New parameter |
-| ------------- | ------------- |
-|               | `--new_param` |
-| `--old_param` |               |
+| Old parameter | New parameter            |
+| ------------- | ------------------------ |
+|               | `perform_hiv_resistance` |
+|               | `hivdb_xml`              |
+|               | `apobec_drm`             |
+|               | `apobec_csv`             |
+|               | `unusual_csv`            |
+|               | `sdrms_csv`              |
+|               | `mutation_csv`           |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -36,12 +42,12 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 
 | Dependency      | Old version | New version |
 | --------------- | ----------- | ----------- |
-| `software-name` | x.x.x       | x.x.x       |
+| `sierra-local`  |             | 0.4.3       |
+| `liftoff`       |             | 1.6.3       |
+| `pysam`         |             | 0.23.3      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
->
 > **NB:** Dependency has been **added** if just the new version information is present.
->
 > **NB:** Dependency has been **removed** if new version information isn't present.
 
 ## [[3.0.0](https://github.com/nf-core/viralrecon/releases/tag/3.0.0)] Waterdog Hibiscus - 2025-10-21
