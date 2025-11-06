@@ -814,6 +814,9 @@
             "$ref": "#/$defs/illumina_de_novo_assembly_options"
         },
         {
+            "$ref": "#/$defs/hiv_resistance_options"
+        },
+        {
             "$ref": "#/$defs/generic_options"
         },
         {
