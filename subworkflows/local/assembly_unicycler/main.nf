@@ -45,6 +45,8 @@ workflow ASSEMBLY_UNICYCLER {
         UNICYCLER.out.gfa
     )
 
+    ch_versions = ch_versions.mix(GUNZIP_GFA.out.versions.first())
+
     //
     // Filter for empty scaffold files
     //
