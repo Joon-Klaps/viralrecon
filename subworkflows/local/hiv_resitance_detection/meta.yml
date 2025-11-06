@@ -8,11 +8,40 @@ keywords:
 components:
   - sierralocal
   - resistance_report
+  - additional_annotation
+  - bam2codfreq
+  - gff2json
+  - liftoff
+  - resistance/report
 input:
   - consensus:
       description: |
         Consensus fasta file
         Structure: [ val(meta), [ consensus ] ]
+  - bam:
+      description: |
+        Mapping BAM files and their index files
+        Structure: [ val(meta), [ bam ], [bai] ]
+  - fasta:
+      description: |
+        Reference genome fasta file
+        Structure: [ path(fasta) ]
+  - gff:
+      description: |
+        Reference genome annotation gff file
+        Structure: [ path(gff) ]
+  - vcf:
+      description: |
+        VCF file with variants called
+        Structure: [ val(meta), [ vcf ] ]
+  - tbi:
+      description: |
+        tabix index file
+        Structure: [ val(meta), [ tbi ] ]
+  - pangolin:
+      description: |
+        CSV file with pangolin results
+        Structure: [ val(meta), [ csv ] ]
 output:
   - sierralocal_results:
       description: |
@@ -22,9 +51,13 @@ output:
       description: |
         Codfreq files generated from BAM files
         Structure: [ val(meta), [ codfreq ] ]
+  - mutation_report:
+      description: |
+        HIV mutations report table integrating sierralocal and codfreq data
+        Structure: [ val(meta), [ csv ] ]
   - resistance_report:
       description: |
-        HIV resistance report table integrating sierralocal and codfreq data
+        HIV resistance report table from sierralocal
         Structure: [ val(meta), [ csv ] ]
   - versions:
       description: |
