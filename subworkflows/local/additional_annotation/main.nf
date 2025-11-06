@@ -2,7 +2,6 @@
 // Run snpEff, bgzip, tabix, stats and SnpSift commands
 //
 
-include { GUNZIP as GUNZIP_GFF                                            } from '../../../modules/nf-core/gunzip/main'
 include { SNPEFF_BUILD                                                    } from '../../../modules/local/snpeff/build'
 include { SNPEFF_ANN                                                      } from '../../../modules/local/snpeff/ann'
 include { SNPSIFT_EXTRACTFIELDS                                           } from '../../../modules/local/snpsift/extractfields'
