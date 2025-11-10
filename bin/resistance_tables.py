@@ -16,9 +16,9 @@ pd.set_option("display.max_rows", None)
 
 
 def parser_args(args=None):
-    Description = "Parse Sierra-local JSON reports and corresponding codfreq file and generate a long table with resistance information."
+    Description = "Parse Sierra-local JSON reports and corresponding codfreq file and generate tables with mutations and resistance information."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_mutation_file sample_mutation_table.csv --output_resistance_file sample_resistance_table.csv
+    python resistance_tables.py --sierralocal_file sample_resistance.json --codfreq_file sample.codfreq --output_mutation_file sample_mutation_table.csv --output_resistance_file sample_resistance_table.csv
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 

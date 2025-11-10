@@ -7,7 +7,7 @@ keywords:
   - fasta
 components:
   - sierralocal
-  - resistance_report
+  - resistance_tables
   - additional_annotation
   - bam2codfreq
   - gff2json
@@ -51,11 +51,11 @@ output:
       description: |
         Codfreq files generated from BAM files
         Structure: [ val(meta), [ codfreq ] ]
-  - mutation_report:
+  - mutation_table:
       description: |
         HIV mutations report table integrating sierralocal and codfreq data
         Structure: [ val(meta), [ csv ] ]
-  - resistance_report:
+  - resistance_table:
       description: |
         HIV resistance report table from sierralocal
         Structure: [ val(meta), [ csv ] ]

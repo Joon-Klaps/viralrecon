@@ -74,7 +74,7 @@
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
                 },
-                "RESISTANCE_REPORT": {
+                "RESISTANCE_TABLES": {
                     "python": "3.13.2"
                 },
                 "SAMTOOLS_FLAGSTAT": {
@@ -710,7 +710,7 @@
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
                 },
-                "RESISTANCE_REPORT": {
+                "RESISTANCE_TABLES": {
                     "python": "3.13.2"
                 },
                 "SAMTOOLS_FLAGSTAT": {

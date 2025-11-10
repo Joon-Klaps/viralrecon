@@ -1040,7 +1040,7 @@ To obtain codon frequency information, `nf-core/viralrecon` integrates a modifie
 
 ### Custom HIV Resistance Reports
 
-Using both **sierra-local**'s `*_resistance.json` and **custom codfreq**'s `*.codfreq` files, an [in-house script](../bin/resistance_report.py) is used to generate HIV resistance reports needed for clinical purposes.
+Using both **sierra-local**'s `*_resistance.json` and **custom codfreq**'s `*.codfreq` files, an [in-house script](../bin/resistance_tables.py) is used to generate HIV resistance reports needed for clinical purposes.
 
 - `variants/<CALLER>/consensus/<CONSENSUS_CALLER>/resistance_reports`
   - `*_mutation_table.csv`: CSV table with the mutations found by sierra-local with codon coverage and mutation frequencies integrated. It contains the following sexteen columns:

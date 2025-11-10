@@ -6,7 +6,7 @@ include { SIERRALOCAL                                        } from '../../../mo
 include { LIFTOFF                                            } from '../../../modules/nf-core/liftoff'
 include { GFF2JSON                                           } from '../../../modules/local/gff2json'
 include { BAM2CODFREQ                                        } from '../../../modules/local/bam2codfreq'
-include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
+include { RESISTANCE_TABLES                                  } from '../../../modules/local/resistance_tables'
 include { ADDITIONAL_ANNOTATION as HIV_RESISTANCE_ANNOTATION } from '../additional_annotation'
 
 workflow HIV_RESISTANCE {
@@ -74,18 +74,18 @@ workflow HIV_RESISTANCE {
 
     ch_versions = ch_versions.mix(BAM2CODFREQ.out.versions)
 
-    RESISTANCE_REPORT(
+    RESISTANCE_TABLES(
         SIERRALOCAL.out.json.join(BAM2CODFREQ.out.codfreq, by: [0])
     )
 
-    ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
+    ch_versions = ch_versions.mix(RESISTANCE_TABLES.out.versions)
 
     emit:
-    sierralocal_results   = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]
-    bam2codfreq_results   = BAM2CODFREQ.out.codfreq                   // channel: [ val(meta), [ codfreq ] ]
-    mutation_report       = RESISTANCE_REPORT.out.mutation_csv        // channel: [ val(meta), [ mutation_csv ] ]
-    mutation_report_short = RESISTANCE_REPORT.out.mutation_short_csv  // channel: [ val(meta), [ mutation_csv ] ]
-    resistance_report     = RESISTANCE_REPORT.out.resistance_csv      // channel: [ val(meta), [ resistance_csv ] ]
+    sierralocal_results  = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]
+    bam2codfreq_results  = BAM2CODFREQ.out.codfreq                   // channel: [ val(meta), [ codfreq ] ]
+    mutation_table       = RESISTANCE_TABLES.out.mutation_csv        // channel: [ val(meta), [ mutation_csv ] ]
+    mutation_table_short = RESISTANCE_REPORT.out.mutation_short_csv  // channel: [ val(meta), [ mutation_csv ] ]
+    resistance_table     = RESISTANCE_TABLES.out.resistance_csv      // channel: [ val(meta), [ resistance_csv ] ]
 
     versions              = ch_versions                               // channel: [ versions.yml ]
 }

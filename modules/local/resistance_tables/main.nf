@@ -1,4 +1,4 @@
-process RESISTANCE_REPORT {
+process RESISTANCE_TABLES {
     tag "$meta.id"
     label 'process_single'
 
@@ -24,7 +24,7 @@ process RESISTANCE_REPORT {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    resistance_report.py \\
+    resistance_tables.py \\
         --sierralocal_file $json \\
         --codfreq_file $codfreq \\
         --sample_name ${meta.id} \\
