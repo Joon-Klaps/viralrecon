@@ -47,6 +47,12 @@ def parser_args(args=None):
         help="Full path to output mutation CSV file.",
     )
     parser.add_argument(
+        "-os",
+        "--output_mutation_short",
+        type=str,
+        help="Full path to output mutation shortenned CSV file.",
+    )
+    parser.add_argument(
         "-or",
         "--output_resistance_file",
         type=str,
@@ -293,6 +299,12 @@ def main(args=None):
 
     mutation_df.to_csv(args.output_mutation_file, index=False, encoding="utf-8-sig")
     print(f"✅ Resistance table saved to {args.output_mutation_file}")
+
+    # === Generate filtered mutation table ===
+    filtered_mutation_df = mutation_df[["Sample_name", "Gene_name", "Mutations", "Mutations_type", "Mutations_comments"]]
+
+    filtered_mutation_df.to_csv(args.output_mutation_short, index=False, encoding="utf-8-sig")
+    print(f"✅ Resistance table saved to {args.output_mutation_short}")
 
    # Parse drug resistance info
     resistance_df = parse_resistance_json(args.sample_name, args.sierralocal_file)

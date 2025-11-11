@@ -81,10 +81,11 @@ workflow HIV_RESISTANCE {
     ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
 
     emit:
-    sierralocal_results = SIERRALOCAL.out.json                 // channel: [ val(meta), [ json ] ]
-    bam2codfreq_results = BAM2CODFREQ.out.codfreq              // channel: [ val(meta), [ codfreq ] ]
-    mutation_report     = RESISTANCE_REPORT.out.mutation_csv   // channel: [ val(meta), [ mutation_csv ] ]
-    resistance_report   = RESISTANCE_REPORT.out.resistance_csv // channel: [ val(meta), [ resistance_csv ] ]
+    sierralocal_results   = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]
+    bam2codfreq_results   = BAM2CODFREQ.out.codfreq                   // channel: [ val(meta), [ codfreq ] ]
+    mutation_report       = RESISTANCE_REPORT.out.mutation_csv        // channel: [ val(meta), [ mutation_csv ] ]
+    mutation_report_short = RESISTANCE_REPORT.out.mutation_short_csv  // channel: [ val(meta), [ mutation_csv ] ]
+    resistance_report     = RESISTANCE_REPORT.out.resistance_csv      // channel: [ val(meta), [ resistance_csv ] ]
 
-    versions            = ch_versions                          // channel: [ versions.yml ]
+    versions              = ch_versions                               // channel: [ versions.yml ]
 }
