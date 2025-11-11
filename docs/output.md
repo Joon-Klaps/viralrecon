@@ -1048,7 +1048,7 @@ Using both **sierra-local**'s `*_resistance.json` and **custom codfreq**'s `*.co
     - `Gene_name`: Name of the gene containing the mutation. Only detects PR, RT and IN.
     - `Mutations`: Detected aminoacid mutation in this format `I72V` as `<reference_aminoacid><codon_position><alternative_aminoacid>`.
     - `Mutations_type`: Mutation's primary type. Can be `Major Mutation`, `Accesory Mutation` or `Other`.
-    - `Mutations_comments`: Comments from sierra-local software for that mutation. Can be empty if no comments where detected.
+    - `Mutations_comments`: Resistance comments from sierra-local software for that mutation. Can be empty if no comments where detected. Only major mutations contain comments.
     - `isInsertion`: If the mutation is an insertion `True`. Else `False`.
     - `isDeletion`: If the mutation is a deletion `True`. Else `False`.
     - `isApobecMutation`: If the mutation is an Apobec mutation found in `apobecs.csv` file `True`. Else `False`.
@@ -1060,7 +1060,8 @@ Using both **sierra-local**'s `*_resistance.json` and **custom codfreq**'s `*.co
     - `Coverage`: Codon total coverage. Used to calculate `Mutation_AF`.
     - `INDEL>5%`: If INDELs represent >=5% of the codon reads/coverage `True`. Else `False`. Can be used to detect posible artifacts in a position if `isInsertion` and `isDeletion` are `False`.
     - `Notes`: Quality control messages from `validationResults` in sierra-local report.
-  - `*_drug_report.csv`: CSV table with the drug resistance found by sierra-local. It contains the following five columns:
+  - `*_mutation_table_short.csv`: Subset of the `*_mutation_table.csv` table with only `Sample_name`, `Gene_name`, `Mutations`, `Mutations_type`, `Mutations_comments` columns, needed for wetlab puprposes.
+  - `*_resistance_table.csv`: CSV table with the drug resistance found by sierra-local. It contains the following five columns:
     - `Sample_name`: Name of the sample given by the samplesshet file.
     - `Drug_class`: Call of the drug. It can be:
       - `PI`: Protease Inhibitors (PR gene asociated)
