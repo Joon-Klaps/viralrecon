@@ -61,24 +61,26 @@
       </p>
 
       {% if mut_list %}
-      <table style="width: 100%; margin: 10px 0 20px 0">
-        <thead>
-          <tr>
-            <th>Mutation</th>
-            <th>AF (%)</th>
-            <th>Coverage</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in mut_list %}
-          <tr>
-            <td>{{ row.Mutations }}</td>
-            <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
-            <td>{{ row.Coverage }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div style="max-height: 400px; overflow-y: auto; width: 100%; margin: 10px 0 20px 0">
+        <table style="width: 100%; border-collapse: collapse">
+          <thead>
+            <tr>
+              <th>Mutation</th>
+              <th>AF (%)</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in mut_list %}
+            <tr>
+              <td>{{ row.Mutations }}</td>
+              <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
+              <td>{{ row.Coverage }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
       {% endif %} {% endfor %}
 
       <!-- RESISTANCE (Grouped by Drug Class) -->
@@ -88,16 +90,18 @@
       "equalto", drug_class) | list %} {% if class_drugs %}
       <h3 style="margin-top: 25px; margin-bottom: 5px">{{ class_label }}</h3>
       <hr style="border: none; border-top: 1px solid #aaa; margin-bottom: 10px" />
-      <table style="width: 100%; margin: 10px 0 20px 0">
-        <tbody>
-          {% for row in class_drugs %}
-          <tr>
-            <td style="padding-right: 30px">{{ row.Drug_name }}</td>
-            <td>{{ row.Res_status }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div style="max-height: 400px; overflow-y: auto; width: 100%; margin: 10px 0 20px 0">
+        <table style="width: 100%; border-collapse: collapse">
+          <tbody>
+            {% for row in class_drugs %}
+            <tr>
+              <td style="padding-right: 30px">{{ row.Drug_name }}</td>
+              <td>{{ row.Res_status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
       {% endif %} {% endfor %} {% endif %}
     </div>
     {% endif %} {% endfor %}
