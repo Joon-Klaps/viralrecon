@@ -100,6 +100,20 @@
       </div>
       {% endif %} {% endfor %} {% endif %}
     </div>
+    {% endif %}
+
+    <!-- COMMENTS -->
+    {% set comment_list = [] %} {% for m in gene_mutations %} {% if m.Mutations_comments and
+    m.Mutations_comments|string|lower not in ["nan", "none", ""] %} {% set _ = comment_list.append(m) %} {% endif %} {%
+    endfor %} {% if comment_list %}
+    <div class="mutation-comments">
+      <strong>{{ gene }} comments</strong>
+      <ul>
+        {% for row in comment_list %}
+        <li>{{ row.Mutations }}: {{ row.Mutations_comments }}</li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endif %} {% endfor %}
 
     <!-- CONSENSUS GENOME -->

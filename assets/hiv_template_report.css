@@ -151,3 +151,31 @@ details pre {
   background-color: #f9f9f9;
   margin-top: 5px;
 }
+
+.mutation-comments {
+  background-color: #e0e0e0;
+  padding: 10px 15px;
+  margin: 15px 0 20px 0;
+  border-radius: 4px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.mutation-comments strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.mutation-comments ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.mutation-comments li {
+  margin-bottom: 5px;
+  font-size: 0.95em;
+}
