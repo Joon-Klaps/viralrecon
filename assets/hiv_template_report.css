@@ -1,22 +1,21 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 30px;
+  margin: 60px 30px 30px 30px; /* top margin for dropdown */
   background-color: #f9f9f9;
 }
 
-/* === Header Style === */
+/* Header */
 .header {
   background-color: #8b0a0a;
   color: white;
   padding: 15px 25px;
   font-weight: bold;
   font-size: 1.8em;
-  text-align: left;
   border-radius: 4px;
   margin-bottom: 30px;
 }
 
-/* === Sequence Summary Box === */
+/* Sequence summary and section titles */
 .summary-title {
   background-color: #f5f5f0;
   border: 1px solid #d4aa00;
@@ -34,6 +33,7 @@ body {
   font-weight: normal;
 }
 
+/* Sequence summary content */
 .sequence-summary-info {
   width: 90%;
   margin: 0 auto 20px auto;
@@ -52,33 +52,22 @@ body {
   color: #222;
 }
 
-.section-subtitle-box {
-  background-color: #f9f9f9;
-  border-left: 4px solid #d4aa00;
-  padding: 8px 15px;
-  margin: 15px 0 5px 0;
-  border-radius: 3px;
+/* Content block for mutations, resistances, consensus genome */
+.content-block {
+  width: 90%;
+  margin: 0 auto 20px auto;
 }
 
-.section-subtitle-box h3 {
-  margin: 0;
-  color: #333;
-  font-size: 1.05em;
-  font-weight: bold;
-}
-
-/* === General Headings === */
-h2 {
-  color: #333;
-  padding-bottom: 0;
-  border: none;
-  margin-top: 0;
+/* Tables scrollable */
+.table-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 10px 0 20px 0;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 30px;
 }
 
 th,
@@ -98,13 +87,20 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.section {
-  background-color: #eef;
-  padding: 15px;
-  margin-top: 40px;
-  border-radius: 5px;
+/* Drug class headings inside content */
+.content-block h3 {
+  margin-top: 25px;
+  margin-bottom: 5px;
 }
 
+/* Horizontal rule under headings */
+.content-block hr {
+  border: none;
+  border-top: 1px solid #aaa;
+  margin-bottom: 10px;
+}
+
+/* Footer */
 .footer {
   text-align: center;
   color: #777;
@@ -112,7 +108,7 @@ tr:nth-child(even) {
   margin-top: 50px;
 }
 
-/* --- Fixed dropdown menu --- */
+/* Fixed dropdown menu */
 #sample-selector {
   position: fixed;
   top: 15px;
@@ -126,17 +122,12 @@ tr:nth-child(even) {
   font-size: 14px;
 }
 
-/* Add some space so the dropdown doesn’t overlap the content */
-body {
-  margin-top: 60px;
-}
-
-/* Smooth scrolling effect */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Consensus genome details box */
+/* Consensus genome */
 details {
   margin-bottom: 20px;
 }
