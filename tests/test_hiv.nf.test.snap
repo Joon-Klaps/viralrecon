@@ -378,10 +378,13 @@
                 "variants/ivar/consensus/ivar/hiv_resistance/liftoff_variants_long_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/sierra-local",
                 "variants/ivar/consensus/ivar/hiv_resistance/sierra-local/DRR030302_resistance.json",
@@ -595,15 +598,17 @@
                 "SRR4071760.consensus.base_counts.tsv:md5,12f71d71d18677eea17a16f868c3fb96",
                 "SRR6937100.consensus.N_run.tsv:md5,fe42402219849dd6a1612fccc3249a02",
                 "SRR6937100.consensus.base_counts.tsv:md5,1256b3afea6ebae0105468e1e7ab91a2",
-                "NC_001802.1.json:md5,8ccf769abca3a14a5bc41928eed87565",
                 "NC_001802.1.gff:md5,5276e4d0f63cf78f1acc99b0bde673f1",
                 "NC_001802.1.unmapped.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "liftoff_variants_long_table.csv:md5,6201f80534d1f346d9bfe45e664a27ba",
                 "DRR030302_mutation_table.csv:md5,7445eee74a233fe025107a5e1a38f4da",
+                "DRR030302_mutation_table_short.csv:md5,75e7aef7357de0fe2be9a066db09217f",
                 "DRR030302_resistance_table.csv:md5,6e4aecb5140b5564a6e4585b1884df15",
                 "SRR4071760_mutation_table.csv:md5,2bd538ab5708b430e9a3ccedca728236",
+                "SRR4071760_mutation_table_short.csv:md5,4d89f33d0e0d6e32ad5c7e761fd84ae7",
                 "SRR4071760_resistance_table.csv:md5,6bcc98b8b4fc1d5b3b9a3fcf7adceee5",
-                "SRR6937100_mutation_table.csv:md5,94fef947f5e1b7d53fa5d39644640e84",
+                "SRR6937100_mutation_table.csv:md5,c8d8fe6d6f539769e3a263fefd7fca13",
+                "SRR6937100_mutation_table_short.csv:md5,c255c84ebb129b16e3f9da4e1fc5cc49",
                 "SRR6937100_resistance_table.csv:md5,a106b7b40928786e40cb79dde3fdaf3e",
                 "DRR030302_resistance.json:md5,d5566721cbfc791b1cab75ddd17b7a83",
                 "SRR4071760_resistance.json:md5,96bef5bc17b9b8c9a7c3782a36dd79a3",
@@ -634,7 +639,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-07T10:25:19.772089146"
+        "timestamp": "2025-11-11T09:35:18.666186558"
     },
     "-profile test_hiv": {
         "content": [
@@ -1004,10 +1009,13 @@
                 "variants/ivar/consensus/ivar/hiv_resistance/codfreq/codfreq.json",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/DRR030302_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR4071760_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_mutation_table.csv",
+                "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_mutation_table_short.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/resistance_reports/SRR6937100_resistance_table.csv",
                 "variants/ivar/consensus/ivar/hiv_resistance/sierra-local",
                 "variants/ivar/consensus/ivar/hiv_resistance/sierra-local/DRR030302_resistance.json",
@@ -1222,10 +1230,13 @@
                 "SRR6937100.consensus.N_run.tsv:md5,da00866e35fde969f0a26fa128d0824b",
                 "SRR6937100.consensus.base_counts.tsv:md5,eb0e3541b4ecc5e6c08eff163b232f1a",
                 "DRR030302_mutation_table.csv:md5,a6c06472f414eee01280fb2264701135",
+                "DRR030302_mutation_table_short.csv:md5,75e7aef7357de0fe2be9a066db09217f",
                 "DRR030302_resistance_table.csv:md5,6e4aecb5140b5564a6e4585b1884df15",
                 "SRR4071760_mutation_table.csv:md5,68f270b3e3c665d331f0733387880803",
+                "SRR4071760_mutation_table_short.csv:md5,043be98513fe3fc785553fb4caee23ca",
                 "SRR4071760_resistance_table.csv:md5,6bcc98b8b4fc1d5b3b9a3fcf7adceee5",
-                "SRR6937100_mutation_table.csv:md5,24af0cc8f62e18f412dd13e8a8b66985",
+                "SRR6937100_mutation_table.csv:md5,8b04c69eff00391a0e9400274d59a73d",
+                "SRR6937100_mutation_table_short.csv:md5,8c74a738a106ec43bd959c05b71be17a",
                 "SRR6937100_resistance_table.csv:md5,a106b7b40928786e40cb79dde3fdaf3e",
                 "DRR030302_resistance.json:md5,17ec2f1fc00b48884f7f1d37e45866a2",
                 "SRR4071760_resistance.json:md5,e77058c526a24b99984ddc90e4fb82cf",
@@ -1256,6 +1267,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-05T16:29:57.324498169"
+        "timestamp": "2025-11-11T09:30:28.859852016"
     }
 }
