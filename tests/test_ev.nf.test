@@ -5,7 +5,7 @@ nextflow_pipeline {
     tag "pipeline"
     profile "test_ev"
 
-    test("-profile test_EV") {
+    test("-profile test_ev") {
 
         when {
             params {
