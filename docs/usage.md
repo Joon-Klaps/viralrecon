@@ -340,11 +340,12 @@ Note that **minia** is not a default assembler for enterovirus.
 #### BLASTN
 
 Typing through **blastn** is performed through supplying a blast database with taxid mapping and a taxidlist, to improve typing specificity and reduce runtime.
-The new optional parameter, `--taxidlist`, allows users to provide a list of **NCBI Taxonomy IDs** corresponding to Enterovirus taxa of interest. 
+The new optional parameter, `--taxidlist`, allows users to provide a list of **NCBI Taxonomy IDs** corresponding to Enterovirus taxa of interest.
 
 Taxonomy IDs related to enterovirus can be retriewed through // Add command here
 
 Example usage:
+
 ```bash
 --blastdb path/to/blastdb
 --taxidlist path/to/taxidlist_taxids.txt
