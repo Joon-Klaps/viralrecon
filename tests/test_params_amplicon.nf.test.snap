@@ -2831,9 +2831,6 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -3229,7 +3226,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
@@ -7995,9 +7991,6 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -8436,7 +8429,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
@@ -10337,9 +10329,6 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -10771,7 +10760,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
