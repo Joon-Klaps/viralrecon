@@ -72,7 +72,23 @@ def parse_sierra_json(sample_name, json_path):
 
     rows = []
 
-    # Detect warnings
+    # === 1. Extract comments of resistance associated with mutations ===
+    resistance_comments = {}
+    if "drugResistance" in data:
+        for entry in data["drugResistance"]:
+            for drugscore in entry.get("drugScores", []):
+                for partial in drugscore.get("partialScores", []):
+                    for mut in partial.get("mutations", []):
+                        mut_name = mut.get("text", "")
+                        comments = mut.get("comments", [])
+                        if comments:
+                            # Concatenate all comments if there is more than one
+                            comment_text = " ".join([c.get("text", "") for c in comments if c.get("text")])
+                            # Save only if it does not already exist or if it is longer (avoids overwriting with duplicates)
+                            if mut_name not in resistance_comments or len(comment_text) > len(resistance_comments[mut_name]):
+                                resistance_comments[mut_name] = comment_text
+
+    # === 2. Detect warnings ===
     warnings_dict = {}
     for warning in data.get("validationResults", []):
         msg = warning.get("message", "")
@@ -88,6 +104,7 @@ def parse_sierra_json(sample_name, json_path):
         logger.warning(f"No 'alignedGeneSequences' field found in {json_path}")
         return pd.DataFrame()
 
+    # === 3. Extract mutations ===
     for gene_entry in data["alignedGeneSequences"]:
         gene_name = gene_entry.get("gene", {}).get("name", "NA")
 
@@ -97,20 +114,17 @@ def parse_sierra_json(sample_name, json_path):
             pos = mut.get("position", "")
             mut_type = mut.get("primaryType", "NA")
 
-            # Concatenate comments
-            comments_list = mut.get("comments", [])
-            comments_text = "; ".join([c.get("text", "") for c in comments_list]) if comments_list else ""
-
             # If there are more than one possible amino acids, create a row for each
             if len(aas) > 1:
                 for aa in aas:
                     mut_text = f"{consensus}{pos}{aa}"
+                    resistance_comment = resistance_comments.get(mut_text, "")
                     row = {
                         "Sample_name": sample_name,
                         "Gene_name": gene_name,
                         "Mutations": mut_text,
                         "Mutations_type": mut_type,
-                        "Mutations_comments": comments_text,
+                        "Mutations_comments": resistance_comment,
                         "isInsertion": mut.get("isInsertion", False),
                         "isDeletion": mut.get("isDeletion", False),
                         "isApobecMutation": mut.get("isApobecMutation", False),
@@ -127,12 +141,13 @@ def parse_sierra_json(sample_name, json_path):
             else:
                 # If there is only one possible amino acid, keep a single row
                 mut_text = mut.get("text", "NA")
+                resistance_comment = resistance_comments.get(mut_text, "")
                 row = {
                     "Sample_name": sample_name,
                     "Gene_name": gene_name,
                     "Mutations": mut_text,
                     "Mutations_type": mut_type,
-                    "Mutations_comments": comments_text,
+                    "Mutations_comments": resistance_comment,
                     "isInsertion": mut.get("isInsertion", False),
                     "isDeletion": mut.get("isDeletion", False),
                     "isApobecMutation": mut.get("isApobecMutation", False),
