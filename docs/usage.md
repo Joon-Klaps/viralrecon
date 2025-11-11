@@ -369,6 +369,10 @@ When a custom reference is supplied, all variant calling, consensus generation, 
 
 > **Important**: When performing HIV resistance detection, an annotation file (.gff) is mandatory. The GFF file is required to correctly annotate the pol gene regions (PR, RT and IN), which are essential for both sierra-local and codfreq analyses.
 
+#### Host genome
+
+For testing purposes, the host genome is set to `kraken2_db = "${params.pipelines_testdata_base_path}/genome/kraken2/kraken2_hs22.tar.gz"` in the config file. To be able to get real host statistics the user should change the `--kraken2_db` param to a real database, as specified in the `README.md`.
+
 #### Available genome options
 
 Two HIV genome references are distributed with viralrecon and can be selected using the `--genome` parameter:

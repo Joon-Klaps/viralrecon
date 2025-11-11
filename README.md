@@ -163,6 +163,7 @@ nextflow run nf-core/viralrecon \
    --genome 'codfreq' \
    --primer_bed <path/to/primers/bed> \
    --nextclade_dataset_tag '<LATEST_HIV_TAG>' \
+   --kraken2_db <path/to/host/database> \
    -profile test_hiv,<docker/singularity/.../institute>
 ```
 
