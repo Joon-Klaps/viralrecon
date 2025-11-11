@@ -90,6 +90,7 @@ workflow HIV_RESISTANCE {
         RESISTANCE_TABLES.out.mutation_csv.collect{it[1]},
         RESISTANCE_TABLES.out.resistance_csv.collect{it[1]},
         nextclade_report.collect{it[1]},
+        consensus.collect{it[1]},
         ch_html_template,
         ch_css_file
     )

@@ -11,6 +11,7 @@ process RESISTANCE_REPORT {
     path mutation_csv    , stageAs: "mutation_tables/*"
     path resistance_csv  , stageAs: "resistance_tables/*"
     path nextclade_csv   , stageAs: "nextclade_reports/*"
+    path consensus       , stageAs: "consensus/*"
     path html_template
     path css_file
 
@@ -31,6 +32,7 @@ process RESISTANCE_REPORT {
         --mutation_folder ./mutation_tables \\
         --resistance_folder ./resistance_tables \\
         --nextclade_folder ./nextclade_reports \\
+        --consensus_folder ./consensus \\
         --template ${html_template} \\
         --css ${css_file} \\
         --output_html ${prefix}.html \\

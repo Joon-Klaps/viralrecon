@@ -50,64 +50,85 @@
     </div>
 
     <!-- MUTATIONS + RESISTANCE BLOCK -->
-    <div style="width: 85%; margin: 10px 0 20px 10%">
+    <div style="width: 90%; margin: 0 auto 20px auto">
       <!-- MUTATIONS -->
       {% for mut_type, mut_label in [ ("Major", "Major Mutations"), ("Accessory", "Accessory Mutations"), ("Other",
       "Other Mutations") ] %} {% set mut_list = gene_mutations | selectattr("Mutations_type", "equalto", mut_type) |
       list %}
-
       <p>
         <strong>{{ mut_label }}:</strong>
         {% if not mut_list %} None {% endif %}
       </p>
 
       {% if mut_list %}
-      <div style="width: 85%; margin: 10px 0">
-        <table style="margin-bottom: 15px">
-          <thead>
-            <tr>
-              <th>Mutation</th>
-              <th>AF (%)</th>
-              <th>Coverage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for row in mut_list %}
-            <tr>
-              <td>{{ row.Mutations }}</td>
-              <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
-              <td>{{ row.Coverage }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+      <table style="width: 100%; margin: 10px 0 20px 0">
+        <thead>
+          <tr>
+            <th>Mutation</th>
+            <th>AF (%)</th>
+            <th>Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in mut_list %}
+          <tr>
+            <td>{{ row.Mutations }}</td>
+            <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
+            <td>{{ row.Coverage }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
       {% endif %} {% endfor %}
 
       <!-- RESISTANCE (Grouped by Drug Class) -->
-      {% if gene_resistances %}
-      <div style="width: 85%; margin: 20px 0 20px 0">
-        {% for drug_class, class_label in [ ("PI", "Protease Inhibitors"), ("NRTI", "Nucleoside Reverse Transcriptase
-        Inhibitors"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors"), ("INSTI", "Integrase Strand Transfer
-        Inhibitors") ] %} {% set class_drugs = gene_resistances | selectattr("Drug_class", "equalto", drug_class) | list
-        %} {% if class_drugs %}
-        <h3 style="margin-top: 25px; margin-bottom: 5px">{{ class_label }}</h3>
-        <hr style="border: none; border-top: 1px solid #aaa; margin-bottom: 10px" />
-        <table>
-          <tbody>
-            {% for row in class_drugs %}
-            <tr>
-              <td style="padding-right: 30px">{{ row.Drug_name }}</td>
-              <td>{{ row.Res_status }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% endif %} {% endfor %}
-      </div>
-      {% endif %}
+      {% if gene_resistances %} {% for drug_class, class_label in [ ("PI", "Protease Inhibitors"), ("NRTI", "Nucleoside
+      Reverse Transcriptase Inhibitors"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors"), ("INSTI",
+      "Integrase Strand Transfer Inhibitors") ] %} {% set class_drugs = gene_resistances | selectattr("Drug_class",
+      "equalto", drug_class) | list %} {% if class_drugs %}
+      <h3 style="margin-top: 25px; margin-bottom: 5px">{{ class_label }}</h3>
+      <hr style="border: none; border-top: 1px solid #aaa; margin-bottom: 10px" />
+      <table style="width: 100%; margin: 10px 0 20px 0">
+        <tbody>
+          {% for row in class_drugs %}
+          <tr>
+            <td style="padding-right: 30px">{{ row.Drug_name }}</td>
+            <td>{{ row.Res_status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %} {% endfor %} {% endif %}
     </div>
-    {% endif %} {% endfor %} {% endfor %}
+    {% endif %} {% endfor %}
+
+    <!-- CONSENSUS GENOME -->
+    <div class="summary-title">
+      <h2>Consensus Genome</h2>
+    </div>
+
+    {% if sample.consensus_genome %}
+    <div style="width: 90%; margin: 0 auto 20px auto">
+      <details style="width: 100%">
+        <summary>Show consensus genome</summary>
+        <pre
+          style="
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+          "
+        >
+    {{ sample.consensus_genome }}
+        </pre>
+      </details>
+    </div>
+    {% else %}
+    <p>No consensus genome available</p>
+    {% endif %} {% endfor %}
 
     <!-- FOOTER -->
     <div class="footer">

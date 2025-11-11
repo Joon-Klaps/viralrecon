@@ -17,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding resistance and mutation tables to generate an HTML report."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --nextclade_report nextclade_folder --output_html resistance_report.html
+    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -50,6 +50,13 @@ def parser_args(args=None):
         help="Folder containing nextclade CSV files (default: ./nextclade_reports)",
     )
     parser.add_argument(
+        "-cn",
+        "--consensus_folder",
+        type=str,
+        default="./consensus",
+        help="Folder containing consensus files (default: ./consensus)",
+    )
+    parser.add_argument(
         "-o",
         "--output_html",
         type=str,
@@ -63,7 +70,7 @@ def parser_args(args=None):
         help="Full path to template HTML report file.",
     )
     parser.add_argument(
-        "-c",
+        "-cs",
         "--css",
         type=str,
         default="hiv_template_report.css",
@@ -170,6 +177,7 @@ def main():
     resistance_files = sorted(glob.glob(os.path.join(args.resistance_folder, "*_resistance_table.csv")))
     json_files = sorted(glob.glob(os.path.join(args.sierralocal_folder, "*_resistance.json")))
     nextclade_files = sorted(glob.glob(os.path.join(args.nextclade_folder, "*.csv")))
+    consensus_files = sorted(glob.glob(os.path.join(args.consensus_folder, "*.fa")))
 
     # --- Load CSS content
     with open(args.css, "r", encoding="utf-8") as css_file:
@@ -187,6 +195,11 @@ def main():
         res_file = next((r for r in resistance_files if sample_name in r), None)
         json_file = next((j for j in json_files if sample_name in j), None)
         nextclade_file = next((n for n in nextclade_files if sample_name in n), None)
+        consensus_file = next((c for c in consensus_files if sample_name in c), None)
+        consensus_seq = None
+        if consensus_file and os.path.exists(consensus_file):
+            with open(consensus_file, "r", encoding="utf-8") as f:
+                consensus_seq = f.read().strip()
 
         if not res_file or not json_file:
             print(f"⚠️ Skipping {sample_name}: missing resistance or JSON file")
@@ -203,7 +216,8 @@ def main():
             "sample_name": sample_name,
             "sequence_summary": seq_summary,
             "mutation_data": df_mut.to_dict(orient="records"),
-            "resistance_data": pd.read_csv(res_file).to_dict(orient="records")
+            "resistance_data": pd.read_csv(res_file).to_dict(orient="records"),
+            "consensus_genome": consensus_seq
         })
 
     # Ordenar alfabéticamente por nombre de muestra
