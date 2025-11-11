@@ -5,12 +5,53 @@
     <title>HIV Resistance Report</title>
     <style>
       {{ css_content | safe }}
+
+      /* --- Fixed dropdown menu --- */
+      #sample-selector {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        z-index: 1000;
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        font-size: 14px;
+      }
+
+      /* Add some space so the dropdown doesn’t overlap the content */
+      body {
+        margin-top: 60px;
+      }
+
+      /* Smooth scrolling effect */
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
   </head>
   <body>
+    <!-- Fixed dropdown for sample navigation -->
+    <select id="sample-selector" onchange="scrollToSample(this.value)">
+      <option value="">Go to sample...</option>
+      {% for sample in all_samples %}
+      <option value="sample_{{ loop.index }}">{{ loop.index }}. {{ sample.sample_name }}</option>
+      {% endfor %}
+    </select>
+
+    <script>
+      function scrollToSample(id) {
+        if (id) {
+          const element = document.getElementById(id);
+          if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    </script>
+
     {% for sample in all_samples %}
     <!-- HEADER -->
-    <div class="header">{{ loop.index }}. {{ sample.sample_name }}</div>
+    <div class="header" id="sample_{{ loop.index }}">{{ loop.index }}. {{ sample.sample_name }}</div>
 
     <!-- SEQUENCE SUMMARY -->
     <div class="summary-title">
@@ -90,13 +131,11 @@
       </div>
       {% endif %}
     </div>
-    {% endif %} {% endfor %}
+    {% endif %} {% endfor %} {% endfor %}
 
     <!-- FOOTER -->
     <div class="footer">
       <p>Generated automatically from nf-core/viralrecon using sierra-local and codfreq data.</p>
     </div>
-
-    {% endfor %}
   </body>
 </html>
