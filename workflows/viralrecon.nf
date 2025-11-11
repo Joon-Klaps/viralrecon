@@ -644,7 +644,8 @@ workflow VIRALRECON {
                 PREPARE_GENOME.out.gff,
                 ch_vcf,
                 ch_tbi,
-                ch_pangolin_report
+                ch_pangolin_report,
+                ch_nextclade_report
             )
             ch_versions = ch_versions.mix(HIV_RESISTANCE.out.versions)
         }

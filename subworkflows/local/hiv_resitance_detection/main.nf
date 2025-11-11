@@ -7,17 +7,19 @@ include { LIFTOFF                                            } from '../../../mo
 include { GFF2JSON                                           } from '../../../modules/local/gff2json'
 include { BAM2CODFREQ                                        } from '../../../modules/local/bam2codfreq'
 include { RESISTANCE_TABLES                                  } from '../../../modules/local/resistance_tables'
+include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
 include { ADDITIONAL_ANNOTATION as HIV_RESISTANCE_ANNOTATION } from '../additional_annotation'
 
 workflow HIV_RESISTANCE {
     take:
-    consensus      // channel: [ val(meta), [ consensus ] ]
-    bam            // channel: [ val(meta), [ bam ], [bai] ]
-    fasta          // path   : genome.fasta
-    gff            // path   : genome.gff
-    vcf            // channel: [ val(meta), [ vcf ] ]
-    tbi            // channel: [ val(meta), [ tbi ] ]
-    pangolin       // channel: [ val(meta), [ csv ] ]
+    consensus        // channel: [ val(meta), [ consensus ] ]
+    bam              // channel: [ val(meta), [ bam ], [bai] ]
+    fasta            // path   : genome.fasta
+    gff              // path   : genome.gff
+    vcf              // channel: [ val(meta), [ vcf ] ]
+    tbi              // channel: [ val(meta), [ tbi ] ]
+    pangolin         // channel: [ val(meta), [ csv ] ]
+    nextclade_report // channel: [ val(meta), [ csv ] ]
 
     main:
     ch_versions = Channel.empty()
@@ -79,6 +81,20 @@ workflow HIV_RESISTANCE {
     )
 
     ch_versions = ch_versions.mix(RESISTANCE_TABLES.out.versions)
+
+    ch_html_template = file("$projectDir/assets/hiv_template_report.html", checkIfExists: true)
+    ch_css_file = file("$projectDir/assets/hiv_template_report.css", checkIfExists: true)
+
+    RESISTANCE_REPORT (
+        SIERRALOCAL.out.json.collect{it[1]},
+        RESISTANCE_TABLES.out.mutation_csv.collect{it[1]},
+        RESISTANCE_TABLES.out.resistance_csv.collect{it[1]},
+        nextclade_report.collect{it[1]},
+        ch_html_template,
+        ch_css_file
+    )
+
+    ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
 
     emit:
     sierralocal_results  = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]

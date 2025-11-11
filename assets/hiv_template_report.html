@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HIV Resistance Report</title>
+    <style>
+      {{ css_content | safe }}
+    </style>
+  </head>
+  <body>
+    {% for sample in all_samples %}
+    <!-- HEADER -->
+    <div class="header">{{ loop.index }}. {{ sample.sample_name }}</div>
+
+    <!-- SEQUENCE SUMMARY -->
+    <div class="summary-title">
+      <h2>Sequence Summary</h2>
+    </div>
+
+    <div class="sequence-summary-info">
+      <ul>
+        {% for line in sample.sequence_summary %}
+        <li>{{ line }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% for gene in ["PR", "RT", "IN"] %} {% set gene_mutations = sample.mutation_data | selectattr("Gene_name",
+    "equalto", gene) | list %} {% set gene_resistances = sample.resistance_data | selectattr("Gene_name", "equalto",
+    gene) | list %} {% if gene_mutations or gene_resistances %}
+    <div class="summary-title">
+      <h2>Drug resistance interpretation: {{ gene }}</h2>
+    </div>
+
+    <!-- MUTATIONS + RESISTANCE BLOCK -->
+    <div style="width: 85%; margin: 10px 0 20px 10%">
+      <!-- MUTATIONS -->
+      {% for mut_type, mut_label in [ ("Major", "Major Mutations"), ("Accessory", "Accessory Mutations"), ("Other",
+      "Other Mutations") ] %} {% set mut_list = gene_mutations | selectattr("Mutations_type", "equalto", mut_type) |
+      list %}
+
+      <p>
+        <strong>{{ mut_label }}:</strong>
+        {% if not mut_list %} None {% endif %}
+      </p>
+
+      {% if mut_list %}
+      <div style="width: 85%; margin: 10px 0">
+        <table style="margin-bottom: 15px">
+          <thead>
+            <tr>
+              <th>Mutation</th>
+              <th>AF (%)</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in mut_list %}
+            <tr>
+              <td>{{ row.Mutations }}</td>
+              <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
+              <td>{{ row.Coverage }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %} {% endfor %}
+
+      <!-- RESISTANCE (Grouped by Drug Class) -->
+      {% if gene_resistances %}
+      <div style="width: 85%; margin: 20px 0 20px 0">
+        {% for drug_class, class_label in [ ("PI", "Protease Inhibitors"), ("NRTI", "Nucleoside Reverse Transcriptase
+        Inhibitors"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors"), ("INSTI", "Integrase Strand Transfer
+        Inhibitors") ] %} {% set class_drugs = gene_resistances | selectattr("Drug_class", "equalto", drug_class) | list
+        %} {% if class_drugs %}
+        <h3 style="margin-top: 25px; margin-bottom: 5px">{{ class_label }}</h3>
+        <hr style="border: none; border-top: 1px solid #aaa; margin-bottom: 10px" />
+        <table>
+          <tbody>
+            {% for row in class_drugs %}
+            <tr>
+              <td style="padding-right: 30px">{{ row.Drug_name }}</td>
+              <td>{{ row.Res_status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %} {% endfor %}
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>Generated automatically from nf-core/viralrecon using sierra-local and codfreq data.</p>
+    </div>
+
+    {% endfor %}
+  </body>
+</html>

@@ -42,6 +42,10 @@ input:
       description: |
         CSV file with pangolin results
         Structure: [ val(meta), [ csv ] ]
+  - nextclade_report:
+      description: |
+        CSV file with nextclade results
+        Structure: [ val(meta), [ csv ] ]
 output:
   - sierralocal_results:
       description: |
