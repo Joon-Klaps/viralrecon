@@ -101,7 +101,7 @@ workflow HIV_RESISTANCE {
     sierralocal_results  = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]
     bam2codfreq_results  = BAM2CODFREQ.out.codfreq                   // channel: [ val(meta), [ codfreq ] ]
     mutation_table       = RESISTANCE_TABLES.out.mutation_csv        // channel: [ val(meta), [ mutation_csv ] ]
-    mutation_table_short = RESISTANCE_REPORT.out.mutation_short_csv  // channel: [ val(meta), [ mutation_csv ] ]
+    mutation_table_short = RESISTANCE_TABLES.out.mutation_short_csv  // channel: [ val(meta), [ mutation_csv ] ]
     resistance_table     = RESISTANCE_TABLES.out.resistance_csv      // channel: [ val(meta), [ resistance_csv ] ]
 
     versions              = ch_versions                               // channel: [ versions.yml ]
