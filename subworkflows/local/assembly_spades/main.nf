@@ -19,7 +19,7 @@ workflow ASSEMBLY_SPADES {
     blast_db              // channel: /path/to/blast_db/
     blast_header          // channel: /path/to/blast_header.txt
     blast_filtered_header // channel: /path/to/blast_filtered_header.txt
-    ch_taxidlist             // channel: /path/to/taxidlist.txt
+    ch_taxidlist          // channel: /path/to/taxidlist.txt
 
     main:
 
