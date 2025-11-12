@@ -1069,29 +1069,29 @@ workflow VIRALRECON {
         //
         // MODULE: Lineage analysis with Pangolin
         //
-        pango_database = Channel.empty()
+        ch_pango_database = Channel.empty()
         ch_pangolin_report = Channel.empty()
-
         ch_pangolin_multiqc = Channel.empty()
+
         if (!params.skip_pangolin) {
             if (!params.pango_database) {
                 PANGOLIN_UPDATEDATA('pangolin_db')
-                pango_database = PANGOLIN_UPDATEDATA.out.db
-                ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
+                ch_pango_database = PANGOLIN_UPDATEDATA.out.db
+                ch_versions       = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
             } else {
                 if (params.pango_database.endsWith('.tar.gz')) {
                     UNTAR_PANGODB (
                         [ [:], params.pango_database ]
                     )
-                    pango_database       = UNTAR_PANGODB.out.untar.map { it[1] }
-                    ch_versions = ch_versions.mix(UNTAR_PANGODB.out.versions)
+                    ch_pango_database = UNTAR_PANGODB.out.untar.map { it[1] }
+                    ch_versions       = ch_versions.mix(UNTAR_PANGODB.out.versions)
                 } else {
-                    pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+                    ch_pango_database = Channel.value(file(params.pango_database, type: 'dir'))
                 }
             }
             PANGOLIN_RUN (
                 ARTIC_MINION.out.fasta,
-                pango_database
+                ch_pango_database
             )
             ch_pangolin_multiqc = PANGOLIN_RUN.out.report
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_multiqc.collect{it[1]}.ifEmpty([]))
