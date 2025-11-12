@@ -529,7 +529,7 @@ workflow VIRALRECON {
         ch_nextclade_report = Channel.empty()
         ch_pangolin_report  = Channel.empty()
 
-        if (!params.skip_consensus && params.consensus_caller == 'ivar') {
+        if (!params.skip_variants && !params.skip_consensus && params.consensus_caller == 'ivar') {
             CONSENSUS_IVAR (
                 ch_bam,
                 PREPARE_GENOME.out.fasta,
@@ -546,7 +546,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: Call consensus with BCFTools
         //
-        if (!params.skip_consensus && params.consensus_caller == 'bcftools' && variant_caller) {
+        if (!params.skip_variants && !params.skip_consensus && params.consensus_caller == 'bcftools' && variant_caller) {
             CONSENSUS_BCFTOOLS (
                 ch_bam,
                 ch_vcf,
@@ -567,7 +567,7 @@ workflow VIRALRECON {
         // MODULE: Get Nextclade clade information for MultiQC report
         //
         ch_nextclade_multiqc = Channel.empty()
-        if (!params.skip_nextclade) {
+        if (!params.skip_variants && !params.skip_nextclade) {
             ch_nextclade_report
                 .map { meta, csv ->
                     def clade = WorkflowCommons.getNextcladeFieldMapFromCsv(csv)['clade']
@@ -601,7 +601,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
-        if (params.additional_annotation) {
+        if (!params.skip_variants && params.additional_annotation) {
             ADDITIONAL_ANNOTATION (
                 ch_vcf,
                 ch_tbi,
