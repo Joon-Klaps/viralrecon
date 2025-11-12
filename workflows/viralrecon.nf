@@ -136,6 +136,7 @@ include { PANGOLIN_UPDATEDATA           } from '../modules/nf-core/pangolin/upda
 include { PANGOLIN_RUN                  } from '../modules/nf-core/pangolin/run/main'
 include { NEXTCLADE_RUN                 } from '../modules/nf-core/nextclade/run/main'
 include { MULTIQC                       } from '../modules/nf-core/multiqc/main'
+include { UNTAR as UNTAR_PANGODB        } from '../modules/nf-core/untar/main'
 include { GUNZIP as GUNZIP_GFF          } from '../modules/nf-core/gunzip/main'
 
 
@@ -605,7 +606,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
-        if (!params.skip_variants &&params.additional_annotation) {
+        if (!params.skip_variants && params.additional_annotation) {
             ch_annot = Channel.empty()
             //
             // Uncompress additional annotation file
@@ -1104,21 +1105,29 @@ workflow VIRALRECON {
         //
         // MODULE: Lineage analysis with Pangolin
         //
-        pango_database = Channel.empty()
+        ch_pango_database = Channel.empty()
         ch_pangolin_report = Channel.empty()
-
         ch_pangolin_multiqc = Channel.empty()
+
         if (!params.skip_pangolin) {
             if (!params.pango_database) {
                 PANGOLIN_UPDATEDATA('pangolin_db')
-                pango_database = PANGOLIN_UPDATEDATA.out.db
-                ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
-            } else{
-                pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+                ch_pango_database = PANGOLIN_UPDATEDATA.out.db
+                ch_versions       = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
+            } else {
+                if (params.pango_database.endsWith('.tar.gz')) {
+                    UNTAR_PANGODB (
+                        [ [:], params.pango_database ]
+                    )
+                    ch_pango_database = UNTAR_PANGODB.out.untar.map { it[1] }
+                    ch_versions       = ch_versions.mix(UNTAR_PANGODB.out.versions)
+                } else {
+                    ch_pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+                }
             }
             PANGOLIN_RUN (
                 ARTIC_MINION.out.fasta,
-                pango_database
+                ch_pango_database
             )
             ch_pangolin_multiqc = PANGOLIN_RUN.out.report
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_multiqc.collect{it[1]}.ifEmpty([]))

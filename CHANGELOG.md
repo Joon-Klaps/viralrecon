@@ -18,6 +18,7 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 ### Enhancements & fixes
 
 - [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
+- [[PR #562](https://github.com/nf-core/viralrecon/pull/562)] - Added pangolin-data database from test-datasets to test config
 - [[PR #559](https://github.com/nf-core/viralrecon/pull/559)] - Added HIV resistance detection subworkflow
 
 ### Parameters

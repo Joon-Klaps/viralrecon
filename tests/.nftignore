@@ -66,4 +66,3 @@ artic_minion/*.{vcf,vcf.gz,vcf.gz.tbi,csv}
 artic_minion/**/*.{vcf,vcf.gz,vcf.gz.tbi,csv,txt}
 pycoqc/pycoqc.html
 pycoqc/pycoqc.json
-**/pangolin_db/**
