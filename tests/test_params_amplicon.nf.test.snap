@@ -1132,6 +1132,9 @@
                 "UNTAR_NEXTCLADE_DB": {
                     "untar": 1.34
                 },
+                "UNTAR_PANGODB": {
+                    "untar": 1.34
+                },
                 "Workflow": {
                     "nf-core/viralrecon": "v3.1.0dev"
                 }
@@ -1826,9 +1829,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -1884,6 +1884,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -2512,26 +2515,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -2861,9 +2844,6 @@
                 "KRAKEN2_KRAKEN2": {
                     "kraken2": "2.1.6",
                     "pigz": 2.8
-                },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -3260,27 +3240,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
-                "pangolin/pangolin_db",
-                "pangolin/pangolin_db/bin",
-                "pangolin/pangolin_db/bin/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "pangolin/pangolin_db/pangolin_data/__init__.py",
-                "pangolin/pangolin_db/pangolin_data/__pycache__",
-                "pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "pangolin/pangolin_db/pangolin_data/data",
-                "pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
@@ -3465,9 +3424,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -3526,6 +3482,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -4534,26 +4493,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -4953,9 +4892,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -5011,6 +4947,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -5657,26 +5596,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -6083,9 +6002,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -6138,6 +6054,9 @@
                     "unicycler": "0.5.1"
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -6754,26 +6673,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -7144,9 +7043,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -7190,6 +7086,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -7793,26 +7692,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -8102,9 +7981,6 @@
                 "KRAKEN2_KRAKEN2": {
                     "kraken2": "2.1.6",
                     "pigz": 2.8
-                },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -8544,27 +8420,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
-                "pangolin/pangolin_db",
-                "pangolin/pangolin_db/bin",
-                "pangolin/pangolin_db/bin/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "pangolin/pangolin_db/pangolin_data/__init__.py",
-                "pangolin/pangolin_db/pangolin_data/__pycache__",
-                "pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "pangolin/pangolin_db/pangolin_data/data",
-                "pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
@@ -8627,7 +8482,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-16T18:06:28.932960431"
+        "timestamp": "2025-11-12T10:39:37.745368894"
     },
     "-profile test --consensus_caller ivar": {
         "content": [
@@ -8737,9 +8592,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -8792,6 +8644,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -9426,26 +9281,6 @@
                 "variants/ivar/consensus/ivar/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/ivar/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/ivar/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/ivar/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/ivar/quast.consensus",
                 "variants/ivar/consensus/ivar/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/ivar/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -9635,11 +9470,11 @@
                 "multiqc_ivar_variants.yaml:md5,22a1b3904671b16aace3b5f73a907614",
                 "multiqc_kraken.yaml:md5,7b5c5eae926f38e7326941d1e38db40b",
                 "multiqc_nextclade_clade.yaml:md5,15ccc4848ada72c96c9b39606517a9bb",
-                "multiqc_pangolin.yaml:md5,337d7982f60b2522d6e5887e2b04dde1",
+                "multiqc_pangolin.yaml:md5,e77a283a3337c458b43e58851628137f",
                 "multiqc_quast_quast_spades.yaml:md5,cb9b2122a8d6fd4aef51da97bdc5180d",
                 "multiqc_quast_quast_variants.yaml:md5,a8f0422aaf69f0d88d7c82645949a2fa",
                 "multiqc_snpeff.yaml:md5,42d92c43058c25ce03620a2add521006",
-                "pangolin_run_table.yaml:md5,a32ba9485c27f1bff21d02b199b4543a",
+                "pangolin_run_table.yaml:md5,610b82c6a5f938eac0b896db2887e0ae",
                 "snpeff_effects.yaml:md5,43533ac29b261ab7132c69c7034648ad",
                 "snpeff_variant_effects_class.yaml:md5,5f31369f0e087d4fe7eddc14d908f11f",
                 "snpeff_variant_effects_impact.yaml:md5,ab3b8b418a47185b61d19a06f2a8e846",
@@ -9699,9 +9534,9 @@
                 "SAMPLE1_PE.csv:md5,96932d121f6b0af5a3eb039a009046a2",
                 "SAMPLE2_PE.csv:md5,52acedb39ac55afd71b4ece2b8146e8e",
                 "SAMPLE3_SE.csv:md5,74b13ff6f79fc1871a9a4718eb63b9e4",
-                "SAMPLE1_PE.pangolin.csv:md5,b0c4df66f5d0e0d1e31191dd97e0f432",
-                "SAMPLE2_PE.pangolin.csv:md5,bf2eeb10b9a13584d7b711e2806d5c87",
-                "SAMPLE3_SE.pangolin.csv:md5,90e5219ebefe37c6896b6c4ad4cc8dcb",
+                "SAMPLE1_PE.pangolin.csv:md5,0963ba15d2b4ad4e205968abc814dd31",
+                "SAMPLE2_PE.pangolin.csv:md5,e2dc755865027ff88b0d0fcc11b4ef05",
+                "SAMPLE3_SE.pangolin.csv:md5,a7230337a83859b01b045067685f5cfa",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
                 "SAMPLE1_PE.variant_counts.log:md5,dca67b678c8fb1ff819c6e2549bd526d",
                 "SAMPLE2_PE.variant_counts.log:md5,3e36a199838f298a5db0e86f360d394e",
@@ -9719,7 +9554,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-16T17:45:47.574458872"
+        "timestamp": "2025-11-12T10:23:02.291852761"
     },
     "-profile test --skip_assembly": {
         "content": [
@@ -9815,9 +9650,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -9864,6 +9696,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -10159,26 +9994,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
@@ -10498,9 +10313,6 @@
                 "KRAKEN2_KRAKEN2": {
                     "kraken2": "2.1.6",
                     "pigz": 2.8
-                },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -10933,27 +10745,6 @@
                 "multiqc/multiqc_data/quast_table.yaml",
                 "multiqc/multiqc_report.html",
                 "multiqc/summary_assembly_metrics_mqc.csv",
-                "pangolin",
-                "pangolin/pangolin_db",
-                "pangolin/pangolin_db/bin",
-                "pangolin/pangolin_db/bin/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "pangolin/pangolin_db/pangolin_data/__init__.py",
-                "pangolin/pangolin_db/pangolin_data/__pycache__",
-                "pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "pangolin/pangolin_db/pangolin_data/data",
-                "pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml"
             ],
@@ -11133,9 +10924,6 @@
                 "MOSDEPTH_GENOME": {
                     "mosdepth": "0.3.11"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PICARD_COLLECTMULTIPLEMETRICS": {
                     "picard": "3.4.0"
                 },
@@ -11194,6 +10982,9 @@
                     "untar": 1.34
                 },
                 "UNTAR_NEXTCLADE_DB": {
+                    "untar": 1.34
+                },
+                "UNTAR_PANGODB": {
                     "untar": 1.34
                 },
                 "Workflow": {
@@ -11822,26 +11613,6 @@
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE1_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE2_PE.pangolin.csv",
                 "variants/ivar/consensus/bcftools/pangolin/SAMPLE3_SE.pangolin.csv",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/bin/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "variants/ivar/consensus/bcftools/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "variants/ivar/consensus/bcftools/quast.consensus",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats",
                 "variants/ivar/consensus/bcftools/quast.consensus/aligned_stats/NAx_plot.pdf",
