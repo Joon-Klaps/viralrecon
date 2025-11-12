@@ -2,11 +2,12 @@
 // Consensus calling QC
 //
 
-include { QUAST               } from '../../../modules/nf-core/quast/main'
-include { PANGOLIN_UPDATEDATA } from '../../../modules/nf-core/pangolin/updatedata/main'
-include { PANGOLIN_RUN        } from '../../../modules/nf-core/pangolin/run/main'
-include { NEXTCLADE_RUN       } from '../../../modules/nf-core/nextclade/run/main'
-include { PLOT_BASE_DENSITY   } from '../../../modules/local/plot_base_density'
+include { QUAST                  } from '../../../modules/nf-core/quast/main'
+include { PANGOLIN_UPDATEDATA    } from '../../../modules/nf-core/pangolin/updatedata/main'
+include { PANGOLIN_RUN           } from '../../../modules/nf-core/pangolin/run/main'
+include { NEXTCLADE_RUN          } from '../../../modules/nf-core/nextclade/run/main'
+include { PLOT_BASE_DENSITY      } from '../../../modules/local/plot_base_density'
+include { UNTAR as UNTAR_PANGODB } from '../../../modules/nf-core/untar/main'
 
 workflow CONSENSUS_QC {
     take:
@@ -45,16 +46,23 @@ workflow CONSENSUS_QC {
     //
     ch_pangolin_report = Channel.empty()
 
-    ch_pangolin_report = Channel.empty()
-    if (!params.skip_pangolin) {
+    pango_database = Channel.empty()
+    if (!params.skip_variants && !params.skip_pangolin) {
         if (!params.pango_database) {
             PANGOLIN_UPDATEDATA('pangolin_db')
             pango_database = PANGOLIN_UPDATEDATA.out.db
             ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
         } else {
-            pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+            if (params.pango_database.endsWith('.gz')) {
+                UNTAR_PANGODB (
+                    [ [:], params.pango_database ]
+                )
+                pango_database       = UNTAR_PANGODB.out.untar.map { it[1] }
+                ch_versions = ch_versions.mix(UNTAR_PANGODB.out.versions)
+            } else {
+                pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+            }
         }
-
         PANGOLIN_RUN (
             consensus,
             pango_database
