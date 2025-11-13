@@ -137,13 +137,19 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
         if isinstance(first_aa, int) or (isinstance(first_aa, str) and first_aa.isdigit()):
             first_aa = int(first_aa)
             if first_aa > 1:
-                missing_parts.append(f"1-{first_aa - 1}")
+                if first_aa == 2:
+                    missing_parts.append(f"1")
+                else:
+                    missing_parts.append(f"1-{first_aa - 1}")
 
         # If sequence does not reach the expected end, mention missing codons at end
         if gene in protein_lengths and isinstance(last_aa, int):
             expected_end = protein_lengths[gene]
             if last_aa < expected_end:
-                missing_parts.append(f"{last_aa + 1}-{expected_end}")
+                if last_aa + 1 == expected_end:
+                    missing_parts.append(f"{expected_end}")
+                else:
+                    missing_parts.append(f"{last_aa + 1}-{expected_end}")
 
         # Append parentheses only if we have missing parts
         if missing_parts:
@@ -188,6 +194,28 @@ def get_nextclade_subtype(nextclade_file, sample_name):
         print(f"⚠️ Could not parse Nextclade file for {sample_name}: {e}")
     return None
 
+def extract_mutation_scoring(json_path):
+    mutation_scores = {}
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)[0]
+    for resistance in data.get("drugResistance", []):
+        gene = resistance.get("gene", {}).get("name")
+        if not gene:
+            continue
+        if gene not in mutation_scores:
+            mutation_scores[gene] = {}
+        for drug in resistance.get("drugScores", []):
+            drug_name = drug.get("drug", {}).get("displayAbbr", "")
+            for partial in drug.get("partialScores", []):
+                mutations_list = partial.get("mutations", [])
+                if not mutations_list:
+                    continue
+                mutation = mutations_list[0].get("text")
+                score = partial.get("score", "")
+                if mutation not in mutation_scores[gene]:
+                    mutation_scores[gene][mutation] = {}
+                mutation_scores[gene][mutation][drug_name] = score
+    return mutation_scores
 
 # ---------------------------------------------------------------------
 # Batch processing
@@ -235,13 +263,17 @@ def main():
         # --- Parse sequence summary
         seq_summary = parse_sequence_summary(json_file, subtype_info=subtype, ivar_params=args.ivar_consensus_params)
 
+        # --- Extract mutation scoring from JSON
+        mutation_scores = extract_mutation_scoring(json_file)
+
         # Guardar toda la info en un dict
         all_samples_data.append({
             "sample_name": sample_name,
             "sequence_summary": seq_summary,
             "mutation_data": df_mut.to_dict(orient="records"),
             "resistance_data": pd.read_csv(res_file).to_dict(orient="records"),
-            "consensus_genome": consensus_seq
+            "consensus_genome": consensus_seq,
+            "mutation_scores": mutation_scores
         })
 
     # Ordenar alfabéticamente por nombre de muestra
