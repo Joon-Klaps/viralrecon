@@ -113,6 +113,7 @@ def parse_sierra_json(sample_name, json_path):
     # === 3. Extract mutations ===
     for gene_entry in data["alignedGeneSequences"]:
         gene_name = gene_entry.get("gene", {}).get("name", "NA")
+        lastAA = gene_entry['lastAA']
 
         for mut in gene_entry.get("mutations", []):
             consensus = mut.get("consensus", "")
@@ -123,6 +124,8 @@ def parse_sierra_json(sample_name, json_path):
             # If there are more than one possible amino acids, create a row for each
             if len(aas) > 1:
                 for aa in aas:
+                    if pos == lastAA and aa == "X" and not mut.get("isDeletion"):
+                        continue  # skip, false positive at end of sequence
                     mut_text = f"{consensus}{pos}{aa}"
                     resistance_comment = resistance_comments.get(mut_text, "")
                     row = {
@@ -145,6 +148,8 @@ def parse_sierra_json(sample_name, json_path):
                     }
                     rows.append(row)
             else:
+                if pos == lastAA and aas == "X" and not mut.get("isDeletion"):
+                    continue  # skip, false positive at end of sequence
                 # If there is only one possible amino acid, keep a single row
                 mut_text = mut.get("text", "NA")
                 resistance_comment = resistance_comments.get(mut_text, "")
