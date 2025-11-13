@@ -27,8 +27,6 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 | Old parameter | New parameter |
 | ------------- | ------------- |
 |               | `--taxidlist` |
-|               | `--new_param` |
-| `--old_param` |               |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -40,7 +38,6 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 
 | Dependency      | Old version | New version |
 | --------------- | ----------- | ----------- |
-| `software-name` | x.x.x       | x.x.x       |
 | `blast`         | 2.16.0      | 2.17.0      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
