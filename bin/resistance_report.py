@@ -17,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding resistance and mutation tables to generate an HTML report."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
+    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -57,6 +57,12 @@ def parser_args(args=None):
         help="Folder containing consensus files (default: ./consensus)",
     )
     parser.add_argument(
+        "-i",
+        "--ivar_consensus_params",
+        type=str,
+        help="Parameters used for ivar consensus calling",
+    )
+    parser.add_argument(
         "-o",
         "--output_html",
         type=str,
@@ -84,7 +90,7 @@ def get_sample_number(sample_name, all_samples):
     return sorted_samples.index(sample_name) + 1
 
 
-def parse_sequence_summary(json_path, subtype_info=None):
+def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
     """
     Extract sequence summary information from Sierra-local JSON.
     - Lists each gene present (PR, RT, IN)
@@ -140,10 +146,20 @@ def parse_sequence_summary(json_path, subtype_info=None):
     # --- Add subtype info from Nextclade if provided
     summary_lines.append(f"Subtype: {subtype_info}")
 
-    # --- Add static sequencing thresholds
-    summary_lines.append("Minimum read depth: ≥50")
-    summary_lines.append("Nucleotide mixture threshold (NMT): ≤2%")
-    summary_lines.append("Mutation detection threshold (MDT): ≥10%")
+    # --- Parse ivar consensus parameters if provided
+    # Extract numeric values with regex
+    match_t = re.search(r"-t\s*([\d.]+)", ivar_params)
+    match_q = re.search(r"-q\s*(\d+)", ivar_params)
+    match_m = re.search(r"-m\s*(\d+)", ivar_params)
+
+    # Default values in case something is missing
+    t_val = float(match_t.group(1))
+    q_val = int(match_q.group(1))
+    m_val = int(match_m.group(1))
+
+    summary_lines.append(f"Minimum read depth: ≥{m_val}")
+    summary_lines.append(f"Minimum allele frequency represented: ≥{t_val * 100:.0f}%")
+    summary_lines.append(f"Minimum quality threshold: {q_val}")
 
     return summary_lines
 
@@ -209,7 +225,7 @@ def main():
         subtype = get_nextclade_subtype(nextclade_file, sample_name)
 
         # --- Parse sequence summary
-        seq_summary = parse_sequence_summary(json_file, subtype_info=subtype)
+        seq_summary = parse_sequence_summary(json_file, subtype_info=subtype, ivar_params=args.ivar_consensus_params)
 
         # Guardar toda la info en un dict
         all_samples_data.append({
