@@ -429,9 +429,8 @@
                 },
                 "pango_database": {
                     "type": "string",
-                    "format": "directory-path",
                     "fa_icon": "fas fa-folder-open",
-                    "description": "Path to pangolin datadir."
+                    "description": "Path to pangolin datadir, either a folder or a compressed file with the DB (tar.gz)."
                 },
                 "skip_ivar_trim": {
                     "type": "boolean",

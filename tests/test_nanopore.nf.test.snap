@@ -54,9 +54,6 @@
                 "PANGOLIN_RUN": {
                     "pangolin": "4.3.1"
                 },
-                "PANGOLIN_UPDATEDATA": {
-                    "pangolin": "4.3.1"
-                },
                 "PLOT_MOSDEPTH_REGIONS_AMPLICON": {
                     "r-base": "4.2.0"
                 },
@@ -105,11 +102,14 @@
                 "UNTAR_KRAKEN2_DB": {
                     "untar": 1.34
                 },
+                "UNTAR_PANGODB": {
+                    "untar": 1.34
+                },
                 "VCFLIB_VCFUNIQ": {
                     "vcflib": "1.0.14"
                 },
                 "Workflow": {
-                    "nf-core/viralrecon": "v3.0.0"
+                    "nf-core/viralrecon": "v3.1.0dev"
                 }
             },
             [
@@ -446,26 +446,6 @@
                 "artic_minion/pangolin/SAMPLE_07.pangolin.csv",
                 "artic_minion/pangolin/SAMPLE_08.pangolin.csv",
                 "artic_minion/pangolin/SAMPLE_09.pangolin.csv",
-                "artic_minion/pangolin/pangolin_db",
-                "artic_minion/pangolin/pangolin_db/bin",
-                "artic_minion/pangolin/pangolin_db/bin/pangolin_data",
-                "artic_minion/pangolin/pangolin_db/pangolin_data",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/INSTALLER",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/METADATA",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/RECORD",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/REQUESTED",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/WHEEL",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/direct_url.json",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/entry_points.txt",
-                "artic_minion/pangolin/pangolin_db/pangolin_data-1.35.dist-info/top_level.txt",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/__init__.py",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/__pycache__",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/__pycache__/__init__.cpython-311.pyc",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/data",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/data/alias_key.json",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/data/lineageTree.pb",
-                "artic_minion/pangolin/pangolin_db/pangolin_data/data/lineages.hash.csv",
                 "artic_minion/quast",
                 "artic_minion/quast/aligned_stats",
                 "artic_minion/quast/aligned_stats/NAx_plot.pdf",
@@ -1016,12 +996,12 @@
                 "multiqc_fail_no_barcode_samples_table.yaml:md5,a2068fd5931030a8d949a29c63c3fadf",
                 "multiqc_kraken.yaml:md5,5311269d140ffc1bfcc3315c9d90173d",
                 "multiqc_nextclade_clade.yaml:md5,cf5a1379e07f4414d64414738dfd2b16",
-                "multiqc_pangolin.yaml:md5,b8e9d68ed2c30322cd7a1da797910e4b",
+                "multiqc_pangolin.yaml:md5,5d1f799b5813ee363b0c6a379206b6c2",
                 "multiqc_quast.yaml:md5,3eb18b3866c3286167eeba708eafb49a",
                 "multiqc_samtools_flagstat.yaml:md5,0524abedf22337453c85762fef149369",
                 "multiqc_snpeff.yaml:md5,bd8764f1c652f8f4da94bd6d3fd0171b",
                 "multiqc_summary_variants_metrics_plot_table.yaml:md5,ac3af251f1bb7723ca1d0e24842c7f66",
-                "pangolin_run_table.yaml:md5,ff9cd4e1f5c01a60fe6e5b9a5f7a4da1",
+                "pangolin_run_table.yaml:md5,e07aefacfa3008ed32e03817feaea0e0",
                 "pycoqc_count_plot_Bases.yaml:md5,7d2db959e6f191000642d17d29326b1e",
                 "pycoqc_count_plot_Reads.yaml:md5,647ee3cee55375c44fffb6887e8a38a1",
                 "pycoqc_read_qual_plot_All_Reads.yaml:md5,d92652d2904064e6835488fe87bc0922",
@@ -1037,6 +1017,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-24T09:31:14.859823681"
+        "timestamp": "2025-11-12T09:52:22.047949477"
     }
 }

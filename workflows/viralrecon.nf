@@ -136,6 +136,7 @@ include { PANGOLIN_UPDATEDATA           } from '../modules/nf-core/pangolin/upda
 include { PANGOLIN_RUN                  } from '../modules/nf-core/pangolin/run/main'
 include { NEXTCLADE_RUN                 } from '../modules/nf-core/nextclade/run/main'
 include { MULTIQC                       } from '../modules/nf-core/multiqc/main'
+include { UNTAR as UNTAR_PANGODB        } from '../modules/nf-core/untar/main'
 
 
 //
@@ -529,7 +530,7 @@ workflow VIRALRECON {
         ch_nextclade_report = Channel.empty()
         ch_pangolin_report  = Channel.empty()
 
-        if (!params.skip_consensus && params.consensus_caller == 'ivar') {
+        if (!params.skip_variants && !params.skip_consensus && params.consensus_caller == 'ivar') {
             CONSENSUS_IVAR (
                 ch_bam,
                 PREPARE_GENOME.out.fasta,
@@ -546,7 +547,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: Call consensus with BCFTools
         //
-        if (!params.skip_consensus && params.consensus_caller == 'bcftools' && variant_caller) {
+        if (!params.skip_variants && !params.skip_consensus && params.consensus_caller == 'bcftools' && variant_caller) {
             CONSENSUS_BCFTOOLS (
                 ch_bam,
                 ch_vcf,
@@ -567,7 +568,7 @@ workflow VIRALRECON {
         // MODULE: Get Nextclade clade information for MultiQC report
         //
         ch_nextclade_multiqc = Channel.empty()
-        if (!params.skip_nextclade) {
+        if (!params.skip_variants && !params.skip_nextclade) {
             ch_nextclade_report
                 .map { meta, csv ->
                     def clade = WorkflowCommons.getNextcladeFieldMapFromCsv(csv)['clade']
@@ -601,7 +602,7 @@ workflow VIRALRECON {
         //
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
-        if (params.additional_annotation) {
+        if (!params.skip_variants && params.additional_annotation) {
             ADDITIONAL_ANNOTATION (
                 ch_vcf,
                 ch_tbi,
@@ -1072,21 +1073,29 @@ workflow VIRALRECON {
         //
         // MODULE: Lineage analysis with Pangolin
         //
-        pango_database = Channel.empty()
+        ch_pango_database = Channel.empty()
         ch_pangolin_report = Channel.empty()
-
         ch_pangolin_multiqc = Channel.empty()
+
         if (!params.skip_pangolin) {
             if (!params.pango_database) {
                 PANGOLIN_UPDATEDATA('pangolin_db')
-                pango_database = PANGOLIN_UPDATEDATA.out.db
-                ch_versions   = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
-            } else{
-                pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+                ch_pango_database = PANGOLIN_UPDATEDATA.out.db
+                ch_versions       = ch_versions.mix(PANGOLIN_UPDATEDATA.out.versions.first())
+            } else {
+                if (params.pango_database.endsWith('.tar.gz')) {
+                    UNTAR_PANGODB (
+                        [ [:], params.pango_database ]
+                    )
+                    ch_pango_database = UNTAR_PANGODB.out.untar.map { it[1] }
+                    ch_versions       = ch_versions.mix(UNTAR_PANGODB.out.versions)
+                } else {
+                    ch_pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+                }
             }
             PANGOLIN_RUN (
                 ARTIC_MINION.out.fasta,
-                pango_database
+                ch_pango_database
             )
             ch_pangolin_multiqc = PANGOLIN_RUN.out.report
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_multiqc.collect{it[1]}.ifEmpty([]))
