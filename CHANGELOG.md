@@ -36,9 +36,9 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
 
-| Dependency      | Old version | New version |
-| --------------- | ----------- | ----------- |
-| `blast`         | 2.16.0      | 2.17.0      |
+| Dependency | Old version | New version |
+| ---------- | ----------- | ----------- |
+| `blast`    | 2.16.0      | 2.17.0      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 >
