@@ -2,13 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- TITLE -->
-    <div class="report-title">HIV Drug Resistance and Mutation Report</div>
+    <title>HIV Drug Resistance and Mutation Report</title>
     <style>
       {{ css_content | safe }}
     </style>
   </head>
   <body>
+    <!-- TITLE -->
+    <div class="report-title">HIV Drug Resistance and Mutation Report</div>
+
+    <!-- ADDITIONAL LINES BELOW TITLE -->
+    <div class="report-subtitle">
+      Database version: {{ hivdb_version }}<br />
+      Report generation date: {{ date }}
+    </div>
     <!-- Fixed dropdown for sample navigation -->
     <select id="sample-selector" onchange="scrollToSample(this.value)">
       <option value="">Select sample</option>

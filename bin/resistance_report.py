@@ -7,6 +7,7 @@ import glob
 import json
 import argparse
 import pandas as pd
+from datetime import date
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
@@ -17,7 +18,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding resistance and mutation tables to generate an HTML report."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
+    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --hivdb_version "HIVDB_9.8" --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -61,6 +62,12 @@ def parser_args(args=None):
         "--ivar_consensus_params",
         type=str,
         help="Parameters used for ivar consensus calling",
+    )
+    parser.add_argument(
+        "-hv",
+        "--hivdb_version",
+        type=str,
+        help="Version of the HIVDB used for resistance interpretation",
     )
     parser.add_argument(
         "-o",
@@ -292,6 +299,8 @@ def main():
     # --- Render full HTML report
     html_content = template.render(
         all_samples=all_samples_data,
+        hivdb_version=args.hivdb_version.replace("_", " "),
+        date=date.today().strftime("%Y-%m-%d"),
         css_content=css_content
     )
 
