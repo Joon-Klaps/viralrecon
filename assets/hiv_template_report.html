@@ -24,28 +24,31 @@
         }
       }
 
-      // Highlight current sample while scrolling
+      // Highlight current sample dynamically while scrolling
       document.addEventListener("DOMContentLoaded", () => {
-        const sections = document.querySelectorAll("[id^='sample_']");
+        const sections = Array.from(document.querySelectorAll("[id^='sample_']"));
         const selector = document.getElementById("sample-selector");
 
-        // Use IntersectionObserver to detect visible section
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                selector.value = entry.target.id;
-              }
-            });
-          },
-          {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.4, // section must be at least 40% visible
-          },
-        );
+        function updateActiveSample() {
+          let current = sections[0].id;
+          const scrollPosition = window.scrollY + window.innerHeight / 3; // offset to trigger earlier
 
-        sections.forEach((section) => observer.observe(section));
+          for (const section of sections) {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            if (scrollPosition >= sectionTop) {
+              current = section.id;
+            } else {
+              break;
+            }
+          }
+          if (selector.value !== current) {
+            selector.value = current;
+          }
+        }
+
+        window.addEventListener("scroll", updateActiveSample);
+        updateActiveSample(); // run once on load
       });
     </script>
 
