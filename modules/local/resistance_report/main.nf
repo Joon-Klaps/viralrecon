@@ -34,7 +34,7 @@ process RESISTANCE_REPORT {
         --resistance_folder ./resistance_tables \\
         --nextclade_folder ./nextclade_reports \\
         --consensus_folder ./consensus \\
-        --ivar_consensus_params "${ivar_consensus_params}" \\
+        --ivar_consensus_params "'${ivar_consensus_params}'" \\
         --template ${html_template} \\
         --css ${css_file} \\
         --output_html ${prefix}.html \\
