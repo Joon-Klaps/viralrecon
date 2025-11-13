@@ -334,25 +334,7 @@ The HIV profile (`-profile hiv`) introduces specific adjustments compared to a s
 
 ⚠️ By deffault, de novo assembly is deactivated for HIV as the resistance detection is only performed for the consensus genome through mapping approach, which has been already benchmarked agains Standford's [HIVdb](https://hivdb.stanford.edu/hivdb/by-reads/) results.
 
-#### Variant calling
-
-Variant calling is performed using **iVar variants** with parameters optimized for HIV intra-host diversity:
-
-- **Variant frequency threshold:** `0.01`: Variants are called if their allele frequency is at least 1%, allowing detection of minority variants relevant for resistance analysis.
-- **Minimum base quality:** `30`: Ensures reliability of detected variants.
-- **Minimum depth of coverage:** `50`: Matches the minimum coverage used in HIVdb protocols to support robust variant calling.
-
-#### Consensus generation
-
-Consensus sequences are generated using **iVar consensus**, which supports ambiguous nucleotide codes, a key feature for HIV resistance interpretation tools.  
-The parameters are defined as follows:
-
-- **Frequency threshold:** `0.8`: A variant is included in the consensus if its frequency reaches at least 80%. This means that variants with frequencies below 50% may still be incorporated if necessary to achieve the 80% threshold in a given position.
-- **Minimum base quality:** `30`
-- **Minimum depth of coverage:** `50`
-- **Low coverage regions:**: Positions with fewer than 10 reads are masked as `N`.
-
-#### Reference genome
+#### **Reference genome**
 
 The default reference used in the HIV config of `nf-core/viralrecon` is the one **derived from the codfreq JSON profile**. This reference has been specifically generated from the [codfreq .json profile](https://github.com/hivdb/codfreq/blob/main/profiles/HIV1.json). By aligning to this codfreq-based reference, the resulting codon frequencies and codon coverages are directly comparable to those produced by [**HIVdb**](https://hivdb.stanford.edu/hivdb/by-reads/), ensuring accurate interpretation of resistance data.
 
@@ -369,18 +351,14 @@ When a custom reference is supplied, all variant calling, consensus generation, 
 
 > **Important**: When performing HIV resistance detection, an annotation file (.gff) is mandatory. The GFF file is required to correctly annotate the pol gene regions (PR, RT and IN), which are essential for both sierra-local and codfreq analyses.
 
-#### Host genome
-
-For testing purposes, the host genome is set to `kraken2_db = "${params.pipelines_testdata_base_path}/genome/kraken2/kraken2_hs22.tar.gz"` in the config file. To be able to get real host statistics the user should change the `--kraken2_db` param to a real database, as specified in the `README.md`.
-
-#### Available genome options
+#### **Available genome options**
 
 Two HIV genome references are distributed with viralrecon and can be selected using the `--genome` parameter:
 
 - `--genome codfreq`: The codfreq-derived reference (DEFAULT), generated from the original codfreq JSON annotation files. This reference ensures that codon-level frequency tables and coverage results are fully compatible with HIVdb and sierra-local resistance prediction outputs.
 - `--genome 'NC_001802.1'`: nextclade refeence, based on NC_001802.1 (HXB2 genome, K03455), the reference used by Nextclade for HIV-1 analysis.
 
-#### HIV-specific parameters
+#### **HIV-specific parameters**
 
 The following parameters have been added to handle **HIV resistance detection** and related tools.
 
@@ -394,14 +372,52 @@ The following parameters have been added to handle **HIV resistance detection** 
   - **`sdrms_csv`**: Path to the CSV file used to define SDRM mutations. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/) with the `sdrms_hiv1.csv` name.
   - **`mutation_csv`**: Path to the CSV file defining mutation types. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/) with the `mutation-type-pairs_hiv1.csv` name.
 
-### Nextclade configuration
+#### **Nextclade configuration**
 
-The following default parameters are used in the `-profile test_hiv` for **Nextclade HIV-1 analysis**. Make sure to update `nextclade_dataset_tag` to the latest one so the pipeline can download it.
+The following default parameters are used in the `--genome codfreq` and `--genome 'NC_001802.1'` for **Nextclade HIV-1 analysis**. Make sure to update `nextclade_dataset_tag` to the latest one so the pipeline can download it.
 
 ```bash
 nextclade_dataset_tag  = '2025-09-09--12-13-13Z'
 nextclade_dataset_name = 'neherlab/hiv-1'
 nextclade_dataset      = false
+```
+
+#### **HIV-specific configuration**
+
+When using `--genome 'codfreq'` or `--genome 'NC_001802.1'` or `--perform_hiv_resistance`, which are activated in the `-profile hiv` configuration, the following configuration is activated by default.
+
+_Variant calling_
+
+Variant calling is performed using **iVar variants** with parameters optimized for HIV intra-host diversity:
+
+- **Variant frequency threshold:** `0.01`: Variants are called if their allele frequency is at least 1%, allowing detection of minority variants relevant for resistance analysis.
+- **Minimum base quality:** `30`: Ensures reliability of detected variants.
+- **Minimum depth of coverage:** `50`: Matches the minimum coverage used in HIVdb protocols to support robust variant calling.
+
+_Consensus generation_
+
+Consensus sequences are generated using **iVar consensus**, which supports ambiguous nucleotide codes, a key feature for HIV resistance interpretation tools.  
+The parameters are defined as follows:
+
+- **Frequency threshold:** `0.8`: A variant is included in the consensus if its frequency reaches at least 80%. This means that variants with frequencies below 50% may still be incorporated if necessary to achieve the 80% threshold in a given position.
+- **Minimum base quality:** `30`
+- **Minimum depth of coverage:** `50`
+- **Low coverage regions:**: Positions with fewer than 10 reads are masked as `N`.
+
+The user can change this configuration by providing a custom config file with `-c` param. This config file should contain this piece of code with the specific configuration for `IVAR_VARIANTS` and `IVAR_CONSENSUS`. `RESISTANCE_REPORT`'s `ext.args2` should be the same as `IVAR_CONSENSUS`'s `ext.args` for the final report to contain the appropriate information.
+
+```bash
+process {
+    withName: 'IVAR_CONSENSUS' {
+        ext.args = '-t 0.8 -q 30 -m 50 -n N'
+    }
+    withName: 'IVAR_VARIANTS' {
+        ext.args = '-t 0.01 -q 30 -m 50'
+    }
+    withName: 'RESISTANCE_REPORT' {
+        ext.args2 = '-t 0.8 -q 30 -m 50 -n N'
+    }
+}
 ```
 
 ### HIV resistance detection protocol
@@ -410,7 +426,7 @@ The detection of HIV drug resistance in `nf-core/viralrecon` is performed using 
 
 This integrated approach ensures that both **mutation interpretation** and **codon frequency information** are available for downstream resistance reporting.
 
-#### 1. Sierra-local: HIV resistance prediction
+#### **1. Sierra-local: HIV resistance prediction**
 
 [**sierra-local**](https://github.com/PoonLab/sierra-local/) is a Python3 implementation of the [Stanford University HIV Drug Resistance Database](https://hivdb.stanford.edu/) (HIVdb) [Sierra web service](https://hivdb.stanford.edu/page/webservice/).
 
@@ -423,7 +439,7 @@ Within the HIV module of `nf-core/viralrecon`, sierra-local is executed using th
 However, sierra-local operates at the **codon level**, and its JSON output does not include **codon-level frequencies** or **codon depth information**.  
 These additional metrics are crucial for resistance reporting and neeed consistency with other viralrecon outputs, which are based on nucleotide-level variant calls.
 
-#### 2. Codon-level frequency analysis with codfreq
+#### **2. Codon-level frequency analysis with codfreq**
 
 To obtain codon frequency information, `nf-core/viralrecon` integrates a modified version of [**codfreq**](https://github.com/hivdb/codfreq/) tool.
 
@@ -443,7 +459,7 @@ This format enables codon-level analysis of intra-sample diversity.
 
 However, codfreq requires a **custom JSON file** that describes the HIV gene structure (PR, RT, and IN). To generate this JSON dynamically according to the user’s selected reference genome, several preprocessing steps are performed.
 
-#### 3. Generation of codfreq annotation JSON
+#### **3. Generation of codfreq annotation JSON**
 
 The generation of the required JSON file for codfreq involves the following steps:
 
@@ -457,14 +473,14 @@ The generation of the required JSON file for codfreq involves the following step
 
 This automated workflow guarantees that the codfreq JSON file always matches the user-defined HIV reference, maintaining compatibility with both sierra-local and the consensus sequence data.
 
-#### 4. Integration of codfreq with mapped reads
+#### **4. Integration of codfreq with mapped reads**
 
 Once the annotation JSON is generated, the **mapped BAM files** and the **codfreq JSON** are processed using a **modified version of codfreq** within the pipeline.  
 This version has been adapted to work seamlessly with `nf-core/viralrecon` output formats and file structures.
 
 The result is a set of `.codfreq` tables containing codon-level read frequencies for PR, RT, and IN genes, harmonized with the annotation used by Sierra-local.
 
-#### 5. Integration and final reporting
+#### **5. Integration and final reporting**
 
 Finally, the outputs from **sierra-local** (`.json`) and **codfreq** (`.codfreq`) are merged to produce custom HIV resistance summary tables.
 
