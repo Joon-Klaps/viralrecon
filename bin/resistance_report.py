@@ -105,6 +105,13 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
     summary_lines = []
     warnings = {}
 
+    # --- Define expected protein lengths
+    protein_lengths = {
+        "PR": 99,
+        "RT": 560,
+        "IN": 288
+    }
+
     # --- Parse validation warnings to find missing nucleotide ranges
     for warning in data.get("validationResults", []):
         msg = warning.get("message", "")
@@ -131,6 +138,12 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
             first_aa = int(first_aa)
             if first_aa > 1:
                 missing_parts.append(f"missing codons: 1-{first_aa - 1}")
+
+        # If sequence does not reach the expected end, mention missing codons at end
+        if gene in protein_lengths and isinstance(last_aa, int):
+            expected_end = protein_lengths[gene]
+            if last_aa < expected_end:
+                missing_parts.append(f"missing codons: {last_aa + 1}-{expected_end}")
 
         # If we have nucleotide warning info, include it too
         if gene in warnings:
