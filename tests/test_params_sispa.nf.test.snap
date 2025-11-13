@@ -76,9 +76,6 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
-                "GUNZIP_FASTA": {
-                    "gunzip": 1.13
-                },
                 "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
