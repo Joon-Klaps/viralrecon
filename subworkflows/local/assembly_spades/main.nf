@@ -19,6 +19,7 @@ workflow ASSEMBLY_SPADES {
     blast_db              // channel: /path/to/blast_db/
     blast_header          // channel: /path/to/blast_header.txt
     blast_filtered_header // channel: /path/to/blast_filtered_header.txt
+    ch_taxidlist          // channel: /path/to/taxidlist.txt
 
     main:
 
@@ -97,7 +98,8 @@ workflow ASSEMBLY_SPADES {
         gff,
         blast_db,
         blast_header,
-        blast_filtered_header
+        blast_filtered_header,
+        ch_taxidlist
     )
     ch_versions = ch_versions.mix(ASSEMBLY_QC.out.versions)
 

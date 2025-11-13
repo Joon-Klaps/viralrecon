@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Special thanks to the following for their code contributions to the release:
 
 - [Sarai Varona](https://github.com/svarona)
+- [Anna Norén](https://github.com/AnnaNoren)
 
 Thank you to everyone else that has contributed by reporting bugs, enhancements or in any other way, shape or form.
 
@@ -19,13 +20,13 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 - [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
 - [[PR #562](https://github.com/nf-core/viralrecon/pull/562)] - Added pangolin-data database from test-datasets to test config
+- [[PR #541](https://github.com/nf-core/viralrecon/pull/541)] - Implement new blastn module with taxid filtering in pipeline
 
 ### Parameters
 
 | Old parameter | New parameter |
 | ------------- | ------------- |
-|               | `--new_param` |
-| `--old_param` |               |
+|               | `--taxidlist` |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -35,9 +36,9 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 Note, since the pipeline is now using Nextflow DSL2, each process will be run with its own [Biocontainer](https://biocontainers.pro/#/registry). This means that on occasion it is entirely possible for the pipeline to be using different versions of the same tool. However, the overall software dependency changes compared to the last release have been listed below for reference.
 
-| Dependency      | Old version | New version |
-| --------------- | ----------- | ----------- |
-| `software-name` | x.x.x       | x.x.x       |
+| Dependency | Old version | New version |
+| ---------- | ----------- | ----------- |
+| `blast`    | 2.16.0      | 2.17.0      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 >

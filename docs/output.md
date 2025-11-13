@@ -893,7 +893,8 @@ In the variant calling branch of the pipeline we are using [iVar trim](#ivar-tri
       - `%cgAligned` (percentage of contig aligned) > 0.7 (70%)
     - Columns description (for more information see: https://www.metagenomics.wiki/tools/blast/blastn-output-format-6):
       - stitle: Subject Title. Name of the reference genome.
-      - staxids: Subject Taxonomy ID(s), separated by a ';'. When blast databse is no annotated with taxids, 0 will appear.
+      - staxids: Subject Taxonomy ID(s), separated by a ';'. When blast database is not annotated with taxids, 0 will appear.
+      - sscinames: Subject Scientific Name(s), separated by a ';'. Without taxid mapped blast database, N/A will appear.
       - qaccver: Query accesion version. Contig name.
       - saccver: Subject accession version. Reference genome accession version.
       - pident: Percentage of identical matches.
@@ -916,7 +917,7 @@ In the variant calling branch of the pipeline we are using [iVar trim](#ivar-tri
 
 </details>
 
-[blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch) is used to align the assembled contigs against the virus reference genome.
+[blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch) is used to align the assembled contigs against the virus reference genome, alternatively a custom blast database can be supplied to align assembled contigs against.
 
 ### ABACAS
 

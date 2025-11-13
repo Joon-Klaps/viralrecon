@@ -319,3 +319,46 @@ We recommend adding the following line to your environment to limit this (typica
 ```bash
 NXF_OPTS='-Xms1g -Xmx4g'
 ```
+
+## Enterovirus
+
+`nf-core/viralrecon` has been extended to support **Enterovirus typing** through optimized BLASTN searches with taxonomic ID filtering.
+
+The goal of this addition is to enable rapid and accurate **Enterovirus strain/genotype identification** directly from consensus sequences in the de novo assembly track, reducing BLASTN runtime while maintaining high typing accuracy.
+
+### Enterovirus profile and recommended params
+
+The Enterovirus profile introduces specific adjustments compared to a standard `viralrecon` run, primarily to optimize **strain/genotype typing**.
+
+By default, variant calling is deactivated for enterovirus typing because de novo assembly performs better through assembled contigs and BLAST comparison.
+
+#### De novo assembly
+
+De novo assembly is performed using **spades** and/or **unicycler** to generate contigs for BLASTN typing.
+Note that **minia** is not a default assembler for enterovirus.
+
+#### BLASTN
+
+Typing through **blastn** is performed through supplying a blast database with taxid mapping and a taxidlist, to improve typing specificity and reduce runtime.
+The new optional parameter, `--taxidlist`, allows users to provide a list of **NCBI Taxonomy IDs** corresponding to Enterovirus taxa of interest.
+
+Taxonomy IDs related to enterovirus can be retriewed through // Add command here
+
+Example usage:
+
+```bash
+--blastdb path/to/blastdb
+--taxidlist path/to/taxidlist_taxids.txt
+--profile test_ev
+```
+
+#### Reference genome
+
+The default reference used in the enterovirus config of `nf-core/viralrecon` is the REFSEQ genome [NC_002058.3](https://www.ncbi.nlm.nih.gov/nuccore/NC_002058.3/) from NCBI of Enterovirus C. Given that a blast database is supplied, this reference is not significant for the de novo assembly. However, if no blast database is supplied, the reference genome will be used as reference for blast searches.
+
+Users may provide their **own custom reference genomes** using the parameters:
+
+```bash
+--fasta <path_to_reference.fasta>
+--gff   <path_to_annotation.gff>
+```

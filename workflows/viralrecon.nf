@@ -49,6 +49,7 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 if (params.input)                 { ch_input          = file(params.input)                 } else { exit 1, 'Input samplesheet file not specified!' }
 if (params.spades_hmm)            { ch_spades_hmm     = file(params.spades_hmm)            } else { ch_spades_hmm = []                              }
 if (params.additional_annotation) { ch_additional_gtf = file(params.additional_annotation) } else { ch_additional_gtf = Channel.empty()             }
+if (params.taxidlist)             { ch_taxidlist      = file(params.taxidlist)             } else { ch_taxidlist = []                               }
 
 def assemblers = params.assemblers ? params.assemblers.split(',').collect{ it.trim().toLowerCase() } : []
 
@@ -653,7 +654,8 @@ workflow VIRALRECON {
                 ch_genome_gff ? PREPARE_GENOME.out.gff.map { [ [:], it ] } : [ [:], [] ],
                 PREPARE_GENOME.out.blast_db,
                 ch_blast_outfmt6_header,
-                ch_blast_filtered_outfmt6_header
+                ch_blast_filtered_outfmt6_header,
+                ch_taxidlist
             )
             ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLY_SPADES.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_versions      = ch_versions.mix(ASSEMBLY_SPADES.out.versions)
@@ -669,7 +671,8 @@ workflow VIRALRECON {
                 ch_genome_gff ? PREPARE_GENOME.out.gff.map { [ [:], it ] } : [ [:], [] ],
                 PREPARE_GENOME.out.blast_db,
                 ch_blast_outfmt6_header,
-                ch_blast_filtered_outfmt6_header
+                ch_blast_filtered_outfmt6_header,
+                ch_taxidlist
             )
             ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLY_UNICYCLER.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_versions      = ch_versions.mix(ASSEMBLY_UNICYCLER.out.versions)
@@ -685,7 +688,8 @@ workflow VIRALRECON {
                 ch_genome_gff ? PREPARE_GENOME.out.gff.map { [ [:], it ] } : [ [:], [] ],
                 PREPARE_GENOME.out.blast_db,
                 ch_blast_outfmt6_header,
-                ch_blast_filtered_outfmt6_header
+                ch_blast_filtered_outfmt6_header,
+                ch_taxidlist
             )
             ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLY_MINIA.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_versions      = ch_versions.mix(ASSEMBLY_MINIA.out.versions)
