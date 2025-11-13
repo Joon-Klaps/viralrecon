@@ -159,15 +159,15 @@ nextflow run nf-core/viralrecon \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
    --platform illumina \
-   --protocol 'amplicon' \
+   --protocol 'amplicon/metagenomic' \
    --genome 'codfreq' \
-   --primer_bed <path/to/primers/bed> \
+   --primer_bed <path/to/primers/bed> \ # only for amplicon data
    --nextclade_dataset_tag '<LATEST_HIV_TAG>' \
    --kraken2_db <path/to/host/database> \
-   -profile test_hiv,<docker/singularity/.../institute>
+   -profile hiv,<docker/singularity/.../institute>
 ```
 
-If you want to know more about the paramenters and references in profile `test_hiv`, check the documentation in [usage](./docs/usage.md#hiv-profile-and-recomended-params).
+If you want to know more about the paramenters and references in profile `hiv`, check the documentation in [usage](./docs/usage.md#hiv-profile-and-recomended-params).
 
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
