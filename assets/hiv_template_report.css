@@ -73,16 +73,19 @@ body {
   margin: 0 auto 20px auto;
 }
 
-/* Tables scrollable */
-.table-scroll {
-  max-height: 400px;
-  overflow-y: auto;
-  margin: 10px 0 20px 0;
+table {
+  width: auto;
+  border-collapse: collapse;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Tables scrollable */
+.table-scroll {
+  display: inline-block;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin: 10px 0 20px 0;
+  border: 1px solid #ccc;
 }
 
 th,
