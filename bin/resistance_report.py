@@ -137,22 +137,17 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
         if isinstance(first_aa, int) or (isinstance(first_aa, str) and first_aa.isdigit()):
             first_aa = int(first_aa)
             if first_aa > 1:
-                missing_parts.append(f"missing codons: 1-{first_aa - 1}")
+                missing_parts.append(f"1-{first_aa - 1}")
 
         # If sequence does not reach the expected end, mention missing codons at end
         if gene in protein_lengths and isinstance(last_aa, int):
             expected_end = protein_lengths[gene]
             if last_aa < expected_end:
-                missing_parts.append(f"missing codons: {last_aa + 1}-{expected_end}")
-
-        # If we have nucleotide warning info, include it too
-        if gene in warnings:
-            x, y = warnings[gene]
-            missing_parts.append(f"missing nucleotides: {x} - {y}")
+                missing_parts.append(f"{last_aa + 1}-{expected_end}")
 
         # Append parentheses only if we have missing parts
         if missing_parts:
-            line += " (" + ", ".join(missing_parts) + ")"
+            line += " (missing: " + ", ".join(missing_parts) + ")"
 
         summary_lines.append(line)
 
