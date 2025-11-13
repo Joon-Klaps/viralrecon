@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Special thanks to the following for their code contributions to the release:
 
 - [Sarai Varona](https://github.com/svarona)
+- [Anna Norén](https://github.com/AnnaNoren)
 
 Thank you to everyone else that has contributed by reporting bugs, enhancements or in any other way, shape or form.
 
@@ -19,11 +20,13 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 - [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
 - [[PR #562](https://github.com/nf-core/viralrecon/pull/562)] - Added pangolin-data database from test-datasets to test config
+- [[PR #541](https://github.com/nf-core/viralrecon/pull/541)] - Implement new blastn module with taxid filtering in pipeline
 
 ### Parameters
 
 | Old parameter | New parameter |
 | ------------- | ------------- |
+|               | `--taxidlist` |
 |               | `--new_param` |
 | `--old_param` |               |
 
@@ -38,6 +41,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | Dependency      | Old version | New version |
 | --------------- | ----------- | ----------- |
 | `software-name` | x.x.x       | x.x.x       |
+| `blast`         | 2.16.0      | 2.17.0      |
 
 > **NB:** Dependency has been **updated** if both old and new version information is present.
 >
@@ -93,7 +97,6 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 - [[PR #523]](https://github.com/nf-core/viralrecon/pull/523) - Fixed metro map for Nanopore, updated freyja version, added freyja to full testing, added min_mapped reads filter to Nanopore, added Kraken2 reports to Nanopore's MultiQC, fixed Quast report on Nanopore, re-write nf-test as scenarios.
 - [[PR #538]](https://github.com/nf-core/viralrecon/pull/538) - Fixed some conda versions that were problematic in tests or different from singularity/docker
 - [[PR #540]](https://github.com/nf-core/viralrecon/pull/540) - Updated artic minion, removed support for Fast5 files and fixed snaps.
-- [[PR #541](https://github.com/nf-core/viralrecon/pull/541)] - Implement new blastn module with taxid filtering in pipeline
 
 ### Parameters
 
@@ -120,7 +123,6 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 | `--artic_minion_caller`         |                              |
 | `--artic_minion_aligner`        |                              |
 | `--artic_minion_medaka_model`   | `--artic_minion_model_dir`   |
-|                                 | `--taxidlist`                |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.

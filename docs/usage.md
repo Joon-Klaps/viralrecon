@@ -354,7 +354,7 @@ Example usage:
 
 #### Reference genome
 
-The default reference used in the enterovirus config of `nf-core/viralrecon` is a REFSEQ genome from NCBI of Echovirus 30. Given that a blast database is supplied, this reference is not significant for the de novo assembly. However, if no blast database is supplied, the reference genome will be used as reference for blast searches.
+The default reference used in the enterovirus config of `nf-core/viralrecon` is the REFSEQ genome [NC_002058.3](https://www.ncbi.nlm.nih.gov/nuccore/NC_002058.3/) from NCBI of Enterovirus C. Given that a blast database is supplied, this reference is not significant for the de novo assembly. However, if no blast database is supplied, the reference genome will be used as reference for blast searches.
 
 Users may provide their **own custom reference genomes** using the parameters:
 
