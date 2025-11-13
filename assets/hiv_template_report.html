@@ -150,6 +150,38 @@
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
+
+    <!-- MUTATION SCORING -->
+    {% set mutation_scores = sample.mutation_scores.get(gene, {}) %} {% if mutation_scores %}
+    <div class="summary-title">
+      <h2>Mutation scoring: {{ gene }}</h2>
+    </div>
+
+    <div class="content-block">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Mutation</th>
+              {% for drug in mutation_scores.values()|first|dictsort %}
+              <th>{{ drug[0] }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for mutation, drugs in mutation_scores.items() %}
+            <tr>
+              <td>{{ mutation }}</td>
+              {% for drug in mutation_scores.values()|first|dictsort %}
+              <td>{{ drugs.get(drug[0], '') }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
     {% endif %} {% endfor %}
 
     <!-- CONSENSUS GENOME -->
