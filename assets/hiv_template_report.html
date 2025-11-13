@@ -116,11 +116,19 @@
       <hr />
       <div class="table-scroll">
         <table>
+          <thead>
+            <tr>
+              <th>Drug Abbreviation</th>
+              <th>Resistance Status</th>
+              <th>Resistance Score</th>
+            </tr>
+          </thead>
           <tbody>
             {% for row in class_drugs %}
             <tr>
               <td>{{ row.Drug_name }}</td>
               <td>{{ row.Res_status }}</td>
+              <td>{{ row.Total_score }}</td>
             </tr>
             {% endfor %}
           </tbody>
