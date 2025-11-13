@@ -23,6 +23,30 @@
           if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
+
+      // Highlight current sample while scrolling
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll("[id^='sample_']");
+        const selector = document.getElementById("sample-selector");
+
+        // Use IntersectionObserver to detect visible section
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                selector.value = entry.target.id;
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.4, // section must be at least 40% visible
+          },
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      });
     </script>
 
     {% for sample in all_samples %}
