@@ -78,7 +78,7 @@
                     },
                     "blast/blastn": {
                         "branch": "master",
-                        "git_sha": "d46ce1891502bcf54c434d50d9a33ffe611beb19",
+                        "git_sha": "9da6f5cc5b9170943be764c0a6926e81ba1ed3b9",
                         "installed_by": ["modules"]
                     },
                     "blast/makeblastdb": {
