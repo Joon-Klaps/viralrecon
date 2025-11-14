@@ -179,7 +179,7 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
     m_val = int(match_m.group(1))
 
     summary_lines.append(f"Minimum read depth: ≥{m_val}")
-    summary_lines.append(f"Minimum allele frequency represented: ≥{t_val * 100:.0f}%")
+    summary_lines.append(f"Mutation detection threshold (MDT): ≥{ (1-t_val) * 100:.0f}%")
     summary_lines.append(f"Minimum quality threshold: {q_val}")
 
     return summary_lines
