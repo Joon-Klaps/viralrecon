@@ -228,19 +228,20 @@ def extract_mutation_scoring(json_path):
             continue
         if gene not in mutation_scores:
             mutation_scores[gene] = {}
-        for drug in resistance.get("drugScores", []):
-            drug_name = drug.get("drug", {}).get("displayAbbr", "")
-            for partial in drug.get("partialScores", []):
-                mutations_list = partial.get("mutations", [])
-                if not mutations_list:
-                    continue
-                mutation = mutations_list[0].get("text")
-                score = partial.get("score", "")
-                if mutation not in mutation_scores[gene]:
-                    mutation_scores[gene][mutation] = {}
-                mutation_scores[gene][mutation][drug_name] = score
+        for drug_score in resistance.get("drugScores", []):
+            drug_name = drug_score.get("drug", {}).get("displayAbbr", "")
+            drug_class = drug_score.get("drugClass", {}).get("name", "")
+            for partial in drug_score.get("partialScores", []):
+                for mut in partial.get("mutations", []):
+                    mutation = mut.get("text")
+                    score = partial.get("score", "")
+                    if mutation not in mutation_scores[gene]:
+                        mutation_scores[gene][mutation] = {}
+                    mutation_scores[gene][mutation][drug_name] = {
+                        "score": score,
+                        "drug_class": drug_class
+                    }
     return mutation_scores
-
 # ---------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------

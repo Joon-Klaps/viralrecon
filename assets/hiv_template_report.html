@@ -169,13 +169,17 @@
     </div>
 
     <div class="content-block">
+      {# --- Build a complete list of all drugs across all mutations --- #} {% set all_drugs = [] %} {% for drugs in
+      mutation_scores.values() %} {% for drug_name in drugs.keys() %} {% if drug_name not in all_drugs %} {% set _ =
+      all_drugs.append(drug_name) %} {% endif %} {% endfor %} {% endfor %} {# Sort drug names alphabetically for
+      consistent table ordering #} {% set all_drugs = all_drugs | sort %}
       <div class="table-scroll">
         <table>
           <thead>
             <tr>
               <th>Mutation</th>
-              {% for drug in mutation_scores.values()|first|dictsort %}
-              <th>{{ drug[0] }}</th>
+              {% for drug in all_drugs %}
+              <th>{{ drug }}</th>
               {% endfor %}
             </tr>
           </thead>
@@ -183,8 +187,11 @@
             {% for mutation, drugs in mutation_scores.items() %}
             <tr>
               <td>{{ mutation }}</td>
-              {% for drug in mutation_scores.values()|first|dictsort %}
-              <td>{{ drugs.get(drug[0], '') }}</td>
+
+              {% for drug in all_drugs %}
+              <td>
+                {# Show score only #} {% if drugs.get(drug) %} {{ drugs.get(drug).score }} {% else %} - {% endif %}
+              </td>
               {% endfor %}
             </tr>
             {% endfor %}
