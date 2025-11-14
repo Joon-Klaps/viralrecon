@@ -82,17 +82,12 @@ workflow HIV_RESISTANCE {
 
     ch_versions = ch_versions.mix(RESISTANCE_TABLES.out.versions)
 
-    ch_html_template = file("$projectDir/assets/hiv_template_report.html", checkIfExists: true)
-    ch_css_file = file("$projectDir/assets/hiv_template_report.css", checkIfExists: true)
-
     RESISTANCE_REPORT (
         SIERRALOCAL.out.json.collect{it[1]},
         RESISTANCE_TABLES.out.mutation_csv.collect{it[1]},
         RESISTANCE_TABLES.out.resistance_csv.collect{it[1]},
         nextclade_report.collect{it[1]},
-        consensus.collect{it[1]},
-        ch_html_template,
-        ch_css_file
+        consensus.collect{it[1]}
     )
 
     ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)

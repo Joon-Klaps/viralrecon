@@ -12,8 +12,6 @@ process RESISTANCE_REPORT {
     path resistance_csv  , stageAs: "resistance_tables/*"
     path nextclade_csv   , stageAs: "nextclade_reports/*"
     path consensus       , stageAs: "consensus/*"
-    path html_template
-    path css_file
 
     output:
     path("*.html")      , emit: mutation_csv
@@ -37,8 +35,6 @@ process RESISTANCE_REPORT {
         --consensus_folder ./consensus \\
         --ivar_consensus_params "'${ivar_consensus_params}'" \\
         ${hivdb_version} \\
-        --template ${html_template} \\
-        --css ${css_file} \\
         --output_html ${prefix}.html \\
         $args
 

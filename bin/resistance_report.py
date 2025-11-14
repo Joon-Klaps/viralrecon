@@ -18,7 +18,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding resistance and mutation tables to generate an HTML report."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --hivdb_version "HIVDB_9.8" --output_html resistance_report.html --template hiv_template_report.html --css hiv_template_report.css
+    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --hivdb_version "HIVDB_9.8" --output_html resistance_report.html
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -74,20 +74,6 @@ def parser_args(args=None):
         "--output_html",
         type=str,
         help="Full path to output HTML report file.",
-    )
-    parser.add_argument(
-        "-t",
-        "--template",
-        type=str,
-        default="hiv_template_report.html",
-        help="Full path to template HTML report file.",
-    )
-    parser.add_argument(
-        "-cs",
-        "--css",
-        type=str,
-        default="hiv_template_report.css",
-        help="Full path to CSS file for the HTML report.",
     )
     return parser.parse_args(args)
 
@@ -238,9 +224,25 @@ def main():
     nextclade_files = sorted(glob.glob(os.path.join(args.nextclade_folder, "*.csv")))
     consensus_files = sorted(glob.glob(os.path.join(args.consensus_folder, "*.fa")))
 
+    # Build paths
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    asset_path = os.path.join(script_dir, "../assets")
+    css_path = os.path.join(asset_path, "hiv_template_report.css")
+
     # --- Load CSS content
-    with open(args.css, "r", encoding="utf-8") as css_file:
+    with open(css_path, "r", encoding="utf-8") as css_file:
         css_content = css_file.read()
+
+    # --- Load Jinja2 environment from the template's folder
+    template_dir = os.path.abspath(asset_path)
+
+    env = Environment(
+        loader=FileSystemLoader(template_dir),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    template = env.get_template("hiv_template_report.html")
+
+    logo_path = os.path.join(asset_path, "nf-core-viralrecon_logo_light.png")
 
     all_samples_data = []
 
@@ -285,16 +287,6 @@ def main():
 
     # Ordenar alfabéticamente por nombre de muestra
     all_samples_data.sort(key=lambda x: x["sample_name"])
-
-    # --- Load Jinja2 environment from the template's folder
-    template_dir = os.path.dirname(os.path.abspath(args.template))
-    template_name = os.path.basename(args.template)
-
-    env = Environment(
-        loader=FileSystemLoader(template_dir),
-        autoescape=select_autoescape(['html', 'xml'])
-    )
-    template = env.get_template(template_name)
 
     # --- Render full HTML report
     html_content = template.render(
