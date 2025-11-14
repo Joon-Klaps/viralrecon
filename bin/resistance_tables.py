@@ -8,6 +8,7 @@ import json
 import errno
 import logging
 import argparse
+import re
 import pandas as pd
 
 logger = logging.getLogger()
@@ -117,13 +118,19 @@ def parse_sierra_json(sample_name, json_path):
 
         for mut in gene_entry.get("mutations", []):
             consensus = mut.get("consensus", "")
+            text = mut.get("text", "")
             aas = mut.get("AAs", "")
             pos = mut.get("position", "")
+            match = re.match(rf"{re.escape(consensus)}{str(pos)}(.+)", text)
+            if match:
+                mutant = match.group(1) # "KR" for "K70KR"
+            else:
+                mutant = ""  # fallback
             mut_type = mut.get("primaryType", "NA")
 
             # If there are more than one possible amino acids, create a row for each
-            if len(aas) > 1:
-                for aa in aas:
+            if len(mutant) > 1:
+                for aa in mutant:
                     if pos == lastAA and aa == "X" and not mut.get("isDeletion"):
                         continue  # skip, false positive at end of sequence
                     mut_text = f"{consensus}{pos}{aa}"
