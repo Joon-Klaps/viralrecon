@@ -222,26 +222,39 @@ def extract_mutation_scoring(json_path):
     mutation_scores = {}
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)[0]
-    for resistance in data.get("drugResistance", []):
-        gene = resistance.get("gene", {}).get("name")
+    for protein_resistance in data.get("drugResistance", []):
+        gene = protein_resistance.get("gene", {}).get("name")
         if not gene:
             continue
         if gene not in mutation_scores:
             mutation_scores[gene] = {}
-        for drug_score in resistance.get("drugScores", []):
-            drug_name = drug_score.get("drug", {}).get("displayAbbr", "")
-            drug_class = drug_score.get("drugClass", {}).get("name", "")
-            for partial in drug_score.get("partialScores", []):
-                for mut in partial.get("mutations", []):
-                    mutation = mut.get("text")
-                    score = partial.get("score", "")
-                    if mutation not in mutation_scores[gene]:
-                        mutation_scores[gene][mutation] = {}
-                    mutation_scores[gene][mutation][drug_name] = {
-                        "score": score,
-                        "drug_class": drug_class
-                    }
+        for drug in protein_resistance.get("drugScores", []):
+            drug_name = drug.get("drug", {}).get("displayAbbr", "")
+            drug_class = drug.get("drugClass", {}).get("name", "")
+            for mutation_block in drug.get("partialScores", []):
+                mutations = mutation_block.get("mutations", [])
+                score = mutation_block.get("score")
+
+                # Extract all mutation names
+                mutation_ids = [m.get("text") for m in mutations]
+
+                # CASE 1 → single mutation: "M41L"
+                if len(mutation_ids) == 1:
+                    mutation_key = mutation_ids[0]
+
+                # CASE 2 → combo mutation: "M41L+L210W"
+                else:
+                    mutation_key = "+".join(mutation_ids)
+
+                # Ensure gene and mutation entry exist
+                if mutation_key not in mutation_scores[gene]:
+                    mutation_scores[gene][mutation_key] = {}
+                mutation_scores[gene][mutation_key][drug_name] = {
+                    "score": score,
+                    "drug_class": drug_class
+                }
     return mutation_scores
+
 # ---------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------
