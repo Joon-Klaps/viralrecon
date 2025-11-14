@@ -609,7 +609,6 @@
                 "SRR6937100_mutation_table.csv:md5,fed0734d8addefbc6919514c42c55570",
                 "SRR6937100_mutation_table_short.csv:md5,b3a5e4e4a4b50cc49b3acc598a4b08d9",
                 "SRR6937100_resistance_table.csv:md5,a106b7b40928786e40cb79dde3fdaf3e",
-                "resistance.html:md5,35c3e7b0ab36e2ed6163def82b693ba4",
                 "DRR030302_resistance.json:md5,ed95ca31c00b183aa6da0e5e4c99f9d8",
                 "SRR4071760_resistance.json:md5,414d7fbe4d6a704bb6cd5dafe62707ab",
                 "SRR6937100_resistance.json:md5,3290195a8b6cea72a83b8485c23f7f6d",
@@ -639,7 +638,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-11-13T11:03:27.180163391"
+        "timestamp": "2025-11-14T10:14:13.591558291"
     },
     "-profile test_hiv": {
         "content": [
@@ -1232,13 +1231,12 @@
                 "DRR030302_mutation_table.csv:md5,24566a73ec686e283f0fb89eaf3a50ed",
                 "DRR030302_mutation_table_short.csv:md5,0cae2d7a07d51d0470f15a9d61601253",
                 "DRR030302_resistance_table.csv:md5,6e4aecb5140b5564a6e4585b1884df15",
-                "SRR4071760_mutation_table.csv:md5,236aed6f38e7c0fcf4346a3fe528ca68",
-                "SRR4071760_mutation_table_short.csv:md5,8a9d44ad29088c817835644f6e665677",
+                "SRR4071760_mutation_table.csv:md5,1eea711c57ab41b60b3e160ae6bf8d1d",
+                "SRR4071760_mutation_table_short.csv:md5,d68baee2a278864652bc6a62d13d0127",
                 "SRR4071760_resistance_table.csv:md5,6bcc98b8b4fc1d5b3b9a3fcf7adceee5",
                 "SRR6937100_mutation_table.csv:md5,24baac7650719efe90ff2fe0d02e12d1",
                 "SRR6937100_mutation_table_short.csv:md5,b3a5e4e4a4b50cc49b3acc598a4b08d9",
                 "SRR6937100_resistance_table.csv:md5,a106b7b40928786e40cb79dde3fdaf3e",
-                "resistance.html:md5,8001ddf53ea105327945959dd2adaadc",
                 "DRR030302_resistance.json:md5,408615e5d0cc9c4c3e624494aeda36bb",
                 "SRR4071760_resistance.json:md5,7c784552ea5fbcf498407caa74c8db36",
                 "SRR6937100_resistance.json:md5,3290195a8b6cea72a83b8485c23f7f6d",
@@ -1268,6 +1266,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-11-13T11:01:52.44105021"
+        "timestamp": "2025-11-14T10:12:35.469565255"
     }
 }
