@@ -86,9 +86,12 @@
 
     <div class="content-block">
       <!-- MUTATIONS -->
-      {% for mut_type, mut_label in [ ("Major", "Major Mutations"), ("Accessory", "Accessory Mutations"), ("Other",
-      "Other Mutations") ] %} {% set mut_list = gene_mutations | selectattr("Mutations_type", "equalto", mut_type) |
-      list %}
+      {% set mutation_labels = [] %} {% if gene == "PR" %} {% set mutation_labels = [ ("Major", "PI Major Mutations"),
+      ("Accessory", "PI Accessory Mutations"), ("Other", "PR Other Mutations") ] %} {% elif gene == "RT" %} {% set
+      mutation_labels = [ ("NRTI", "NRTI Mutations"), ("NNRTI", "NNRTI Mutations"), ("Other", "RT Other Mutations") ] %}
+      {% elif gene == "IN" %} {% set mutation_labels = [ ("Major", "INSTI Major Mutations"), ("Accessory", "INSTI
+      Accessory Mutations"), ("Other", "IN Other Mutations") ] %} {% endif %} {% for mut_type, mut_label in
+      mutation_labels %} {% set mut_list = gene_mutations | selectattr("Mutations_type", "equalto", mut_type) | list %}
       <p><strong>{{ mut_label }}:</strong> {% if not mut_list %}None{% endif %}</p>
 
       {% if mut_list %}
