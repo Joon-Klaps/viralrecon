@@ -98,6 +98,7 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
 
     summary_lines = []
     warnings = {}
+    not_sequenced = {}
 
     # --- Define expected protein lengths
     protein_lengths = {
@@ -121,6 +122,14 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
         gene = gene_entry.get("gene", {}).get("name", "NA")
         first_aa = gene_entry.get("firstAA", "NA")
         last_aa = gene_entry.get("lastAA", "NA")
+        not_sequenced.setdefault(gene, [])
+
+        # --- Detect not sequenced positions from mutations ending with X
+        for mut in gene_entry.get("mutations", []):
+            if mut.get("text", "").endswith("X") and mut.get("AAs", "") in ["*ACDEFGHIKLMNPQRSTVWY", "ACDFGHILNPRSTVY"]:
+                pos = mut.get("position")
+                if pos and isinstance(pos, int):
+                    not_sequenced[gene].append(pos)
 
         # Build description for each gene sequence
         line = f"Sequence includes {gene}: codons {first_aa} - {last_aa}"
@@ -135,6 +144,27 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
                     missing_parts.append(f"1")
                 else:
                     missing_parts.append(f"1-{first_aa - 1}")
+
+        # Add not sequenced positions
+        missing_positions = sorted(not_sequenced.get(gene, []))
+        # Create contiguous intervals
+        if missing_positions:
+            start = end = missing_positions[0]
+            intervals = []
+            for pos in missing_positions[1:]:
+                if pos == end + 1:
+                    end = pos
+                else:
+                    intervals.append((start, end))
+                    start = end = pos
+            intervals.append((start, end))
+
+            # Format intervals as text
+            for start, end in intervals:
+                if start == end:
+                    missing_parts.append(f"{start}")
+                else:
+                    missing_parts.append(f"{start}-{end}")
 
         # If sequence does not reach the expected end, mention missing codons at end
         if gene in protein_lengths and isinstance(last_aa, int):
