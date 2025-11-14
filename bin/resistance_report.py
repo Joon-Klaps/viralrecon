@@ -6,6 +6,7 @@ import re
 import glob
 import json
 import argparse
+import base64
 import pandas as pd
 from datetime import date
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -244,6 +245,11 @@ def main():
 
     logo_path = os.path.join(asset_path, "nf-core-viralrecon_logo_light.png")
 
+    # Load image and encode to base64
+    with open(logo_path, "rb") as f:
+        logo_bytes = f.read()
+        logo_b64 = base64.b64encode(logo_bytes).decode("utf-8")
+
     all_samples_data = []
 
     for mut_file in mutation_files:
@@ -293,7 +299,8 @@ def main():
         all_samples=all_samples_data,
         hivdb_version=args.hivdb_version.replace("_", " "),
         date=date.today().strftime("%Y-%m-%d"),
-        css_content=css_content
+        css_content=css_content,
+        logo_b64=logo_b64
     )
 
     output_html = args.output_html or "all_samples_report.html"

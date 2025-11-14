@@ -133,7 +133,24 @@ tr:nth-child(even) {
 
 /* Footer */
 .footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer img {
+  height: 60px;
+  margin-right: auto;
+}
+
+.footer p {
   text-align: center;
+  flex: 1;
   color: #777;
   font-size: 0.9em;
   margin-top: 50px;
