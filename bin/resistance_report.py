@@ -131,53 +131,55 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
                 if pos and isinstance(pos, int):
                     not_sequenced[gene].append(pos)
 
-        # Build description for each gene sequence
-        line = f"Sequence includes {gene}: codons {first_aa} - {last_aa}"
-
+        # --- Build list of contiguous missing intervals
+        missing_positions = sorted(not_sequenced.get(gene, []))
         missing_parts = []
 
-        # If sequence does not start at codon 1, mention missing codons
-        if isinstance(first_aa, int) or (isinstance(first_aa, str) and first_aa.isdigit()):
-            first_aa = int(first_aa)
-            if first_aa > 1:
-                if first_aa == 2:
-                    missing_parts.append(f"1")
-                else:
-                    missing_parts.append(f"1-{first_aa - 1}")
+        # --- Adjust start
+        adjusted_first = first_aa
+        for pos in missing_positions:
+            if pos == adjusted_first:
+                adjusted_first += 1
+            else:
+                break
 
-        # Add not sequenced positions
-        missing_positions = sorted(not_sequenced.get(gene, []))
-        # Create contiguous intervals
+        # --- Adjust end
+        adjusted_last = last_aa
+        true_end = protein_lengths.get(gene, last_aa)
+        for pos in reversed(missing_positions):
+            if pos == true_end-1:
+                missing_positions.append(true_end)
+                adjusted_last = pos - 1
+            if pos >= adjusted_last:
+                adjusted_last = pos - 1
+            else:
+                break
+
+        # --- Build missing_parts text
         if missing_positions:
             start = end = missing_positions[0]
-            intervals = []
+            blocks = []
             for pos in missing_positions[1:]:
                 if pos == end + 1:
                     end = pos
                 else:
-                    intervals.append((start, end))
+                    blocks.append((start, end))
                     start = end = pos
-            intervals.append((start, end))
+            blocks.append((start, end))
+            for s, e in blocks:
+                missing_parts.append(f"{s}" if s == e else f"{s}-{e}")
 
-            # Format intervals as text
-            for start, end in intervals:
-                if start == end:
-                    missing_parts.append(f"{start}")
-                else:
-                    missing_parts.append(f"{start}-{end}")
+        # Add missing at tail if last_aa < expected
+        if adjusted_last < true_end:
+            tail_range = f"{adjusted_last+1}-{true_end}"
+            if tail_range not in missing_parts:
+                missing_parts.append(tail_range)
 
-        # If sequence does not reach the expected end, mention missing codons at end
-        if gene in protein_lengths and isinstance(last_aa, int):
-            expected_end = protein_lengths[gene]
-            if last_aa < expected_end:
-                if last_aa + 1 == expected_end:
-                    missing_parts.append(f"{expected_end}")
-                else:
-                    missing_parts.append(f"{last_aa + 1}-{expected_end}")
-
-        # Append parentheses only if we have missing parts
+        # Build output line
+        line = f"Sequence includes {gene}: codons {adjusted_first} - {adjusted_last}"
         if missing_parts:
-            line += " (missing: " + ", ".join(missing_parts) + ")"
+            missing_text = ", ".join(sorted(missing_parts, key=lambda x: int(x.split('-')[0])))
+            line += f" (missing: {missing_text})"
 
         summary_lines.append(line)
 
