@@ -19,7 +19,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def parser_args(args=None):
     Description = "Parse Sierra-local JSON reports and corresponding resistance and mutation tables to generate an HTML report."
     Epilog = """Example usage:
-    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --hivdb_version "HIVDB_9.8" --output_html resistance_report.html
+    python resistance_report.py --sierralocal_folder resistance_jsons --mutation_folder mutation_tables --resistance_folder resistance_tables --nextclade_folder nextclade_folder  --consensus_folder consensus --ivar_consensus_params "-t 0.8 -q 30 -m 50 -n N" --output_html resistance_report.html
     """
     parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
 
@@ -63,12 +63,6 @@ def parser_args(args=None):
         "--ivar_consensus_params",
         type=str,
         help="Parameters used for ivar consensus calling",
-    )
-    parser.add_argument(
-        "-hv",
-        "--hivdb_version",
-        type=str,
-        help="Version of the HIVDB used for resistance interpretation",
     )
     parser.add_argument(
         "-o",
@@ -257,6 +251,22 @@ def extract_mutation_scoring(json_path):
                 }
     return mutation_scores
 
+def extract_hivdb_version(json_path):
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)[0]
+    try:
+        version_text = data["drugResistance"][0]["version"].get("text", "")
+        publish_date = data["drugResistance"][0]["version"].get("publishDate", "")
+        return {
+            "db_version": f"HIVDB {version_text}",
+            "publish_date": publish_date
+        }
+    except Exception:
+        return {
+            "db_version": "HIVDB version unknown",
+            "publish_date": "unknown"
+        }
+
 # ---------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------
@@ -295,6 +305,8 @@ def main():
     with open(logo_path, "rb") as f:
         logo_bytes = f.read()
         logo_b64 = base64.b64encode(logo_bytes).decode("utf-8")
+
+    hivdb_version_info = extract_hivdb_version(json_files[0]) if json_files else {"db_version": "HIVDB version unknown", "publish_date": "unknown"}
 
     all_samples_data = []
 
@@ -343,7 +355,7 @@ def main():
     # --- Render full HTML report
     html_content = template.render(
         all_samples=all_samples_data,
-        hivdb_version=args.hivdb_version.replace("_", " "),
+        hivdb_version=hivdb_version_info,
         date=date.today().strftime("%Y-%m-%d"),
         css_content=css_content,
         logo_b64=logo_b64

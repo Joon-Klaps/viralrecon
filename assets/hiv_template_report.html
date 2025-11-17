@@ -13,7 +13,8 @@
 
     <!-- ADDITIONAL LINES BELOW TITLE -->
     <div class="report-subtitle">
-      Database version: {{ hivdb_version }}<br />
+      Database version: {{ hivdb_version.db_version }}<br />
+      Database publish date: {{ hivdb_version.publish_date }}<br />
       Report generation date: {{ date }}
     </div>
     <!-- Fixed dropdown for sample navigation -->

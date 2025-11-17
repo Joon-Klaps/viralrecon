@@ -24,7 +24,6 @@ process RESISTANCE_REPORT {
     def args = task.ext.args ?: ''
     def ivar_consensus_params = task.ext.args2 ?: '-t N/A -q N/A -m N/A -n N'
     def prefix = task.ext.prefix ?: 'resistance'
-    def hivdb_version = params.hivdb_xml ? "${file(params.hivdb_xml).baseName}" : "NA"
 
     """
     resistance_report.py \\
@@ -34,7 +33,6 @@ process RESISTANCE_REPORT {
         --nextclade_folder ./nextclade_reports \\
         --consensus_folder ./consensus \\
         --ivar_consensus_params "'${ivar_consensus_params}'" \\
-        --hivdb_version ${hivdb_version} \\
         --output_html ${prefix}.html \\
         $args
 
