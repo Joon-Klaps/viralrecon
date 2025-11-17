@@ -175,7 +175,7 @@
       all_drugs.append(drug_name) %} {% endif %} {% endfor %} {% endfor %} {# Sort drug names alphabetically for
       consistent table ordering #} {% set all_drugs = all_drugs | sort %}
       <div class="table-scroll">
-        <table>
+        <table class="mutation-scoring">
           <thead>
             <tr>
               <th>Mutation</th>
@@ -228,5 +228,53 @@
         sierra-local and codfreq data.
       </p>
     </div>
+
+    <script>
+      function makeMutationScoringSortable() {
+        const tables = document.querySelectorAll("table.mutation-scoring");
+
+        tables.forEach((table) => {
+          const headers = table.querySelectorAll("th");
+
+          headers.forEach((th, index) => {
+            // Skip first column ("Mutation")
+            if (index === 0) return;
+
+            th.classList.add("sortable");
+
+            th.addEventListener("click", () => {
+              const tbody = table.querySelector("tbody");
+              const rows = Array.from(tbody.querySelectorAll("tr"));
+              const isAsc = th.classList.contains("sorted-asc");
+
+              // Remove sort classes from all headers
+              headers.forEach((h) => h.classList.remove("sorted-asc", "sorted-desc"));
+
+              const sortedRows = rows.sort((a, b) => {
+                const cellA = a.children[index].innerText.trim();
+                const cellB = b.children[index].innerText.trim();
+
+                // Check if numeric
+                const numA = parseFloat(cellA.replace(",", "."));
+                const numB = parseFloat(cellB.replace(",", "."));
+
+                if (!isNaN(numA) && !isNaN(numB)) {
+                  return isAsc ? numA - numB : numB - numA;
+                }
+
+                return isAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+              });
+
+              th.classList.add(isAsc ? "sorted-desc" : "sorted-asc");
+
+              tbody.innerHTML = "";
+              sortedRows.forEach((row) => tbody.appendChild(row));
+            });
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", makeMutationScoringSortable);
+    </script>
   </body>
 </html>

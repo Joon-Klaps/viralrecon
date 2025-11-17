@@ -118,6 +118,31 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+/* Sortable table headers */
+th.sortable {
+  cursor: pointer;
+  position: relative;
+  padding-right: 18px;
+}
+
+th.sortable::after {
+  content: "⇅";
+  font-size: 0.7em;
+  position: absolute;
+  right: 6px;
+  color: #777;
+}
+
+th.sorted-asc::after {
+  content: "▲";
+  color: #000;
+}
+
+th.sorted-desc::after {
+  content: "▼";
+  color: #000;
+}
+
 /* Drug class headings inside content */
 .content-block h3 {
   margin-top: 25px;
