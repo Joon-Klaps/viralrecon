@@ -7,6 +7,7 @@ import glob
 import json
 import argparse
 import base64
+import functools
 import pandas as pd
 from datetime import date
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -251,6 +252,43 @@ def extract_mutation_scoring(json_path):
                 }
     return mutation_scores
 
+def parse_mutation_key(mutation_key):
+    """
+    Convert mutation key like 'M41L+T215Y' into a sortable tuple of integers.
+    Example:
+        'M41L+T215Y' → (41, 215)
+    """
+    parts = mutation_key.split("+")
+    positions = []
+
+    for p in parts:
+        # Extract the numeric portion from mutations like M41L, T215Y, E40F
+        match = re.search(r"(\d+)", p)
+        if match:
+            positions.append(int(match.group(1)))
+        else:
+            positions.append(99999)  # fallback if unexpected format
+
+    return tuple(positions)
+
+def sort_mutation_scores(mutation_scores):
+    """
+    Returns a new mutation_scores dict where each gene's mutations are sorted
+    by numeric positions (biological ordering).
+    """
+    sorted_scores = {}
+
+    for gene, mutations in mutation_scores.items():
+        sorted_mutations = dict(
+            sorted(
+                mutations.items(),
+                key=lambda x: parse_mutation_key(x[0])
+            )
+        )
+        sorted_scores[gene] = sorted_mutations
+
+    return sorted_scores
+
 def extract_hivdb_version(json_path):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)[0]
@@ -337,7 +375,8 @@ def main():
         seq_summary = parse_sequence_summary(json_file, subtype_info=subtype, ivar_params=args.ivar_consensus_params)
 
         # --- Extract mutation scoring from JSON
-        mutation_scores = extract_mutation_scoring(json_file)
+        mutation_scores_raw = extract_mutation_scoring(json_file)
+        mutation_scores = sort_mutation_scores(mutation_scores_raw)
 
         # Guardar toda la info en un dict
         all_samples_data.append({
