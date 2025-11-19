@@ -150,8 +150,7 @@ def parse_sierra_json(sample_name, json_path):
                         "hasStop": mut.get("hasStop", False),
                         "Mutation_AF": "NA",
                         "Coverage": "NA",
-                        "INDEL>5%": "NA",
-                        "Notes": "",  # New column
+                        "INDEL>5%": "NA"
                     }
                     rows.append(row)
             else:
@@ -175,19 +174,11 @@ def parse_sierra_json(sample_name, json_path):
                     "hasStop": mut.get("hasStop", False),
                     "Mutation_AF": "NA",
                     "Coverage": "NA",
-                    "INDEL>5%": "NA",
-                    "Notes": "",  # New column
+                    "INDEL>5%": "NA"
                 }
                 rows.append(row)
 
     df = pd.DataFrame(rows)
-
-    # Add warning messages only to the first row of each affected protein
-    for gene, msg in warnings_dict.items():
-        protein = df["Gene_name"] == gene
-        if protein.any():
-            first_index = df[protein].index[0]
-            df.loc[first_index, "Notes"] = msg
 
     return df
 
