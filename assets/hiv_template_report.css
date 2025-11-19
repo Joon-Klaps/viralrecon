@@ -1,12 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 60px 30px 30px 30px; /* top margin for dropdown */
-  background-color: #f9f9f9;
+  margin: 60px 30px 30px 30px;
+  background-color: #f7faff;
 }
 
 /* Header */
 .header {
-  background-color: #8b0a0a;
+  background-color: #11a3de;
   color: white;
   padding: 15px 25px;
   font-weight: bold;
@@ -15,38 +15,39 @@ body {
   margin-bottom: 30px;
 }
 
-/* Tittle */
+/* Report Title */
 .report-title {
   font-size: 2.5em;
   font-weight: bold;
   text-align: left;
   margin: 20px 0;
-  color: #ffd6d6;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #730808;
+
+  background: #0e86b7;
   padding: 25px 20px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(17, 163, 222, 0.25);
 }
 
 /* Subtitle under report title */
 .report-subtitle {
   font-size: 1.1em;
   font-weight: normal;
-  color: #8b0a0a;
-  background-color: #ffd6d6;
+  color: #0e5f82;
+  background-color: #dbe7f2;
   padding: 12px 18px;
   border-radius: 8px;
   margin: 10px 0 25px 0;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(17, 163, 222, 0.2);
   line-height: 1.4;
 }
 
-/* Sequence summary and section titles */
+/* Section titles */
 .summary-title {
-  background-color: #f5f5f0;
-  border: 1px solid #d4aa00;
+  background-color: #f0f6fc;
+  border: 1px solid #97b5cf;
   padding: 12px 25px;
   margin: 20px auto 5px auto;
   border-radius: 3px;
@@ -56,16 +57,15 @@ body {
 
 .summary-title h2 {
   margin: 0;
-  color: #111;
+  color: #0c3c57;
   font-size: 1.2em;
   font-weight: normal;
 }
 
-/* Sequence summary content */
+/* Summary content */
 .sequence-summary-info {
   width: 90%;
   margin: 0 auto 20px auto;
-  box-sizing: border-box;
 }
 
 .sequence-summary-info ul {
@@ -77,10 +77,10 @@ body {
 .sequence-summary-info li {
   padding: 3px 0;
   font-size: 0.95em;
-  color: #222;
+  color: #1b2f40;
 }
 
-/* Content block for mutations, resistances, consensus genome */
+/* Content block */
 .content-block {
   width: 90%;
   margin: 0 auto 20px auto;
@@ -91,34 +91,34 @@ table {
   border-collapse: collapse;
 }
 
-/* Tables scrollable */
 .table-scroll {
   display: inline-block;
   max-height: 400px;
   overflow-y: auto;
   overflow-x: auto;
   margin: 10px 0 20px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #97b5cf;
 }
 
 th,
 td {
-  border: 1px solid #ccc;
+  border: 1px solid #c4d4e3;
   padding: 8px;
   text-align: left;
   font-size: 0.95em;
 }
 
 th {
-  background-color: #ddd;
+  background-color: #d6e4f2;
   font-weight: bold;
+  color: #083a57;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #eef5fc;
 }
 
-/* Sortable table headers */
+/* Sortable headers */
 th.sortable {
   cursor: pointer;
   position: relative;
@@ -130,29 +130,29 @@ th.sortable::after {
   font-size: 0.7em;
   position: absolute;
   right: 6px;
-  color: #777;
+  color: #5d7c95;
 }
 
 th.sorted-asc::after {
   content: "▲";
-  color: #000;
+  color: #083a57;
 }
 
 th.sorted-desc::after {
   content: "▼";
-  color: #000;
+  color: #083a57;
 }
 
-/* Drug class headings inside content */
+/* Drug class headings */
 .content-block h3 {
   margin-top: 25px;
   margin-bottom: 5px;
+  color: #0e5f82;
 }
 
-/* Horizontal rule under headings */
 .content-block hr {
   border: none;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid #97b5cf;
   margin-bottom: 10px;
 }
 
@@ -160,7 +160,7 @@ th.sorted-desc::after {
 .footer {
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #97b5cf;
 
   display: flex;
   align-items: center;
@@ -176,12 +176,12 @@ th.sorted-desc::after {
 .footer p {
   text-align: center;
   flex: 1;
-  color: #777;
+  color: #4f6b82;
   font-size: 0.9em;
   margin-top: 50px;
 }
 
-/* Fixed dropdown menu */
+/* Dropdown menu */
 #sample-selector {
   position: fixed;
   top: 15px;
@@ -189,9 +189,9 @@ th.sorted-desc::after {
   z-index: 1000;
   padding: 6px 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #97b5cf;
+  background-color: #f0f6fc;
+  box-shadow: 0 2px 6px rgba(17, 163, 222, 0.25);
   font-size: 14px;
 }
 
@@ -209,9 +209,10 @@ details summary {
   cursor: pointer;
   font-weight: bold;
   padding: 5px 10px;
-  background-color: #eee;
+  background-color: #e0edf9;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #97b5cf;
+  color: #083a57;
 }
 
 details pre {
@@ -219,14 +220,15 @@ details pre {
   word-wrap: break-word;
   max-height: 400px;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #97b5cf;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: #f7faff;
   margin-top: 5px;
 }
 
+/* Mutation comments */
 .mutation-comments {
-  background-color: #e0e0e0;
+  background-color: #e3effa;
   padding: 10px 15px;
   margin: 15px 0 20px 0;
   border-radius: 4px;
@@ -234,12 +236,14 @@ details pre {
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+  border: 1px solid #97b5cf;
 }
 
 .mutation-comments strong {
   display: block;
   margin-bottom: 8px;
   font-size: 1em;
+  color: #0c3c57;
 }
 
 .mutation-comments ul {
@@ -251,4 +255,5 @@ details pre {
 .mutation-comments li {
   margin-bottom: 5px;
   font-size: 0.95em;
+  color: #1b2f40;
 }
