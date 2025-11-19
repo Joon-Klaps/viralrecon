@@ -190,9 +190,25 @@
     {% if sample.consensus_genome %}
     <div class="content-block">
       <details>
-        <summary>Show consensus genome</summary>
+        <summary>
+          Show full consensus genome
+          <button
+            type="button"
+            class="copy-button"
+            onclick="copyConsensus({{ sample.consensus_genome | tojson | safe }})"
+            style="margin-left: 10px"
+          >
+            Copy to clipboard
+          </button>
+        </summary>
         <pre>{{- sample.consensus_genome -}}</pre>
       </details>
+
+      <!-- Buttons to external resources -->
+      <div class="external-buttons">
+        <a href="https://hivdb.stanford.edu/hivdb/" target="_blank" class="link-button">Go to HIVdb</a>
+        <a href="https://clades.nextstrain.org/" target="_blank" class="link-button">Go to Nextclade</a>
+      </div>
     </div>
     {% else %}
     <p>No consensus genome available</p>
@@ -294,6 +310,16 @@
         window.addEventListener("scroll", updateActiveSample);
         updateActiveSample(); // run once on load
       });
+
+      function copyConsensus(text, button) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            button.textContent = "Copied!";
+            setTimeout(() => (button.textContent = "Copy"), 1000);
+          })
+          .catch((err) => console.error("Error copying text: ", err));
+      }
     </script>
   </body>
 </html>

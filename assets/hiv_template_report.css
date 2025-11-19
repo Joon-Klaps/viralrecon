@@ -300,3 +300,50 @@ details pre {
   z-index: 1000;
   pointer-events: none;
 }
+
+.copy-button {
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border: 1px solid #1b2f40;
+  border-radius: 4px;
+  background-color: #97b5cf;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.copy-button:hover {
+  background-color: #e0e0e0;
+}
+
+.copy-button:active {
+  background-color: #11a3de;
+}
+
+.external-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.link-button {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #11a3de, #0e86b7);
+  box-shadow: 0 3px 6px rgba(17, 163, 222, 0.3);
+  transition: all 0.2s;
+}
+
+.link-button:hover {
+  background: linear-gradient(135deg, #0e86b7, #0c3c57);
+  box-shadow: 0 4px 8px rgba(17, 163, 222, 0.4);
+}
+
+.link-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(17, 163, 222, 0.3);
+}
