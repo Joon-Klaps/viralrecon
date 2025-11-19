@@ -399,7 +399,7 @@ _Consensus generation_
 Consensus sequences are generated using **iVar consensus**, which supports ambiguous nucleotide codes, a key feature for HIV resistance interpretation tools.  
 The parameters are defined as follows:
 
-- **Frequency threshold:** `0.8`: A variant is included in the consensus if its frequency reaches at least 80%. This means that variants with frequencies below 50% may still be incorporated if necessary to achieve the 80% threshold in a given position.
+- **Frequency threshold:** `0.9`: A variant is included in the consensus until a position's allele frequency is representing at least 90% of the allele frequency. This means that variants with frequencies below 50% may still be incorporated if necessary to achieve the 90% threshold in a given position.
 - **Minimum base quality:** `30`
 - **Minimum depth of coverage:** `50`
 - **Low coverage regions:**: Positions with fewer than 10 reads are masked as `N`.
@@ -409,13 +409,13 @@ The user can change this configuration by providing a custom config file with `-
 ```bash
 process {
     withName: 'IVAR_CONSENSUS' {
-        ext.args = '-t 0.8 -q 30 -m 50 -n N'
+        ext.args = '-t 0.9 -q 30 -m 50 -n N'
     }
     withName: 'IVAR_VARIANTS' {
         ext.args = '-t 0.01 -q 30 -m 50'
     }
     withName: 'RESISTANCE_REPORT' {
-        ext.args2 = '-t 0.8 -q 30 -m 50 -n N'
+        ext.args2 = '-t 0.9 -q 30 -m 50 -n N'
     }
 }
 ```
