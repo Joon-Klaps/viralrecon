@@ -305,12 +305,41 @@ def extract_hivdb_version(json_path):
             "publish_date": "unknown"
         }
 
+def remove_deprecated_drugs(mutation_scores, deprecated_drugs=None):
+    """
+    Remove entries for drugs that are no longer in use.
+    """
+    cleaned_scores = {}
+
+    for gene, mutations in mutation_scores.items():
+        cleaned_mutations = {}
+        for mutation_key, drugs in mutations.items():
+            cleaned_drugs = {drug: info for drug, info in drugs.items() if drug not in deprecated_drugs}
+            if cleaned_drugs:
+                cleaned_mutations[mutation_key] = cleaned_drugs
+        if cleaned_mutations:
+            cleaned_scores[gene] = cleaned_mutations
+
+    return cleaned_scores
+
+def parse_resistance_table(resistance_file, deprecated_drugs=None):
+    """
+    Parse resistance table CSV and remove deprecated drugs.
+    """
+    df_res = pd.read_csv(resistance_file)
+
+    if deprecated_drugs:
+        df_res = df_res[~df_res["Drug_abbr"].isin(deprecated_drugs)]
+    return df_res
+
 # ---------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------
 
 def main():
     args = parser_args()
+
+    deprecated_drugs = {"D4T", "DDI", "DPV", "FPV/r", "IDV/r", "NFV", "SQV/r", "TPV/r"}
 
     # Detect all files
     mutation_files = sorted(glob.glob(os.path.join(args.mutation_folder, "*_mutation_table.csv")))
@@ -374,16 +403,22 @@ def main():
         # --- Parse sequence summary
         seq_summary = parse_sequence_summary(json_file, subtype_info=subtype, ivar_params=args.ivar_consensus_params)
 
+        # --- Parse resistance table
+        df_res = parse_resistance_table(res_file, deprecated_drugs)
+
         # --- Extract mutation scoring from JSON
         mutation_scores_raw = extract_mutation_scoring(json_file)
         mutation_scores = sort_mutation_scores(mutation_scores_raw)
+
+        # Remove deprecated drugs from mutation_scores
+        mutation_scores = remove_deprecated_drugs(mutation_scores, deprecated_drugs)
 
         # Guardar toda la info en un dict
         all_samples_data.append({
             "sample_name": sample_name,
             "sequence_summary": seq_summary,
             "mutation_data": df_mut.to_dict(orient="records"),
-            "resistance_data": pd.read_csv(res_file).to_dict(orient="records"),
+            "resistance_data": df_res.to_dict(orient="records"),
             "consensus_genome": consensus_seq,
             "mutation_scores": mutation_scores
         })
