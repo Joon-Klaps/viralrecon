@@ -97,10 +97,10 @@
       {% endif %} {% endfor %}
 
       <!-- RESISTANCE -->
-      {% if gene_resistances %} {% for drug_class, class_label in [ ("PI", "Protease Inhibitors"), ("NRTI", "Nucleoside
-      Reverse Transcriptase Inhibitors"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors"), ("INSTI",
-      "Integrase Strand Transfer Inhibitors") ] %} {% set class_drugs = gene_resistances | selectattr("Drug_class",
-      "equalto", drug_class) | list %} {% if class_drugs %}
+      {% if gene_resistances %} {% for drug_class, class_label in [ ("PI", "Protease Inhibitors (PI)"), ("NRTI",
+      "Nucleoside Reverse Transcriptase Inhibitor (NRTI)"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors
+      (NNRTI)"), ("INSTI", "Integrase Strand Transfer Inhibitors (INSTI)") ] %} {% set class_drugs = gene_resistances |
+      selectattr("Drug_class", "equalto", drug_class) | list %} {% if class_drugs %}
       <h3>{{ class_label }}</h3>
       <hr />
       <div class="table-scroll">
