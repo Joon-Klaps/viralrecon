@@ -93,6 +93,7 @@
         <table>
           <thead>
             <tr>
+              <th>Drug Name</th>
               <th>Drug Abbreviation</th>
               <th>Resistance Status</th>
               <th>Resistance Score</th>
@@ -102,6 +103,7 @@
             {% for row in class_drugs %}
             <tr>
               <td>{{ row.Drug_name }}</td>
+              <td>{{ row.Drug_abbr }}</td>
               <td>{{ row.Res_status }}</td>
               <td>{{ row.Total_score }}</td>
             </tr>
