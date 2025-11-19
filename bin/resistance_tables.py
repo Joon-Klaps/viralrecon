@@ -269,6 +269,36 @@ def parse_resistance_json(sample_name, json_path):
 
     rows = []
 
+    # Dictionary to map abbreviations to full drug names
+    drug_fullnames = {
+        "ATV/r": "atazanavir/r",
+        "DRV/r": "darunavir/r",
+        "LPV/r": "lopinavir/r",
+        "FPV/r": "fosamprenavir/r",
+        "IDV/r": "indinavir/r",
+        "NFV": "nelfinavir",
+        "SQV/r": "saquinavir/r",
+        "TPV/r": "tipranavir/r",
+        "ABC": "abacavir",
+        "AZT": "zidovudine",
+        "FTC": "emtricitabine",
+        "3TC": "lamivudine",
+        "TDF": "tenofovir",
+        "D4T": "stavudine",
+        "DDI": "didanosine",
+        "DOR": "doravirine",
+        "EFV": "efavirenz",
+        "ETR": "etravirine",
+        "NVP": "nevirapine",
+        "RPV": "rilpivirine",
+        "DPV": "dapivirine",
+        "BIC": "bictegravir",
+        "CAB": "cabotegravir",
+        "DTG": "dolutegravir",
+        "EVG": "elvitegravir",
+        "RAL": "raltegravir",
+    }
+
     if "drugResistance" not in data:
         logger.warning(f"No 'drugResistance' field found in {json_path}")
         return pd.DataFrame()
@@ -278,14 +308,18 @@ def parse_resistance_json(sample_name, json_path):
 
         for drugscore in entry.get("drugScores", []):
             drug_class = drugscore.get("drugClass", {}).get("name", "NA")
-            drug_name = drugscore.get("drug", {}).get("displayAbbr", "NA")
+            drug_abbr = drugscore.get("drug", {}).get("displayAbbr", "NA")
             total_score = drugscore.get("score", "NA")
             res_status = drugscore.get("text", "NA")
+
+            # Map to full drug name (NA if abbreviation not found)
+            drug_name = drug_fullnames.get(drug_abbr, "NA")
 
             row = {
                 "Sample_name": sample_name,
                 "Gene_name": gene_name,
                 "Drug_class": drug_class,
+                "Drug_abbr": drug_abbr,
                 "Drug_name": drug_name,
                 "Total_score": total_score,
                 "Res_status": res_status,
