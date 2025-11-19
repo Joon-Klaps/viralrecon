@@ -331,8 +331,20 @@ def main(args=None):
 
     mutation_df = integrate_codfreq_info(sierralocal_df, codfreq_df)
 
+    # Load sierra-local JSON files
+    sierralocal_df = parse_sierra_json(args.sample_name, args.sierralocal_file)
+
+    # Load codfreq files
+    codfreq_df = parse_codfreq(args.codfreq_file)
+
+    # Integrate codfreq values
+    mutation_df = integrate_codfreq_info(sierralocal_df, codfreq_df)
+
+    # Filtrar el DataFrame para eliminar esas filas
+    mutation_df = mutation_df[~((mutation_df["Mutations"].str[-1] == "X") & (mutation_df["Mutation_AF"] == 0))]
+
     if mutation_df.empty:
-        logger.warning(f"No mutations found for sample {args.sample_name}")
+        logger.warning(f"No mutations found for sample {args.sample_name} or no valid codfreq data.")
 
     mutation_df.to_csv(args.output_mutation_file, index=False, encoding="utf-8-sig")
     print(f"✅ Resistance table saved to {args.output_mutation_file}")
