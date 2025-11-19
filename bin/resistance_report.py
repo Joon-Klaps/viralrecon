@@ -179,7 +179,7 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
         summary_lines.append(line)
 
     # --- Add subtype info from Nextclade if provided
-    summary_lines.append(f"Subtype: {subtype_info}")
+    summary_lines.append(("subtype", subtype_info))
 
     # --- Parse ivar consensus parameters if provided
     # Extract numeric values with regex
@@ -187,7 +187,6 @@ def parse_sequence_summary(json_path, subtype_info=None, ivar_params=None):
     match_q = re.search(r"-q\s*(\d+)", ivar_params)
     match_m = re.search(r"-m\s*(\d+)", ivar_params)
 
-    # Default values in case something is missing
     t_val = float(match_t.group(1))
     q_val = int(match_q.group(1))
     m_val = int(match_m.group(1))

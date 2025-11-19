@@ -36,9 +36,19 @@
 
     <div class="sequence-summary-info">
       <ul>
-        {% for line in sample.sequence_summary %}
+        {% for line in sample.sequence_summary %} {% if line is iterable and line[0] == "subtype" %}
+        <li class="subtype-line">
+          Subtype: <strong>{{ line[1] }}</strong>
+          <span
+            class="info-icon"
+            title="This subtype was obtained using Nextclade software (https://clades.nextstrain.org) with the complete consensus sequence. It can be visualized in the Nextclade web app when copy/pasting the consensus at the end of the sample."
+          >
+            ⓘ
+          </span>
+        </li>
+        {% else %}
         <li>{{ line }}</li>
-        {% endfor %}
+        {% endif %} {% endfor %}
       </ul>
     </div>
 

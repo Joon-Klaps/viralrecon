@@ -257,3 +257,46 @@ details pre {
   font-size: 0.95em;
   color: #1b2f40;
 }
+
+/* Subtype info icon styles */
+.subtype-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  color: #1b2f40;
+  cursor: help;
+  position: relative;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Tooltip styling */
+.info-icon::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  z-index: 1000;
+  pointer-events: none;
+}
