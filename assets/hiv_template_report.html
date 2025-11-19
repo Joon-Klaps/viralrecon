@@ -10,8 +10,12 @@
   <body>
     <!-- TITLE -->
     <div class="report-title">HIV Drug Resistance and Mutation Report</div>
-
-    <!-- ADDITIONAL LINES BELOW TITLE -->
+    <p style="margin-top: 10px; font-size: 0.9em; color: #003366">
+      ⚠️ Disclaimer: This report is
+      <strong>not generated with <a href="https://hivdb.stanford.edu/hivdb/" target="_blank">HIVdb</a></strong
+      >, but it is inspired by it.
+    </p>
+    <!-- ADDITIONAL INFORMATION -->
     <div class="report-subtitle">
       Database version: {{ hivdb_version.db_version }}<br />
       Database publish date: {{ hivdb_version.publish_date }}<br />
@@ -200,8 +204,13 @@
         <img src="data:image/png;base64,{{ logo_b64 }}" style="height: 60px" />
       </div>
       <p>
-        Generated automatically from <a href="https://github.com/nf-core/viralrecon">nf-core/viralrecon</a> using
-        sierra-local and codfreq data.
+        Generated automatically from <a href="https://github.com/nf-core/viralrecon">nf-core/viralrecon</a> using data
+        obtained from <a href="https://github.com/PoonLab/sierra-local">sierra-local</a> and a modified version of
+        <a href="https://github.com/hivdb/codfreq">codfreq</a>. This report was created during a collaboration between
+        the
+        <a href="https://www.isciii.es/ub/unidad">Bioinformatics Unit of Instituto de Salud Carlos III (BU-ISCIII)</a>
+        and both <a href="https://ki.se/">Karolinska Institutet (KI)</a> and
+        <a href="https://www.karolinska.se/lab">Karolinska Universitetslaboratoriet (KUL)</a>.
       </p>
     </div>
 
