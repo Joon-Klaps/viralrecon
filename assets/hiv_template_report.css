@@ -4,15 +4,23 @@ body {
   background-color: #f7faff;
 }
 
-/* Header */
-.header {
-  background-color: #11a3de;
-  color: white;
-  padding: 15px 25px;
-  font-weight: bold;
-  font-size: 1.8em;
-  border-radius: 4px;
-  margin-bottom: 30px;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dropdown menu */
+#sample-selector {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 1000;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #97b5cf;
+  background-color: #f0f6fc;
+  box-shadow: 0 2px 6px rgba(17, 163, 222, 0.25);
+  font-size: 14px;
 }
 
 /* Report Title */
@@ -24,7 +32,6 @@ body {
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
-
   background: #0e86b7;
   padding: 25px 20px;
   border-radius: 12px;
@@ -42,6 +49,17 @@ body {
   margin: 10px 0 25px 0;
   box-shadow: 0 3px 6px rgba(17, 163, 222, 0.2);
   line-height: 1.4;
+}
+
+/* Header */
+.header {
+  background-color: #11a3de;
+  color: white;
+  padding: 15px 25px;
+  font-weight: bold;
+  font-size: 1.8em;
+  border-radius: 4px;
+  margin-bottom: 30px;
 }
 
 /* Section titles */
@@ -80,15 +98,49 @@ body {
   color: #1b2f40;
 }
 
+/* Subtype info icon styles */
+.subtype-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  color: #1b2f40;
+  cursor: help;
+  position: relative;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Color legend */
+.color-legend {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 12px 25px;
+  margin: 20px auto 5px auto;
+  border-radius: 3px;
+  width: 95%;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
 /* Content block */
 .content-block {
   width: 90%;
   margin: 0 auto 20px auto;
 }
 
-table {
-  width: auto;
-  border-collapse: collapse;
+/* Table styles */
+.table-container {
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .table-scroll {
@@ -98,6 +150,11 @@ table {
   overflow-x: auto;
   margin: 10px 0 20px 0;
   border: 1px solid #97b5cf;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
 }
 
 th,
@@ -143,6 +200,22 @@ th.sorted-desc::after {
   color: #083a57;
 }
 
+/* Row highlighting */
+.apobec-drm-row {
+  background-color: #ffcccc !important;
+  border-left: 4px solid #ff0000;
+}
+
+.sdrm-row {
+  background-color: #ffedd5 !important;
+  border-left: 4px solid #ff8c00;
+}
+
+.apobec-drm-row.sdrm-row {
+  background-color: #ffcccc !important;
+  border-left: 4px solid #ff0000;
+}
+
 /* Drug class headings */
 .content-block h3 {
   margin-top: 25px;
@@ -154,76 +227,6 @@ th.sorted-desc::after {
   border: none;
   border-top: 1px solid #97b5cf;
   margin-bottom: 10px;
-}
-
-/* Footer */
-.footer {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #97b5cf;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.footer img {
-  height: 60px;
-  margin-right: auto;
-}
-
-.footer p {
-  text-align: center;
-  flex: 1;
-  color: #4f6b82;
-  font-size: 0.9em;
-  margin-top: 50px;
-}
-
-/* Dropdown menu */
-#sample-selector {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  z-index: 1000;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #97b5cf;
-  background-color: #f0f6fc;
-  box-shadow: 0 2px 6px rgba(17, 163, 222, 0.25);
-  font-size: 14px;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Consensus genome */
-details {
-  margin-bottom: 20px;
-}
-
-details summary {
-  cursor: pointer;
-  font-weight: bold;
-  padding: 5px 10px;
-  background-color: #e0edf9;
-  border-radius: 4px;
-  border: 1px solid #97b5cf;
-  color: #083a57;
-}
-
-details pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  max-height: 400px;
-  overflow-y: auto;
-  border: 1px solid #97b5cf;
-  padding: 10px;
-  background-color: #f7faff;
-  margin-top: 5px;
 }
 
 /* Mutation comments */
@@ -258,47 +261,30 @@ details pre {
   color: #1b2f40;
 }
 
-/* Subtype info icon styles */
-.subtype-line {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+/* Consensus genome */
+details {
+  margin-bottom: 20px;
 }
 
-.info-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 8px;
-  height: 8px;
-  color: #1b2f40;
-  cursor: help;
-  position: relative;
-  font-size: 12px;
-  line-height: 1;
-  vertical-align: middle;
-}
-
-/* Tooltip styling */
-.info-icon::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 8px 12px;
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: #e0edf9;
   border-radius: 4px;
-  font-size: 0.8em;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.3s,
-    visibility 0.3s;
-  z-index: 1000;
-  pointer-events: none;
+  border: 1px solid #97b5cf;
+  color: #083a57;
+}
+
+details pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #97b5cf;
+  padding: 10px;
+  background-color: #f7faff;
+  margin-top: 5px;
 }
 
 .copy-button {
@@ -348,38 +334,26 @@ details pre {
   box-shadow: 0 2px 4px rgba(17, 163, 222, 0.3);
 }
 
-.color-legend {
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  padding: 12px 25px;
-  margin: 20px auto 5px auto;
-  border-radius: 3px;
-  width: 95%;
-  box-sizing: border-box;
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #97b5cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer img {
+  height: 60px;
+  margin-right: auto;
+}
+
+.footer p {
+  text-align: center;
+  flex: 1;
+  color: #4f6b82;
   font-size: 0.9em;
-}
-
-.apobec-drm-row {
-  background-color: #ffcccc !important;
-  border-left: 4px solid #ff0000;
-}
-
-.sdrm-row {
-  background-color: #ffedd5 !important;
-  border-left: 4px solid #ff8c00;
-}
-
-.apobec-drm-row.sdrm-row {
-  background-color: #ffcccc !important;
-  border-left: 4px solid #ff0000;
-}
-
-.table-container {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-/* Ensure the table expands correctly */
-.table-scroll {
-  overflow-x: auto;
+  margin-top: 50px;
 }
