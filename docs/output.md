@@ -633,7 +633,7 @@ iVar outputs a tsv format which is not compatible with downstream analysis such 
 
 </details>
 
-[BCFtools](http://samtools.github.io/bcftools/bcftools.html) can be used to call variants directly from BAM alignment files. It is a set of utilities that manipulate variant calls in [VCF](https://vcftools.github.io/specs.html) and its binary counterpart BCF format. BCFTools is used in the variant calling and _de novo_ assembly steps of this pipeline to obtain basic statistics from the VCF output.
+[BCFtools](http://samtools.github.io/bcftools/bcftools.html) can be used to call variants directly from BAM alignment files. It is a set of utilities that manipulate variant calls in [VCF](https://vcftools.github.io/specs.html) and its binary counterpart BCF format. BCFTools is used in the variant calling and consensus genome generation steps of this pipeline and also to obtain basic statistics from the VCF output.
 
 ![MultiQC - BCFTools variant counts](images/mqc_bcftools_stats_plot.png)
 
