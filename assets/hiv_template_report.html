@@ -62,7 +62,15 @@
     <div class="summary-title">
       <h2>Drug resistance interpretation: {{ gene }}</h2>
     </div>
-
+    <div class="color-legend">
+      <strong>Color legend:</strong>
+      <span style="background-color: #ffcccc; padding: 2px 8px; margin: 0 5px; border-left: 3px solid #ff0000"
+        >APOBEC DRM</span
+      >
+      <span style="background-color: #ffedd5; padding: 2px 8px; margin: 0 5px; border-left: 3px solid #ff8c00"
+        >SDRM</span
+      >
+    </div>
     <div class="content-block">
       <!-- MUTATIONS -->
       {% set mutation_labels = [] %} {% if gene == "PR" %} {% set mutation_labels = [ ("Major", "PI Major Mutations"),
@@ -85,7 +93,7 @@
           </thead>
           <tbody>
             {% for row in mut_list %}
-            <tr>
+            <tr class="{% if row.isApobecDRM %}apobec-drm-row{% endif %} {% if row.isSDRM %}sdrm-row{% endif %}">
               <td>{{ row.Mutations }}</td>
               <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
               <td>{{ row.Coverage }}</td>
