@@ -82,25 +82,61 @@
       <p><strong>{{ mut_label }}:</strong> {% if not mut_list %}None{% endif %}</p>
 
       {% if mut_list %}
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Mutation</th>
-              <th>AF (%)</th>
-              <th>Coverage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for row in mut_list %}
-            <tr class="{% if row.isApobecDRM %}apobec-drm-row{% endif %} {% if row.isSDRM %}sdrm-row{% endif %}">
-              <td>{{ row.Mutations }}</td>
-              <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
-              <td>{{ row.Coverage }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <div class="table-container">
+        <div class="expand-toggle">
+          <button
+            class="expand-button"
+            onclick="toggleTable(this)"
+            data-target="table-{{ gene }}-{{ mut_type | lower }}"
+          >
+            ▶ Expand
+          </button>
+        </div>
+        <div class="table-scroll">
+          <table id="table-{{ gene }}-{{ mut_type | lower }}">
+            <thead>
+              <tr>
+                <th>Mutation</th>
+                <th>AF (%)</th>
+                <th>Coverage</th>
+                <!-- Columnas adicionales que se mostrarán al expandir -->
+                <th class="additional-columns">Type</th>
+                <th class="additional-columns">Comments</th>
+                <th class="additional-columns">Insertion</th>
+                <th class="additional-columns">Deletion</th>
+                <th class="additional-columns">APOBEC</th>
+                <th class="additional-columns">APOBEC DRM</th>
+                <th class="additional-columns">Unusual</th>
+                <th class="additional-columns">SDRM</th>
+                <th class="additional-columns">Stop</th>
+                <th class="additional-columns">INDEL>5%</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in mut_list %}
+              <tr class="{% if row.isApobecDRM %}apobec-drm-row{% endif %} {% if row.isSDRM %}sdrm-row{% endif %}">
+                <td>{{ row.Mutations }}</td>
+                <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
+                <td>{{ row.Coverage }}</td>
+                <!-- Columnas adicionales -->
+                <td class="additional-columns">{{ row.Mutations_type }}</td>
+                <td class="additional-columns">
+                  {{ row.Mutations_comments if row.Mutations_comments and row.Mutations_comments|string|lower not in
+                  ["nan", "none", ""] else "-" }}
+                </td>
+                <td class="additional-columns">{{ "Yes" if row.isInsertion else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.isDeletion else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.isApobecMutation else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.isApobecDRM else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.isUnusual else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.isSDRM else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row.hasStop else "No" }}</td>
+                <td class="additional-columns">{{ "Yes" if row['INDEL>5%'] else "No" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
       {% endif %} {% endfor %}
 
@@ -327,6 +363,19 @@
             setTimeout(() => (button.textContent = "Copy"), 1000);
           })
           .catch((err) => console.error("Error copying text: ", err));
+      }
+      function toggleTable(button) {
+        const targetId = button.getAttribute("data-target");
+        const table = document.getElementById(targetId);
+        const isExpanded = table.classList.contains("table-expanded");
+
+        if (isExpanded) {
+          table.classList.remove("table-expanded");
+          button.innerHTML = "▶ Expand";
+        } else {
+          table.classList.add("table-expanded");
+          button.innerHTML = "▼ Collapse";
+        }
       }
     </script>
   </body>

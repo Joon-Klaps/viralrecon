@@ -373,3 +373,45 @@ details pre {
   background-color: #ffcccc !important;
   border-left: 4px solid #ff0000;
 }
+
+/* Expand button style */
+.expand-button {
+  background: #003366;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.expand-button:hover {
+  background: #00509e;
+}
+
+.table-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.expand-toggle {
+  position: absolute;
+  right: 10px;
+  top: -30px;
+}
+
+/* Expandable columns */
+.additional-columns {
+  display: none;
+}
+
+.table-expanded .additional-columns {
+  display: table-cell;
+}
+
+/* Ensure the table expands correctly */
+.table-scroll {
+  overflow-x: auto;
+}
