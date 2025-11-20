@@ -211,9 +211,43 @@ th.sorted-desc::after {
   border-left: 4px solid #ff8c00;
 }
 
-.apobec-drm-row.sdrm-row {
+.unusual-row {
+  background-color: #d5f5ff !important;
+  border-left: 4px solid #00ccff;
+}
+
+.apobec-drm-row.sdrm-row.unusual-row {
   background-color: #ffcccc !important;
   border-left: 4px solid #ff0000;
+}
+
+/* Expand button for mutation tables */
+.expand-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #0c3c57;
+  background: #0e86b7;
+  box-shadow: 0 3px 6px rgba(17, 163, 222, 0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 5px;
+}
+
+.expand-btn:hover {
+  background: #0c3c57;
+  box-shadow: 0 4px 8px rgba(17, 163, 222, 0.4);
+}
+
+.mutation-table tr > :nth-child(n + 4) {
+  display: none;
+}
+.mutation-table.expand tr > :nth-child(n + 4) {
+  display: table-cell;
 }
 
 /* Drug class headings */

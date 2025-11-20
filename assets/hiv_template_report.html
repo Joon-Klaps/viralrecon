@@ -70,6 +70,9 @@
       <span style="background-color: #ffedd5; padding: 2px 8px; margin: 0 5px; border-left: 3px solid #ff8c00"
         >SDRM</span
       >
+      <span style="background-color: #d5f5ff; padding: 2px 8px; margin: 0 5px; border-left: 3px solid #00ccff"
+        >Unusual</span
+      >
     </div>
     <div class="content-block">
       <!-- MUTATIONS -->
@@ -82,10 +85,22 @@
       <p><strong>{{ mut_label }}:</strong> {% if not mut_list %}None{% endif %}</p>
 
       {% if mut_list %}
+      <button
+        class="expand-btn"
+        onclick="
+            const table = document.getElementById('table-{{ sample.sample_name | replace(' ', '_') }}-{{ gene }}-{{ mut_type | lower }}');
+            table.classList.toggle('expand');
+            this.textContent = table.classList.contains('expand') ? 'Collapse' : 'Expand';
+          "
+      >
+        Expand
+      </button>
       <div class="table-container">
-        <div class="expand-toggle"></div>
         <div class="table-scroll">
-          <table id="table-{{ gene }}-{{ mut_type | lower }}">
+          <table
+            class="mutation-table"
+            id="table-{{ sample.sample_name | replace(' ', '_') }}-{{ gene }}-{{ mut_type | lower }}"
+          >
             <thead>
               <tr>
                 <th>Mutation</th>
@@ -105,7 +120,9 @@
             </thead>
             <tbody>
               {% for row in mut_list %}
-              <tr class="{% if row.isApobecDRM %}apobec-drm-row{% endif %} {% if row.isSDRM %}sdrm-row{% endif %}">
+              <tr
+                class="{% if row.isApobecDRM %}apobec-drm-row{% endif %} {% if row.isSDRM %}sdrm-row{% endif %} {% if row.isUnusual %}unusual-row{% endif %}"
+              >
                 <td>{{ row.Mutations }}</td>
                 <td>{{ (row.Mutation_AF | float * 100) | round(2) }}</td>
                 <td>{{ row.Coverage }}</td>
@@ -138,7 +155,7 @@
       <h3>{{ class_label }}</h3>
       <hr />
       <div class="table-scroll">
-        <table>
+        <table class="resistance-table">
           <thead>
             <tr>
               <th>Drug Name</th>
