@@ -9,6 +9,8 @@ include { BAM2CODFREQ                                        } from '../../../mo
 include { RESISTANCE_TABLES                                  } from '../../../modules/local/resistance_tables'
 include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
 include { ADDITIONAL_ANNOTATION as HIV_RESISTANCE_ANNOTATION } from '../additional_annotation'
+include { LIFTOFF as CONSENSUS_LIFTOFF                       } from '../../../modules/nf-core/liftoff'
+include { AGAT_SPEXTRACTSEQUENCES                            } from '../../../modules/nf-core/agat/spextractsequences'
 
 workflow HIV_RESISTANCE {
     take:
@@ -75,6 +77,14 @@ workflow HIV_RESISTANCE {
     )
 
     ch_versions = ch_versions.mix(BAM2CODFREQ.out.versions)
+
+    CONSENSUS_LIFTOFF (
+        consensus,
+        codfreq_sequence,
+        codfreq_annotation,
+        []
+    )
+    ch_versions = ch_versions.mix(CONSENSUS_LIFTOFF.out.versions)
 
     RESISTANCE_TABLES(
         SIERRALOCAL.out.json.join(BAM2CODFREQ.out.codfreq, by: [0])
