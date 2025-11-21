@@ -10,6 +10,7 @@ import base64
 import functools
 import pandas as pd
 from datetime import date
+from Bio import SeqIO
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
@@ -58,6 +59,20 @@ def parser_args(args=None):
         type=str,
         default="./consensus",
         help="Folder containing consensus files (default: ./consensus)",
+    )
+    parser.add_argument(
+        "-gf",
+        "--gff_folder",
+        type=str,
+        required=True,
+        help="Folder containing GFF files with gene coordinates (required).",
+    )
+    parser.add_argument(
+        "-ig",
+        "--interest_genes",
+        type=str,
+        required=True,
+        help="List of genes to extract, organized into groups. Genes separated by commas (',') will be included in the same output FASTA file. Gene groups separated by semicolons (';') will produce separate FASTA files.",
     )
     parser.add_argument(
         "-i",
@@ -331,6 +346,152 @@ def parse_resistance_table(resistance_file, deprecated_drugs=None):
         df_res = df_res[~df_res["Drug_abbr"].isin(deprecated_drugs)]
     return df_res
 
+def parse_interest_groups(interest_string):
+    """
+    Parse interest genes string into groups.
+    Example:
+        "PR,RT;IN" -> [["PR", "RT"], ["IN"]]
+        "PR;RT;IN" -> [["PR"], ["RT"], ["IN"]]
+        "PR,RT,IN" -> [["PR", "RT", "IN"]]
+    """
+    groups = []
+    for group in interest_string.split(";"):
+        genes = [g.strip() for g in group.split(",")]
+        groups.append(genes)
+    return groups
+
+
+def read_gff_coordinates(gff_file):
+    """
+    Read GFF file and return a dict with gene_name -> (start, end, strand)
+    Only parse entries with type 'gene'.
+    """
+    coords = {}
+
+    with open(gff_file) as fh:
+        for line in fh:
+            if line.startswith("#"):
+                continue
+
+            fields = line.strip().split("\t")
+            if len(fields) < 9:
+                continue
+
+            feature_type = fields[2]
+            if feature_type != "gene":
+                continue
+
+            start = int(fields[3])
+            end = int(fields[4])
+            strand = fields[6]
+            attributes = fields[8]
+
+            # Extract gene name from attributes (Name=XXXX)
+            gene_name = None
+            for attr in attributes.split(";"):
+                if attr.startswith("Name="):
+                    gene_name = attr.replace("Name=", "")
+                    break
+
+            if gene_name:
+                coords[gene_name] = (start, end, strand)
+
+    return coords
+
+
+def extract_sequence(seq_record, start, end, strand):
+    """
+    Extract subsequence from a SeqRecord considering strand.
+    GFF is 1-based inclusive.
+    """
+    subseq = seq_record.seq[start - 1:end]
+
+    if strand == "-":
+        subseq = subseq.reverse_complement()
+
+    return subseq
+
+def extract_sequence(seq_record, start, end, strand):
+    """Extracts a subsequence from a SeqRecord using 1-based inclusive coordinates."""
+    subseq = seq_record.seq[start-1:end]
+    if strand == "-":
+        subseq = subseq.reverse_complement()
+    return subseq
+
+
+def extract_protein_sequences(seq_record, coordinates, gene_groups):
+    """
+    Extract sequences for groups of genes defined in gene_groups.
+
+    Parameters
+    ----------
+    seq_record : Bio.SeqRecord
+        Reference genome sequence loaded from FASTA.
+
+    coordinates : dict
+        Mapping of gene -> (start, end, strand) extracted from GFF.
+
+    gene_groups : list of list
+        List where each element is a group of genes to be extracted together.
+        Example: [["PR","RT"], ["IN"]]
+
+    Returns
+    -------
+    list of dicts
+        [
+            {
+                "group_index": int,
+                "genes": [list of genes],
+                "fasta": "fasta block as string",
+                "entries": [
+                    {
+                        "gene": str,
+                        "start": int,
+                        "end": int,
+                        "strand": "+" or "-",
+                        "sequence": "ATCG..."
+                    }
+                ]
+            },
+            ...
+        ]
+    """
+
+    protein_sequences = []
+
+    for group_index, group in enumerate(gene_groups, start=1):
+        group_entries = []
+
+        for gene in group:
+            if gene not in coordinates:
+                print(f"Warning: gene {gene} not found in GFF")
+                continue
+
+            start, end, strand = coordinates[gene]
+            subseq = extract_sequence(seq_record, start, end, strand)
+
+            group_entries.append({
+                "gene": gene,
+                "start": start,
+                "end": end,
+                "strand": strand,
+                "sequence": str(subseq)
+            })
+
+        fasta_block = "\n".join(
+            f">{entry['gene']}|{entry['start']}-{entry['end']}|strand={entry['strand']}\n{entry['sequence']}"
+            for entry in group_entries
+        )
+
+        protein_sequences.append({
+            "group_index": group_index,
+            "genes": group,
+            "fasta": fasta_block,
+            "entries": group_entries
+        })
+
+    return protein_sequences
+
 # ---------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------
@@ -346,6 +507,7 @@ def main():
     json_files = sorted(glob.glob(os.path.join(args.sierralocal_folder, "*_resistance.json")))
     nextclade_files = sorted(glob.glob(os.path.join(args.nextclade_folder, "*.csv")))
     consensus_files = sorted(glob.glob(os.path.join(args.consensus_folder, "*.fa")))
+    gff_files = sorted(glob.glob(os.path.join(args.gff_folder, "*.gff")))
 
     # Build paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -387,6 +549,8 @@ def main():
         json_file = next((j for j in json_files if sample_name in j), None)
         nextclade_file = next((n for n in nextclade_files if sample_name in n), None)
         consensus_file = next((c for c in consensus_files if sample_name in c), None)
+        gff_file = next((g for g in gff_files if sample_name in g), None)
+
         consensus_seq = None
         if consensus_file and os.path.exists(consensus_file):
             with open(consensus_file, "r", encoding="utf-8") as f:
@@ -412,6 +576,26 @@ def main():
         # Remove deprecated drugs from mutation_scores
         mutation_scores = remove_deprecated_drugs(mutation_scores, deprecated_drugs)
 
+        # Parse gene groups
+        gene_groups = parse_interest_groups(args.interest_genes)
+
+        print("gene_groups:")
+        import pdb; pdb.set_trace()
+
+        # Read GFF coordinates
+        coordinates = read_gff_coordinates(args.gff)
+        print("gene_groups:")
+        import pdb; pdb.set_trace()
+
+        # Read FASTA
+        seq_record = next(SeqIO.parse(args.fasta, "fasta"))
+        print("gene_groups:")
+        import pdb; pdb.set_trace()
+
+        protein_sequences = extract_protein_sequences(seq_record, coordinates, gene_groups)
+        print("gene_groups:")
+        import pdb; pdb.set_trace()
+
         # Guardar toda la info en un dict
         all_samples_data.append({
             "sample_name": sample_name,
@@ -419,7 +603,8 @@ def main():
             "mutation_data": df_mut.to_dict(orient="records"),
             "resistance_data": df_res.to_dict(orient="records"),
             "consensus_genome": consensus_seq,
-            "mutation_scores": mutation_scores
+            "mutation_scores": mutation_scores,
+            "protein_sequences": protein_sequences
         })
 
     # Ordenar alfabéticamente por nombre de muestra

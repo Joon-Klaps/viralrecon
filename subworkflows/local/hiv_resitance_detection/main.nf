@@ -10,7 +10,6 @@ include { RESISTANCE_TABLES                                  } from '../../../mo
 include { RESISTANCE_REPORT                                  } from '../../../modules/local/resistance_report'
 include { ADDITIONAL_ANNOTATION as HIV_RESISTANCE_ANNOTATION } from '../additional_annotation'
 include { LIFTOFF as CONSENSUS_LIFTOFF                       } from '../../../modules/nf-core/liftoff'
-include { AGAT_SPEXTRACTSEQUENCES                            } from '../../../modules/nf-core/agat/spextractsequences'
 
 workflow HIV_RESISTANCE {
     take:
@@ -33,13 +32,14 @@ workflow HIV_RESISTANCE {
     SIERRALOCAL (consensus)
 
     ch_versions = ch_versions.mix(SIERRALOCAL.out.versions)
+    
+    codfreq_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
+    codfreq_annotation = file("$projectDir/assets/codfreq.gff", checkIfExists: true)
 
     if (params.genome != 'codfreq') {
 
         // Not setted as param because we can't changed these files for codfreq and sierralocal to work toghether.
         // Using the ones in assets instead of the ones in test-datasets to avoid download issues when running offline
-        codfreq_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
-        codfreq_annotation = file("$projectDir/assets/codfreq.gff", checkIfExists: true)
         LIFTOFF (
             fasta.map { f -> [ [id: f.baseName], f ] },
             codfreq_sequence,
@@ -97,7 +97,8 @@ workflow HIV_RESISTANCE {
         RESISTANCE_TABLES.out.mutation_csv.collect{it[1]},
         RESISTANCE_TABLES.out.resistance_csv.collect{it[1]},
         nextclade_report.collect{it[1]},
-        consensus.collect{it[1]}
+        consensus.collect{it[1]},
+        CONSENSUS_LIFTOFF.out.gff3.collect{it[1]}
     )
 
     ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)

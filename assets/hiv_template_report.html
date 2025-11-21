@@ -255,6 +255,33 @@
         <pre>{{- sample.consensus_genome -}}</pre>
       </details>
 
+      <!-- PROTEIN SEQUENCES -->
+      {% if sample.protein_sequences %}
+      <div class="summary-title">
+        <h2>Extracted Protein Sequences</h2>
+      </div>
+
+      {% for group in sample.protein_sequences %}
+      <div class="content-block">
+        <details>
+          <summary>
+            Genes: {{ group.genes | join(", ") }}
+            <button
+              type="button"
+              class="copy-button"
+              onclick="navigator.clipboard.writeText(`{{ group.fasta | replace('`', '\\`') }}`)"
+              style="margin-left: 10px"
+            >
+              Copy to clipboard
+            </button>
+          </summary>
+
+          <pre>{{ group.fasta }}</pre>
+        </details>
+      </div>
+      {% endfor %}
+      {% endif %}
+
       <!-- Buttons to external resources -->
       <div class="external-buttons">
         <a href="https://hivdb.stanford.edu/hivdb/" target="_blank" class="link-button">Go to HIVdb</a>

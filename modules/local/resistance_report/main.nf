@@ -3,8 +3,8 @@ process RESISTANCE_REPORT {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ab/abf1008542dc33f026e7c9ced0760345fbf2ad6a18ca54e644236fd6ad95f030/data' :
-        'community.wave.seqera.io/library/jinja2_pandas_python:5f56d3297f91b6d9' }"
+        'xx' :
+        'xx' }"
 
     input:
     path sierralocal_json, stageAs: "sierralocal_json/*"
@@ -12,6 +12,7 @@ process RESISTANCE_REPORT {
     path resistance_csv  , stageAs: "resistance_tables/*"
     path nextclade_csv   , stageAs: "nextclade_reports/*"
     path consensus       , stageAs: "consensus/*"
+    path annotation      , stageAs: "gff/*"
 
     output:
     path("*.html")      , emit: mutation_csv
@@ -32,6 +33,7 @@ process RESISTANCE_REPORT {
         --resistance_folder ./resistance_tables \\
         --nextclade_folder ./nextclade_reports \\
         --consensus_folder ./consensus \\
+        --gff_folder ./gff \\
         --ivar_consensus_params "'${ivar_consensus_params}'" \\
         --output_html ${prefix}.html \\
         $args
