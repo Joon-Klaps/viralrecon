@@ -33,7 +33,7 @@ workflow PREPARE_GENOME_ILLUMINA {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // Uncompress genome fasta file if required
@@ -45,13 +45,13 @@ workflow PREPARE_GENOME_ILLUMINA {
         ch_fasta    = GUNZIP_FASTA.out.gunzip.map { it[1] }
         ch_versions = ch_versions.mix(GUNZIP_FASTA.out.versions)
     } else {
-        ch_fasta = Channel.value(file(fasta))
+        ch_fasta = channel.value(file(fasta))
     }
 
     //
     // Uncompress GFF annotation file
     //
-    ch_gff = Channel.empty()
+    ch_gff = channel.empty()
     if (gff) {
         if (gff.endsWith('.gz')) {
             GUNZIP_GFF (
@@ -60,7 +60,7 @@ workflow PREPARE_GENOME_ILLUMINA {
             ch_gff      = GUNZIP_GFF.out.gunzip.map { it[1] }
             ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
         } else {
-            ch_gff = Channel.value(file(gff))
+            ch_gff = channel.value(file(gff))
         }
     }
 
@@ -77,7 +77,7 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Prepare reference files required for variant calling
     //
-    ch_kraken2_db = Channel.empty()
+    ch_kraken2_db = channel.empty()
     if (!params.skip_kraken2) {
         if (params.kraken2_db) {
             if (params.kraken2_db.endsWith('.tar.gz')) {
@@ -87,7 +87,7 @@ workflow PREPARE_GENOME_ILLUMINA {
                 ch_kraken2_db = UNTAR_KRAKEN2_DB.out.untar.map { it[1] }
                 ch_versions   = ch_versions.mix(UNTAR_KRAKEN2_DB.out.versions)
             } else {
-                ch_kraken2_db = Channel.value(file(params.kraken2_db))
+                ch_kraken2_db = channel.value(file(params.kraken2_db))
             }
         } else {
             KRAKEN2_BUILD (
@@ -101,9 +101,9 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Prepare files required for amplicon data
     //
-    ch_primer_bed           = Channel.empty()
-    ch_primer_fasta         = Channel.empty()
-    ch_primer_collapsed_bed = Channel.empty()
+    ch_primer_bed           = channel.empty()
+    ch_primer_fasta         = channel.empty()
+    ch_primer_collapsed_bed = channel.empty()
     if (params.protocol == 'amplicon') {
         if (primer_bed) {
             if (primer_bed.endsWith('.gz')) {
@@ -113,7 +113,7 @@ workflow PREPARE_GENOME_ILLUMINA {
                 ch_primer_bed = GUNZIP_PRIMER_BED.out.gunzip.map { it[1] }
                 ch_versions   = ch_versions.mix(GUNZIP_PRIMER_BED.out.versions)
             } else {
-                ch_primer_bed = Channel.value(file(primer_bed))
+                ch_primer_bed = channel.value(file(primer_bed))
             }
         }
 
@@ -136,7 +136,7 @@ workflow PREPARE_GENOME_ILLUMINA {
                     ch_primer_fasta = GUNZIP_PRIMER_FASTA.out.gunzip.map { it[1] }
                     ch_versions     = ch_versions.mix(GUNZIP_PRIMER_FASTA.out.versions)
                 } else {
-                    ch_primer_fasta = Channel.value(file(params.primer_fasta))
+                    ch_primer_fasta = channel.value(file(params.primer_fasta))
                 }
             } else {
                 BEDTOOLS_GETFASTA (
@@ -152,7 +152,7 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Prepare reference files required for variant calling
     //
-    ch_bowtie2_index = Channel.empty()
+    ch_bowtie2_index = channel.empty()
     if (!params.skip_variants) {
         if (bowtie2_index) {
             if (bowtie2_index.endsWith('.tar.gz')) {
@@ -176,7 +176,7 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Prepare Nextclade dataset
     //
-    ch_nextclade_db = Channel.empty()
+    ch_nextclade_db = channel.empty()
     if (!params.skip_consensus && !params.skip_nextclade) {
         if (nextclade_dataset) {
             if (nextclade_dataset.endsWith('.tar.gz')) {
@@ -186,7 +186,7 @@ workflow PREPARE_GENOME_ILLUMINA {
                 ch_nextclade_db = UNTAR_NEXTCLADE_DB.out.untar.map { it[1] }
                 ch_versions     = ch_versions.mix(UNTAR_NEXTCLADE_DB.out.versions)
             } else {
-                ch_nextclade_db = Channel.value(file(nextclade_dataset))
+                ch_nextclade_db = channel.value(file(nextclade_dataset))
             }
         } else if (nextclade_dataset_name) {
             NEXTCLADE_DATASETGET (
@@ -201,7 +201,7 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Prepare reference files required for de novo assembly
     //
-    ch_blast_db = Channel.empty()
+    ch_blast_db = channel.empty()
     if (!params.skip_assembly) {
         if (!params.skip_blast) {
             if (params.blast_db) {
@@ -212,7 +212,7 @@ workflow PREPARE_GENOME_ILLUMINA {
                     ch_blast_db = UNTAR_BLAST_DB.out.untar
                     ch_versions = ch_versions.mix(UNTAR_BLAST_DB.out.versions)
                 } else {
-                    ch_blast_db = Channel.value(
+                    ch_blast_db = channel.value(
                         [[id:'custom_blastdb'], file(params.blast_db)]
                     )
                 }
@@ -229,8 +229,8 @@ workflow PREPARE_GENOME_ILLUMINA {
     //
     // Make snpEff database
     //
-    ch_snpeff_db     = Channel.empty()
-    ch_snpeff_config = Channel.empty()
+    ch_snpeff_db     = channel.empty()
+    ch_snpeff_config = channel.empty()
     if (!params.skip_variants && !params.skip_snpeff) {
         SNPEFF_BUILD (
             ch_fasta,

@@ -22,7 +22,7 @@ workflow CONSENSUS_BCFTOOLS {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // Filter variants by allele frequency, zip and index

@@ -14,7 +14,7 @@ workflow VARIANTS_LONG_TABLE {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     BCFTOOLS_QUERY (
         vcf.join(tbi, by: [0]),

@@ -16,7 +16,7 @@ workflow SNPEFF_SNPSIFT {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     SNPEFF_ANN (
         vcf,

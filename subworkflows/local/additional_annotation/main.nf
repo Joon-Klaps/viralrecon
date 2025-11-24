@@ -21,12 +21,12 @@ workflow ADDITIONAL_ANNOTATION {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // Uncompress additional annotation file
     //
-    ch_annot = Channel.empty()
+    ch_annot = channel.empty()
 
     if (params.additional_annotation.endsWith('.gz')) {
         GUNZIP_GFF (
@@ -35,14 +35,14 @@ workflow ADDITIONAL_ANNOTATION {
         ch_annot       = GUNZIP_GFF.out.gunzip.map { it[1] }
         ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
     } else {
-        ch_annot = Channel.value(file(params.additional_annotation))
+        ch_annot = channel.value(file(params.additional_annotation))
     }
 
     //
     // Make snpEff database
     //
-    ch_snpeff_db     = Channel.empty()
-    ch_snpeff_config = Channel.empty()
+    ch_snpeff_db     = channel.empty()
+    ch_snpeff_config = channel.empty()
 
     SNPEFF_BUILD (
         fasta,

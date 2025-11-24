@@ -22,7 +22,7 @@ workflow VARIANTS_IVAR {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // Call variants
