@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Special thanks to the following for their code contributions to the release:
 
 - [Sarai Varona](https://github.com/svarona)
+- [Anna Norén](https://github.com/AnnaNoren)
 
 Thank you to everyone else that has contributed by reporting bugs, enhancements or in any other way, shape or form.
 
@@ -19,19 +20,21 @@ Thank you to everyone else that has contributed by reporting bugs, enhancements 
 
 - [[PR #546](https://github.com/nf-core/viralrecon/pull/546)] - Bumped dev branch version to development version
 - [[PR #562](https://github.com/nf-core/viralrecon/pull/562)] - Added pangolin-data database from test-datasets to test config
+- [[PR #541](https://github.com/nf-core/viralrecon/pull/541)] - Implement new blastn module with taxid filtering in pipeline
 - [[PR #559](https://github.com/nf-core/viralrecon/pull/559)] - Added HIV resistance detection subworkflow
 
 ### Parameters
 
 | Old parameter | New parameter              |
 | ------------- | -------------------------- |
+|               | `--taxidlist`              |
 |               | `--perform_hiv_resistance` |
-|               | `hivdb_xml`                |
-|               | `apobec_drm`               |
-|               | `apobec_csv`               |
-|               | `unusual_csv`              |
-|               | `sdrms_csv`                |
-|               | `mutation_csv`             |
+|               | `--hivdb_xml`              |
+|               | `--apobec_drm`             |
+|               | `--apobec_csv`             |
+|               | `--unusual_csv`            |
+|               | `--sdrms_csv`              |
+|               | `--mutation_csv`           |
 
 > **NB:** Parameter has been **updated** if both old and new parameter information is present.
 > **NB:** Parameter has been **added** if just the new parameter information is present.
@@ -43,6 +46,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 
 | Dependency     | Old version | New version |
 | -------------- | ----------- | ----------- |
+| `blast`        | 2.16.0      | 2.17.0      |
 | `sierra-local` |             | 0.4.3       |
 | `liftoff`      |             | 1.6.3       |
 | `pysam`        |             | 0.23.3      |

@@ -30,7 +30,7 @@
                     "bedtools": "2.31.1"
                 },
                 "BLAST_BLASTN": {
-                    "blast": "2.16.0+"
+                    "blast": "2.17.0+"
                 },
                 "BLAST_MAKEBLASTDB": {
                     "blast": "2.16.0+"
@@ -1171,7 +1171,7 @@
                     "bedtools": "2.31.1"
                 },
                 "BLAST_BLASTN": {
-                    "blast": "2.16.0+"
+                    "blast": "2.17.0+"
                 },
                 "BLAST_MAKEBLASTDB": {
                     "blast": "2.16.0+"
