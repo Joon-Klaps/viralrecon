@@ -443,15 +443,6 @@ def extract_protein_sequences(seq_record, coordinates, gene_groups):
                 "group_index": int,
                 "genes": [list of genes],
                 "fasta": "fasta block as string",
-                "entries": [
-                    {
-                        "gene": str,
-                        "start": int,
-                        "end": int,
-                        "strand": "+" or "-",
-                        "sequence": "ATCG..."
-                    }
-                ]
             },
             ...
         ]
@@ -460,34 +451,58 @@ def extract_protein_sequences(seq_record, coordinates, gene_groups):
     protein_sequences = []
 
     for group_index, group in enumerate(gene_groups, start=1):
-        group_entries = []
 
-        for gene in group:
-            if gene not in coordinates:
-                print(f"Warning: gene {gene} not found in GFF")
-                continue
+        # --- 1. Obtener coordenadas ordenadas del grupo ---
+        valid_genes = [g for g in group if g in coordinates]
 
-            start, end, strand = coordinates[gene]
-            subseq = extract_sequence(seq_record, start, end, strand)
+        if not valid_genes:
+            continue
 
-            group_entries.append({
-                "gene": gene,
-                "start": start,
-                "end": end,
-                "strand": strand,
-                "sequence": str(subseq)
-            })
+        coords = [(g, *coordinates[g]) for g in valid_genes]
+        # ordenar por start
+        coords.sort(key=lambda x: x[1])
 
-        fasta_block = "\n".join(
-            f">{entry['gene']}|{entry['start']}-{entry['end']}|strand={entry['strand']}\n{entry['sequence']}"
-            for entry in group_entries
-        )
+        # --- 2. Verificar si son contiguas (end de uno == start del siguiente) ---
+        merged = []
+        current_genes = [coords[0][0]]
+        current_start = coords[0][1]
+        current_end = coords[0][2]
+        current_strand = coords[0][3]
+
+        for i in range(1, len(coords)):
+            gene, start, end, strand = coords[i]
+
+            # misma cadena y contiguos
+            if strand == current_strand and start == current_end + 1:
+                current_genes.append(gene)
+                current_end = end
+            else:
+                # cerrar intervalo anterior
+                merged.append((current_genes, current_start, current_end, current_strand))
+                # iniciar uno nuevo
+                current_genes = [gene]
+                current_start = start
+                current_end = end
+                current_strand = strand
+
+        # agregar el último intervalo
+        merged.append((current_genes, current_start, current_end, current_strand))
+
+        # --- 3. Extraer secuencias fusionadas ---
+        fasta_lines = []
+
+        for genes_list, start, end, strand in merged:
+            seq = extract_sequence(seq_record, start, end, strand)
+
+            gene_name = "_".join(genes_list)
+            fasta_lines.append(f">{gene_name}\n{seq}")
+
+        fasta_block = "\n".join(fasta_lines)
 
         protein_sequences.append({
             "group_index": group_index,
             "genes": group,
-            "fasta": fasta_block,
-            "entries": group_entries
+            "fasta": fasta_block
         })
 
     return protein_sequences
@@ -579,22 +594,13 @@ def main():
         # Parse gene groups
         gene_groups = parse_interest_groups(args.interest_genes)
 
-        print("gene_groups:")
-        import pdb; pdb.set_trace()
-
         # Read GFF coordinates
-        coordinates = read_gff_coordinates(args.gff)
-        print("gene_groups:")
-        import pdb; pdb.set_trace()
+        coordinates = read_gff_coordinates(gff_file)
 
         # Read FASTA
-        seq_record = next(SeqIO.parse(args.fasta, "fasta"))
-        print("gene_groups:")
-        import pdb; pdb.set_trace()
+        seq_record = next(SeqIO.parse(consensus_file, "fasta"))
 
         protein_sequences = extract_protein_sequences(seq_record, coordinates, gene_groups)
-        print("gene_groups:")
-        import pdb; pdb.set_trace()
 
         # Guardar toda la info en un dict
         all_samples_data.append({

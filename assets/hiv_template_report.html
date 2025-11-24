@@ -233,6 +233,12 @@
     </div>
     {% endif %} {% endfor %}
 
+    <!-- Buttons to external resources -->
+    <div class="external-buttons">
+      <a href="https://hivdb.stanford.edu/hivdb/" target="_blank" class="link-button">Go to HIVdb</a>
+      <a href="https://clades.nextstrain.org/" target="_blank" class="link-button">Go to Nextclade</a>
+    </div>
+
     <!-- CONSENSUS GENOME -->
     <div class="summary-title">
       <h2>Consensus Genome</h2>
@@ -246,7 +252,7 @@
           <button
             type="button"
             class="copy-button"
-            onclick="copyConsensus({{ sample.consensus_genome | tojson | safe }})"
+            onclick="navigator.clipboard.writeText(`{{ sample.consensus_genome | replace('`', '\\`') }}`)"
             style="margin-left: 10px"
           >
             Copy to clipboard
@@ -254,43 +260,36 @@
         </summary>
         <pre>{{- sample.consensus_genome -}}</pre>
       </details>
-
-      <!-- PROTEIN SEQUENCES -->
-      {% if sample.protein_sequences %}
-      <div class="summary-title">
-        <h2>Extracted Protein Sequences</h2>
-      </div>
-
-      {% for group in sample.protein_sequences %}
-      <div class="content-block">
-        <details>
-          <summary>
-            Genes: {{ group.genes | join(", ") }}
-            <button
-              type="button"
-              class="copy-button"
-              onclick="navigator.clipboard.writeText(`{{ group.fasta | replace('`', '\\`') }}`)"
-              style="margin-left: 10px"
-            >
-              Copy to clipboard
-            </button>
-          </summary>
-
-          <pre>{{ group.fasta }}</pre>
-        </details>
-      </div>
-      {% endfor %}
+      {% else %}
+      <p>No consensus genome available</p>
       {% endif %}
-
-      <!-- Buttons to external resources -->
-      <div class="external-buttons">
-        <a href="https://hivdb.stanford.edu/hivdb/" target="_blank" class="link-button">Go to HIVdb</a>
-        <a href="https://clades.nextstrain.org/" target="_blank" class="link-button">Go to Nextclade</a>
-      </div>
     </div>
-    {% else %}
-    <p>No consensus genome available</p>
-    {% endif %} {% endfor %}
+
+    <!-- PROTEIN SEQUENCES -->
+    {% if sample.protein_sequences %}
+    <div class="summary-title">
+      <h2>Protein Sequences</h2>
+    </div>
+
+    {% for protein in sample.protein_sequences %}
+    <div class="content-block">
+      <details>
+        <summary>
+          Gene(s): {{ protein.genes | join(", ") }}
+          <button
+            type="button"
+            class="copy-button"
+            onclick="navigator.clipboard.writeText(`{{ protein.fasta | replace('`', '\\`') }}`)"
+            style="margin-left: 10px"
+          >
+            Copy to clipboard
+          </button>
+        </summary>
+
+        <pre>{{ protein.fasta }}</pre>
+      </details>
+    </div>
+    {% endfor %} {% endif %} {% endfor %}
 
     <!-- FOOTER -->
     <div class="footer">
@@ -388,16 +387,6 @@
         window.addEventListener("scroll", updateActiveSample);
         updateActiveSample(); // run once on load
       });
-
-      function copyConsensus(text, button) {
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => (button.textContent = "Copy"), 1000);
-          })
-          .catch((err) => console.error("Error copying text: ", err));
-      }
     </script>
   </body>
 </html>
