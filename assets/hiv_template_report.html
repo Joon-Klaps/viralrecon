@@ -201,35 +201,39 @@
     </div>
 
     <div class="content-block">
-      {# --- Build a complete list of all drugs across all mutations --- #} {% set all_drugs = [] %} {% for drugs in
-      mutation_scores.values() %} {% for drug_name in drugs.keys() %} {% if drug_name not in all_drugs %} {% set _ =
-      all_drugs.append(drug_name) %} {% endif %} {% endfor %} {% endfor %} {# Sort drug names alphabetically for
-      consistent table ordering #} {% set all_drugs = all_drugs | sort %}
+      {% for drug_class, class_label in [ ("PI", "Protease Inhibitors (PI)"), ("NRTI", "Nucleoside Reverse Transcriptase
+      Inhibitors (NRTI)"), ("NNRTI", "Non-nucleoside Reverse Transcriptase Inhibitors (NNRTI)"), ("INSTI", "Integrase
+      Strand Transfer Inhibitors (INSTI)") ] %} {# Filtrar mutaciones que tienen al menos un fármaco de esta clase #} {%
+      set mutations_in_class = {} %} {% set all_drugs = [] %} {% for mutation, drug_scores in mutation_scores.items() %}
+      {% set drugs_for_mutation = {} %} {% for drug, info in drug_scores.items() %} {% if info.drug_class == drug_class
+      %} {% set _ = drugs_for_mutation.update({drug: info}) %} {% if drug not in all_drugs %} {% set _ =
+      all_drugs.append(drug) %} {% endif %} {% endif %} {% endfor %} {% if drugs_for_mutation %} {% set _ =
+      mutations_in_class.update({mutation: drugs_for_mutation}) %} {% endif %} {% endfor %} {% if mutations_in_class %}
+      <h3>{{ class_label }}</h3>
+      <hr />
       <div class="table-scroll">
         <table class="mutation-scoring">
           <thead>
             <tr>
               <th>Mutation</th>
-              {% for drug in all_drugs %}
+              {% for drug in all_drugs | sort %}
               <th>{{ drug }}</th>
               {% endfor %}
             </tr>
           </thead>
           <tbody>
-            {% for mutation, drugs in mutation_scores.items() %}
+            {% for mutation, drugs in mutations_in_class.items() %}
             <tr>
               <td>{{ mutation }}</td>
-
-              {% for drug in all_drugs %}
-              <td>
-                {# Show score only #} {% if drugs.get(drug) %} {{ drugs.get(drug).score }} {% else %} - {% endif %}
-              </td>
+              {% for drug in all_drugs | sort %}
+              <td>{% if drugs.get(drug) %}{{ drugs.get(drug).score }}{% else %}-{% endif %}</td>
               {% endfor %}
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
+      {% endif %} {% endfor %}
     </div>
     {% endif %} {% endfor %}
 
