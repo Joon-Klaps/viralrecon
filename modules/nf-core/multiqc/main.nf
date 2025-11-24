@@ -7,7 +7,7 @@ process MULTIQC {
         'community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf' }"
 
     input:
-    path  multiqc_files, stageAs: "?/*"
+    path multiqc_files, stageAs: "?/*"
     path(multiqc_config)
     path(extra_multiqc_config)
     path(multiqc_logo)
@@ -28,23 +28,22 @@ process MULTIQC {
     def args = task.ext.args ?: ''
     def args2 = task.ext.args2 ?: ''
     def prefix = task.ext.prefix ? "--filename ${task.ext.prefix}.html" : ''
-    def config = multiqc_config ? "--config $multiqc_config" : ''
-    def extra_config = extra_multiqc_config ? "--config $extra_multiqc_config" : ''
+    def config = multiqc_config ? "--config ${multiqc_config}" : ''
+    def extra_config = extra_multiqc_config ? "--config ${extra_multiqc_config}" : ''
     def logo = multiqc_logo ? "--cl-config 'custom_logo: \"${multiqc_logo}\"'" : ''
     def replace = replace_names ? "--replace-names ${replace_names}" : ''
     def samples = sample_names ? "--sample-names ${sample_names}" : ''
     def platform = params.platform
     """
-    ## Run MultiQC once to parse tool logs
     multiqc \\
         --force \\
-        $args \\
-        $config \\
-        $prefix \\
-        $extra_config \\
-        $logo \\
-        $replace \\
-        $samples \\
+        ${args} \\
+        ${config} \\
+        ${prefix} \\
+        ${extra_config} \\
+        ${logo} \\
+        ${replace} \\
+        ${samples} \\
         .
 
     ## Parse YAML files dumped by MultiQC to obtain metrics
@@ -70,13 +69,13 @@ process MULTIQC {
     ## Run MultiQC a second time
         multiqc \\
         --force \\
-        $args2 \\
-        $config \\
-        $prefix \\
-        $extra_config \\
-        $logo \\
-        $replace \\
-        $samples \\
+        ${args2} \\
+        ${config} \\
+        ${prefix} \\
+        ${extra_config} \\
+        ${logo} \\
+        ${replace} \\
+        ${samples} \\
         .
 
     cat <<-END_VERSIONS > versions.yml
@@ -88,6 +87,7 @@ process MULTIQC {
     stub:
     """
     mkdir multiqc_data
+    touch multiqc_data/.stub
     mkdir multiqc_plots
     touch multiqc_report.html
 
