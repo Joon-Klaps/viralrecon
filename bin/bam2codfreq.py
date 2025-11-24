@@ -12,7 +12,7 @@ bam2codfreq.py
 Unified script to convert SAM/BAM files into codon frequency tables (.codfreq)
 using a profile JSON defining fragments and genes.
 
-This script combines all helper modules and functions from codfreq from HIVdb (https://github.com/hivdb/codfreq)
+This script combines all helper modules and functions from the HIVdb CodFreq (https://github.com/hivdb/codfreq)
 scripts into a single file. It computes codon frequencies and writes the final output to a CSV file.
 
 Usage:

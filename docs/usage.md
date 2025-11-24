@@ -367,7 +367,7 @@ The following parameters have been added to handle **HIV resistance detection** 
 - Options related with files required by `sierra-local` software for resistance detecton in HIV. If not provided, the files included with the software will be used.
   - **`hivdb_xml`**: Path to the HIVdb ASI2 XML file. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/algorithms), where the different algorithm versions are stored. The one included in the software is the one with `HIVDB_9.8.xml` name.
   - **`apobec_drm`**: Path to the JSON HIVdb APOBEC DRM file. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/apobecs) with the `apobec_drms.json` name.
-  - **`apobec_csv`**: Path to the CSV APOBEC file.Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/apobecs) with the `apobecs.csv` name.
+  - **`apobec_csv`**: Path to the CSV APOBEC file. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/apobecs) with the `apobecs.csv` name.
   - **`unusual_csv`**: Path to the CSV file used to determine unusual mutations. The file included with the software can be found [here](https://github.com/PoonLab/sierra-local/tree/master/sierralocal/data) with the name `rx-all_subtype-all.csv`
   - **`sdrms_csv`**: Path to the CSV file used to define SDRM mutations. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/) with the `sdrms_hiv1.csv` name.
   - **`mutation_csv`**: Path to the CSV file defining mutation types. Updated files can be found [here](https://github.com/hivdb/hivfacts/tree/main/data/) with the `mutation-type-pairs_hiv1.csv` name.

@@ -375,8 +375,8 @@ An example MultiQC report generated from a full-sized dataset can be viewed on t
     - [Assembly QUAST](#assembly-quast)
   - [Illumina: HIV resistance detection](#illumina-hiv-resistance-detection)
     - [sierra-local](#sierra-local)
-    - [liftoff](#liftoff)
-    - [codfreq](#codfreq)
+    - [Liftoff](#Liftoff)
+    - [CodFreq](#CodFreq)
     - [Custom HIV Resistance Reports](#custom-hiv-resistance-reports)
   - [Illumina: Workflow reporting and genomes](#illumina-workflow-reporting-and-genomes)
     - [MultiQC](#multiqc)
@@ -989,19 +989,19 @@ This output is only generated if `--perform_hiv_resistance` param is activated.
 It allows to generate **HIV-1 drug resistance predictions locally**, without the need to transmit patient data over a network. This provides full control over **data provenance**, **security**, and **regulatory compliance**.
 
 > _Sierra-local computes drug resistance predictions directly from consensus HIV-1 sequences, producing JSON-formatted output that includes key resistance-associated mutations and drug susceptibility scores._
-> Within the HIV module of `nf-core/viralrecon`, sierra-local is executed using the consensus .FASTA file generated for each sample.
+> Within the HIV module of `nf-core/viralrecon`, sierra-local is executed using the consensus FASTA file generated for each sample.
 
 <details markdown="1">
 <summary>Output files</summary>
 
 - `variants/<CALLER>/consensus/<CONSENSUS_CALLER>/sierra-local`
-  - `*_resistance.json`: Sierralocal resistance output JSON file. This JSON file summarizes the HIV drug resistance interpretation from a consensus sequence of the PR, RT and IN genes of HIV. It includes sequence metadata (`inputSequence`) (FASTA header and SHA-512 checksum), quality control messages (`validationResults`), detected mutations (`alignedGeneSequences`), and inferred drug resistance levels (`drugResistance`). This output contains information similar to that provided by the HIVdb's HTML output, and a complete document of this HTML output can be found in HIVdb's website [here](https://hivdb.stanford.edu/page/xml-2009-spec/).
+  - `*_resistance.json`: sierra-local resistance output JSON file. This JSON file summarizes the HIV drug resistance interpretation from a consensus sequence of the PR, RT and IN genes of HIV. It includes sequence metadata (`inputSequence`) (FASTA header and SHA-512 checksum), quality control messages (`validationResults`), detected mutations (`alignedGeneSequences`), and inferred drug resistance levels (`drugResistance`). This output contains information similar to that provided by the HIVdb's HTML output, and a complete document of this HTML output can be found in HIVdb's website [here](https://hivdb.stanford.edu/page/xml-2009-spec/).
 
 **NB:** The value of `<CALLER>` and `<CONSENSUS_CALLER>` in the output directory name above is determined by the `--variant_caller` and `--consensus_caller` parameters (Default: 'ivar' for both params when '--profile test_hiv').
 
 </details>
 
-### liftoff
+### Liftoff
 
 Only performed when the `--genome` is not `codfreq`. **[Liftoff](https://github.com/agshumate/Liftoff)** is a tool that accurately maps annotations in GFF or GTF between assemblies of the same, or closely-related species. Unlike current coordinate lift-over tools which require a pre-generated “chain” file as input, Liftoff is a standalone tool that takes two genome assemblies and a reference annotation as input and outputs an annotation of the target genome. Using the provided reference genome and the `.fasta` and `.gff`, annotation files are processed with to transfer the HIV gene annotations to the user’s specific reference genome.
 
@@ -1020,7 +1020,7 @@ Once the new `.gff` file is produced by Liftoff, an additional annotation step i
 
 </details>
 
-### codfreq
+### CodFreq
 
 To obtain codon frequency information, `nf-core/viralrecon` integrates a modified version of [**codfreq**](https://github.com/hivdb/codfreq/) tool that can be found within [nf-core/viralrecon scripts](../bin/bam2codfreq.py).
 
