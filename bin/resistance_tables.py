@@ -241,7 +241,7 @@ def integrate_codfreq_info(df_json, codfreq_df):
         row["Coverage"] = int(total)
 
         # Add "INDEL>5%" column
-        indel_sum = candidates[candidates["codon"].apply(lambda x: isinstance(x, str) and len(x) > 3)]["count"].sum()
+        indel_sum = candidates[candidates["codon"].apply(lambda x: isinstance(x, str) and len(x) > 3 or "-" in x)]["count"].sum()
         if indel_sum / total > 0.05:
             row["INDEL>5%"] = True
         else:
