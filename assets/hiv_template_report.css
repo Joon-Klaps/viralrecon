@@ -200,6 +200,14 @@ th.sorted-desc::after {
   color: #083a57;
 }
 
+/* Make header row sticky */
+table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #d6e4f2;
+  z-index: 5;
+}
+
 /* Row highlighting */
 .apobec-drm-row {
   background-color: #ffcccc !important;
