@@ -986,7 +986,7 @@ This output is only generated if `--perform_hiv_resistance` param is activated.
 
 [**sierra-local**](https://github.com/PoonLab/sierra-local/) is a Python3 implementation of the [Stanford University HIV Drug Resistance Database](https://hivdb.stanford.edu/) (HIVdb) [Sierra web service](https://hivdb.stanford.edu/page/webservice/).
 
-It allows to generate **HIV-1 drug resistance predictions locally**, without the need to transmit patient data over a network. This provides full control over **data provenance**, **security**, and **regulatory compliance**.
+It allows to generate **HIV-1 drug resistance predictions locally**, without the need to transmit patient data over a network. This provides full control over data provenance, security and regulatory compliance.
 
 > _Sierra-local computes drug resistance predictions directly from consensus HIV-1 sequences, producing JSON-formatted output that includes key resistance-associated mutations and drug susceptibility scores._
 > Within the HIV module of `nf-core/viralrecon`, sierra-local is executed using the consensus FASTA file generated for each sample.
