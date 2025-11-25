@@ -123,6 +123,9 @@
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
                 },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
+                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -2822,6 +2825,9 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
+                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -3412,6 +3418,9 @@
                 },
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
+                },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -4878,6 +4887,9 @@
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
                 },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
+                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -5987,6 +5999,9 @@
                 },
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
+                },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -7959,6 +7974,9 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
+                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -8577,6 +8595,9 @@
                 },
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
+                },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
                 },
                 "QUAST": {
                     "quast": "5.3.0"
@@ -10291,6 +10312,9 @@
                     "kraken2": "2.1.6",
                     "pigz": 2.8
                 },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
+                },
                 "QUAST": {
                     "quast": "5.3.0"
                 },
@@ -10909,6 +10933,9 @@
                 },
                 "PLOT_MOSDEPTH_REGIONS_GENOME": {
                     "r-base": "4.2.0"
+                },
+                "PREPARE_PRIMER_FASTA": {
+                    "sed": 4.9
                 },
                 "QUAST": {
                     "quast": "5.3.0"
