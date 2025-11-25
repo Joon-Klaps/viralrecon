@@ -95,7 +95,6 @@ workflow CONSENSUS_QC {
         )
         ch_bases_tsv = PLOT_BASE_DENSITY.out.tsv
         ch_bases_pdf = PLOT_BASE_DENSITY.out.pdf
-        ch_versions  = ch_versions.mix(PLOT_BASE_DENSITY.out.versions.first())
     }
 
     emit:

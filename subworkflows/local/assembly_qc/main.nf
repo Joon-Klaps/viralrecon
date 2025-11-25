@@ -44,7 +44,6 @@ workflow ASSEMBLY_QC {
         )
         ch_blast_txt = FILTER_BLASTN.out.blast
         ch_blast_filter_txt = FILTER_BLASTN.out.txt
-        ch_versions         = ch_versions.mix(FILTER_BLASTN.out.versions.first())
     }
 
     //

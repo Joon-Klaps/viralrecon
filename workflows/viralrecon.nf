@@ -440,7 +440,6 @@ workflow VIRALRECON {
             PLOT_MOSDEPTH_REGIONS_GENOME (
                 MOSDEPTH_GENOME.out.regions_bed.collect { it[1] }
             )
-            ch_versions = ch_versions.mix(PLOT_MOSDEPTH_REGIONS_GENOME.out.versions)
 
             if (params.protocol == 'amplicon') {
                 MOSDEPTH_AMPLICON (
@@ -455,7 +454,6 @@ workflow VIRALRECON {
                     MOSDEPTH_AMPLICON.out.regions_bed.collect { it[1] }
                 )
                 ch_multiqc_files = ch_multiqc_files.mix(PLOT_MOSDEPTH_REGIONS_AMPLICON.out.heatmap_tsv.collect().ifEmpty([]))
-                ch_versions      = ch_versions.mix(PLOT_MOSDEPTH_REGIONS_AMPLICON.out.versions)
             }
         }
 
@@ -1052,7 +1050,6 @@ workflow VIRALRECON {
             PLOT_MOSDEPTH_REGIONS_GENOME (
                 MOSDEPTH_GENOME.out.regions_bed.collect { it[1] }
             )
-            ch_versions = ch_versions.mix(PLOT_MOSDEPTH_REGIONS_GENOME.out.versions)
 
             MOSDEPTH_AMPLICON (
                 ch_filtered_bam_nanopore
@@ -1067,7 +1064,6 @@ workflow VIRALRECON {
                 MOSDEPTH_AMPLICON.out.regions_bed.collect { it[1] }
             )
             ch_multiqc_files = ch_multiqc_files.mix(PLOT_MOSDEPTH_REGIONS_AMPLICON.out.heatmap_tsv.collect{it[1]}.ifEmpty([]))
-            ch_versions      = ch_versions.mix(PLOT_MOSDEPTH_REGIONS_AMPLICON.out.versions)
         }
 
         //

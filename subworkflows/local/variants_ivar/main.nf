@@ -51,7 +51,6 @@ workflow VARIANTS_IVAR {
         fasta,
         ivar_multiqc_header
     )
-    ch_versions = ch_versions.mix(IVAR_VARIANTS_TO_VCF.out.versions.first())
 
     BCFTOOLS_SORT (
         IVAR_VARIANTS_TO_VCF.out.vcf

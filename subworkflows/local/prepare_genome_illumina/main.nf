@@ -94,7 +94,6 @@ workflow PREPARE_GENOME_ILLUMINA {
                 params.kraken2_db_name
             )
             ch_kraken2_db = KRAKEN2_BUILD.out.db.first()
-            ch_versions   = ch_versions.mix(KRAKEN2_BUILD.out.versions)
         }
     }
 
@@ -124,7 +123,6 @@ workflow PREPARE_GENOME_ILLUMINA {
                 params.primer_right_suffix
             )
             ch_primer_collapsed_bed = COLLAPSE_PRIMERS.out.bed
-            ch_versions             = ch_versions.mix(COLLAPSE_PRIMERS.out.versions)
         }
 
         if (!params.skip_assembly && !params.skip_cutadapt) {
@@ -238,7 +236,6 @@ workflow PREPARE_GENOME_ILLUMINA {
         )
         ch_snpeff_db     = SNPEFF_BUILD.out.db
         ch_snpeff_config = SNPEFF_BUILD.out.config
-        ch_versions      = ch_versions.mix(SNPEFF_BUILD.out.versions)
     }
 
     emit:
