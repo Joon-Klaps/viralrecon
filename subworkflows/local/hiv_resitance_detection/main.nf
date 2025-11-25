@@ -69,14 +69,10 @@ workflow HIV_RESISTANCE {
         )
     }
 
-    ch_versions = ch_versions.mix(GFF2JSON.out.versions)
-
     BAM2CODFREQ (
         bam,
         GFF2JSON.out.profile_json
     )
-
-    ch_versions = ch_versions.mix(BAM2CODFREQ.out.versions)
 
     CONSENSUS_LIFTOFF (
         consensus,
@@ -90,8 +86,6 @@ workflow HIV_RESISTANCE {
         SIERRALOCAL.out.json.join(BAM2CODFREQ.out.codfreq, by: [0])
     )
 
-    ch_versions = ch_versions.mix(RESISTANCE_TABLES.out.versions)
-
     RESISTANCE_REPORT (
         SIERRALOCAL.out.json.collect{it[1]},
         RESISTANCE_TABLES.out.mutation_csv.collect{it[1]},
@@ -100,8 +94,6 @@ workflow HIV_RESISTANCE {
         consensus.collect{it[1]},
         CONSENSUS_LIFTOFF.out.gff3.collect{it[1]}
     )
-
-    ch_versions = ch_versions.mix(RESISTANCE_REPORT.out.versions)
 
     emit:
     sierralocal_results  = SIERRALOCAL.out.json                      // channel: [ val(meta), [ json ] ]
