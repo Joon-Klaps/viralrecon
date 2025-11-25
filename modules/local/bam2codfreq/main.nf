@@ -13,7 +13,7 @@ process BAM2CODFREQ {
 
     output:
     tuple val(meta), path("*.codfreq") , emit: codfreq
-    path "versions.yml"                , emit: versions
+    tuple val("${task.process}"), val('python'), eval('python --version | sed "s/Python //g"'), emit: versions_python, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -28,10 +28,5 @@ process BAM2CODFREQ {
         --profile $profile \\
         --output ${prefix}.codfreq \\
         $args
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        python: \$(python --version | sed 's/Python //g')
-    END_VERSIONS
     """
 }

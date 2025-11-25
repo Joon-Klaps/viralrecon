@@ -23,7 +23,7 @@ workflow HIV_RESISTANCE {
     nextclade_report // channel: [ val(meta), [ csv ] ]
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // HIV resistance detection
@@ -32,7 +32,7 @@ workflow HIV_RESISTANCE {
     SIERRALOCAL (consensus)
 
     ch_versions = ch_versions.mix(SIERRALOCAL.out.versions)
-    
+
     codfreq_sequence   = file("$projectDir/assets/codfreq.fasta", checkIfExists: true)
     codfreq_annotation = file("$projectDir/assets/codfreq.gff", checkIfExists: true)
 

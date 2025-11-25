@@ -16,7 +16,7 @@ process RESISTANCE_REPORT {
 
     output:
     path("*.html")      , emit: mutation_csv
-    path "versions.yml" , emit: versions
+    tuple val("${task.process}"), val('python'), eval('python --version | sed "s/Python //g"'), emit: versions_python, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -37,10 +37,5 @@ process RESISTANCE_REPORT {
         --ivar_consensus_params "'${ivar_consensus_params}'" \\
         --output_html ${prefix}.html \\
         $args
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        python: \$(python --version | sed 's/Python //g')
-    END_VERSIONS
     """
 }

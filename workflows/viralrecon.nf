@@ -606,7 +606,7 @@ workflow VIRALRECON {
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
         if (!params.skip_variants && params.additional_annotation) {
-            ch_annot = Channel.empty()
+            ch_annot = channel.empty()
             //
             // Uncompress additional annotation file
             //
@@ -1236,7 +1236,7 @@ workflow VIRALRECON {
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
         if (params.additional_annotation) {
-            ch_annot = Channel.empty()
+            ch_annot = channel.empty()
             //
             // Uncompress additional annotation file
             //

@@ -13,7 +13,7 @@ process GFF2JSON {
 
     output:
     path "*.json"      , emit: profile_json
-    path "versions.yml", emit: versions
+    tuple val("${task.process}"), val('python'), eval('python --version | sed "s/Python //g"'), emit: versions_python, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -28,10 +28,5 @@ process GFF2JSON {
         --gff $gff3 \\
         --output ${prefix}.json \\
         $args
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        python: \$(python --version | sed 's/Python //g')
-    END_VERSIONS
     """
 }
