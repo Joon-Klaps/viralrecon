@@ -418,14 +418,6 @@ def extract_sequence(seq_record, start, end, strand):
 
     return subseq
 
-def extract_sequence(seq_record, start, end, strand):
-    """Extracts a subsequence from a SeqRecord using 1-based inclusive coordinates."""
-    subseq = seq_record.seq[start-1:end]
-    if strand == "-":
-        subseq = subseq.reverse_complement()
-    return subseq
-
-
 def extract_protein_sequences(seq_record, coordinates, gene_groups):
     """
     Extract sequences for groups of genes defined in gene_groups.
