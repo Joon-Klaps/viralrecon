@@ -418,7 +418,7 @@ def extract_sequence(seq_record, start, end, strand):
 
     return subseq
 
-def extract_protein_sequences(seq_record, coordinates, gene_groups):
+def extract_protein_sequences(seq_record, coordinates, gene_groups, sample_name):
     """
     Extract sequences for groups of genes defined in gene_groups.
 
@@ -494,7 +494,7 @@ def extract_protein_sequences(seq_record, coordinates, gene_groups):
             seq = extract_sequence(seq_record, start, end, strand)
 
             gene_name = "_".join(genes_list)
-            fasta_lines.append(f">{gene_name}\n{seq}")
+            fasta_lines.append(f">{sample_name}_{gene_name}\n{seq}")
 
         fasta_block = "\n".join(fasta_lines)
 
@@ -600,7 +600,7 @@ def main():
         # Read FASTA
         seq_record = next(SeqIO.parse(consensus_file, "fasta"))
 
-        protein_sequences = extract_protein_sequences(seq_record, coordinates, gene_groups)
+        protein_sequences = extract_protein_sequences(seq_record, coordinates, gene_groups, sample_name)
 
         # Guardar toda la info en un dict
         all_samples_data.append({
