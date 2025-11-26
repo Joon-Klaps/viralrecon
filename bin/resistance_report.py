@@ -81,7 +81,7 @@ def parser_args(args=None):
         help="Parameters used for ivar consensus calling",
     )
     parser.add_argument(
-        "-d"
+        "-d",
         "--deprecated_drugs",
         type=str,
         default="D4T,DDI,DPV,FPV/r,IDV/r,NFV,SQV/r,TPV/r",

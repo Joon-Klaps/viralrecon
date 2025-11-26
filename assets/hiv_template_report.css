@@ -125,10 +125,23 @@ html {
   border-radius: 5px;
   padding: 12px 25px;
   margin: 20px auto 5px auto;
-  border-radius: 3px;
   width: 95%;
   box-sizing: border-box;
   font-size: 0.9em;
+  display: block;
+  overflow: hidden;
+}
+
+.color-legend span {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.coverage-note {
+  font-size: 0.9em;
+  color: #444;
+  margin-top: 8px;
+  display: block;
 }
 
 /* Content block */
