@@ -514,6 +514,7 @@ def extract_protein_sequences(seq_record, coordinates, gene_groups):
 def main():
     args = parser_args()
 
+    # Remove from the report drugs that are deprecated or not used anymore
     deprecated_drugs = {"D4T", "DDI", "DPV", "FPV/r", "IDV/r", "NFV", "SQV/r", "TPV/r"}
 
     # Detect all files
