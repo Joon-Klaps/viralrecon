@@ -81,6 +81,13 @@ def parser_args(args=None):
         help="Parameters used for ivar consensus calling",
     )
     parser.add_argument(
+        "-d"
+        "--deprecated_drugs",
+        type=str,
+        default="D4T,DDI,DPV,FPV/r,IDV/r,NFV,SQV/r,TPV/r",
+        help="Comma-separated list of deprecated drugs that should be removed from the final report (default: D4T,DDI,DPV,FPV/r,IDV/r,NFV,SQV/r,TPV/r)",
+    )
+    parser.add_argument(
         "-o",
         "--output_html",
         type=str,
@@ -515,7 +522,7 @@ def main():
     args = parser_args()
 
     # Remove from the report drugs that are deprecated or not used anymore
-    deprecated_drugs = {"D4T", "DDI", "DPV", "FPV/r", "IDV/r", "NFV", "SQV/r", "TPV/r"}
+    deprecated_drugs = {d.strip() for d in args.deprecated_drugs.split(",")}
 
     # Detect all files
     mutation_files = sorted(glob.glob(os.path.join(args.mutation_folder, "*_mutation_table.csv")))
