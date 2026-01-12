@@ -9,7 +9,12 @@ process SIERRALOCAL {
 
     input:
     tuple val(meta), path(fasta)
-
+    path hivdb_xml
+    path apobec_drm
+    path apobec_csv
+    path unusual_csv
+    path sdrms_csv
+    path mutation_csv
     output:
     tuple val(meta), path("*_resistance.json") , emit: json
     path "versions.yml"                        , emit: versions
