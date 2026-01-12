@@ -29,7 +29,15 @@ workflow HIV_RESISTANCE {
     // HIV resistance detection
     //
 
-    SIERRALOCAL (consensus)
+    SIERRALOCAL (
+        consensus,
+        params.hivdb_xml    ? file(params.hivdb_xml, checkIfExists: true)    : [],
+        params.apobec_drm   ? file(params.apobec_drm, checkIfExists: true)   : [],
+        params.apobec_csv   ? file(params.apobec_csv, checkIfExists: true)   : [],
+        params.unusual_csv  ? file(params.unusual_csv, checkIfExists: true)  : [],
+        params.sdrms_csv    ? file(params.sdrms_csv, checkIfExists: true)    : [],
+        params.mutation_csv ? file(params.mutation_csv, checkIfExists: true) : []
+    )
 
     ch_versions = ch_versions.mix(SIERRALOCAL.out.versions)
 
