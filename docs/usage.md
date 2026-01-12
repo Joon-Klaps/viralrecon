@@ -486,7 +486,7 @@ These additional metrics are crucial for resistance reporting and neeed consiste
 
 To obtain codon frequency information, `nf-core/viralrecon` integrates a modified version of [**codfreq**](https://github.com/hivdb/codfreq/) tool.
 
-The modified cersion of codfreq produces a codon frequency table in the _CodFreq_ format, which contains seven columns:
+The modified version of codfreq produces a codon frequency table in the _CodFreq_ format, which contains seven columns:
 
 | Column                | Description                                                         |
 | :-------------------- | :------------------------------------------------------------------ |
@@ -510,7 +510,7 @@ The generation of the required JSON file for codfreq involves the following step
 
 2. **Reference genome alignment with Liftoff**: Only performed when the provided genome is not the one from codfreq. Using the provided reference genome and the `.fasta` and `.gff` from the step 1, annotation files are processed with **[Liftoff](https://github.com/agshumate/Liftoff)** to transfer the HIV gene annotations to the user’s specific reference genome.
 
-3. **Custom JSON generation**: The annotated `.gff` file and the reference `.fasta` are used as input for a **custom Python script** within `nf-core/viralrecon`. This script produces the JSON file required by `codfreq`, ensuring accurate gene coordinates and consistency with the reference genome.
+3. **Custom JSON generation**: The annotated `.gff` file and the reference `.fasta` are used as input for a **custom Python script** `bin/gff2json.py` within `nf-core/viralrecon`. This script produces the JSON file required by `codfreq`, ensuring accurate gene coordinates and consistency with the reference genome.
 
 4. **Annotation harmonization for variant mapping**: Only performed when the provided genome is not the one from codfreq. Once the new `.gff` file is produced by Liftoff, an additional annotation step is performed. The variant caller outputs (based on **nucleotide-level variants**) are re-annotated using this updated `.gff`, generating a **secondary annotation layer**. This process allows a direct mapping between **codon-based resistance results** (from `sierra-local` and `codfreq`) and **nucleotide-based variant calls**, ensuring that both analyses can be compared and integrated accurately in downstream reviews.
 
