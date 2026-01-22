@@ -61,6 +61,7 @@ nanoplot/*/*.png
 nanoplot/*/NanoStats.txt
 artic_minion/*.{bam,bam.bai}
 artic_minion/bcftools_stats/*.bcftools_stats.txt
+artic_minion/samtools_stats/*.bam.stats
 artic_minion/*.{vcf,vcf.gz,vcf.gz.tbi,csv}
 artic_minion/**/*.{vcf,vcf.gz,vcf.gz.tbi,csv,txt}
 pycoqc/pycoqc.html

@@ -107,6 +107,7 @@ include { BAM_TRIM_PRIMERS_IVAR   } from '../subworkflows/local/bam_trim_primers
 include { FASTQ_TRIM_FASTP_FASTQC } from '../subworkflows/local/fastq_trim_fastp_fastqc'
 include { SNPEFF_SNPSIFT          } from '../subworkflows/local/snpeff_snpsift'
 include { FILTER_BAM_SAMTOOLS     } from '../subworkflows/local/filter_bam_samtools'
+include { HIV_RESISTANCE          } from '../subworkflows/local/hiv_resitance_detection'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,6 +138,7 @@ include { PANGOLIN_RUN                  } from '../modules/nf-core/pangolin/run/
 include { NEXTCLADE_RUN                 } from '../modules/nf-core/nextclade/run/main'
 include { MULTIQC                       } from '../modules/nf-core/multiqc/main'
 include { UNTAR as UNTAR_PANGODB        } from '../modules/nf-core/untar/main'
+include { GUNZIP as GUNZIP_GFF          } from '../modules/nf-core/gunzip/main'
 
 
 //
@@ -527,6 +529,7 @@ workflow VIRALRECON {
         //
         ch_nextclade_report = channel.empty()
         ch_pangolin_report  = channel.empty()
+        ch_consensus_genome = channel.empty()
 
         if (!params.skip_variants && !params.skip_consensus && params.consensus_caller == 'ivar') {
             CONSENSUS_IVAR (
@@ -537,6 +540,7 @@ workflow VIRALRECON {
             )
             ch_nextclade_report = CONSENSUS_IVAR.out.nextclade_report
             ch_pangolin_report  = CONSENSUS_IVAR.out.pangolin_report
+            ch_consensus_genome = CONSENSUS_IVAR.out.consensus
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_report.collect{it[1]}.ifEmpty([]))
             ch_multiqc_files    = ch_multiqc_files.mix(CONSENSUS_IVAR.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_versions         = ch_versions.mix(CONSENSUS_IVAR.out.versions)
@@ -557,6 +561,7 @@ workflow VIRALRECON {
 
             ch_nextclade_report = CONSENSUS_BCFTOOLS.out.nextclade_report
             ch_pangolin_report  = CONSENSUS_BCFTOOLS.out.pangolin_report
+            ch_consensus_genome = CONSENSUS_BCFTOOLS.out.consensus
             ch_multiqc_files    = ch_multiqc_files.mix(CONSENSUS_BCFTOOLS.out.quast_results.collect{it[1]}.ifEmpty([]))
             ch_multiqc_files    = ch_multiqc_files.mix(ch_pangolin_report.collect{it[1]}.ifEmpty([]))
             ch_versions         = ch_versions.mix(CONSENSUS_BCFTOOLS.out.versions)
@@ -601,15 +606,47 @@ workflow VIRALRECON {
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
         if (!params.skip_variants && params.additional_annotation) {
+            ch_annot = channel.empty()
+            //
+            // Uncompress additional annotation file
+            //
+            if (params.additional_annotation.endsWith('.gz')) {
+                GUNZIP_GFF (
+                    [ [:], ch_additional_gtf ]
+                )
+                ch_annot       = GUNZIP_GFF.out.gunzip.map { it[1] }
+                ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
+            } else {
+                ch_annot = ch_additional_gtf
+            }
+
             ADDITIONAL_ANNOTATION (
                 ch_vcf,
                 ch_tbi,
                 PREPARE_GENOME.out.fasta,
-                ch_additional_gtf,
+                ch_annot,
                 ch_pangolin_report
 
             )
             ch_versions = ch_versions.mix(ADDITIONAL_ANNOTATION.out.versions)
+        }
+
+        //
+        // SUBWORKFLOW: HIV resistance detection
+        //
+
+        if (!params.skip_variants && params.perform_hiv_resistance) {
+            HIV_RESISTANCE (
+                ch_consensus_genome,
+                ch_bam.join(ch_bai, by: [0]),
+                PREPARE_GENOME.out.fasta,
+                PREPARE_GENOME.out.gff,
+                ch_vcf,
+                ch_tbi,
+                ch_pangolin_report,
+                ch_nextclade_report
+            )
+            ch_versions = ch_versions.mix(HIV_RESISTANCE.out.versions)
         }
 
         //
@@ -1199,11 +1236,25 @@ workflow VIRALRECON {
         // SUBWORKFLOW: Create variants long table report for additional annotation file
         //
         if (params.additional_annotation) {
+            ch_annot = channel.empty()
+            //
+            // Uncompress additional annotation file
+            //
+            if (params.additional_annotation.endsWith('.gz')) {
+                GUNZIP_GFF (
+                    [ [:], ch_additional_gtf ]
+                )
+                ch_annot       = GUNZIP_GFF.out.gunzip.map { it[1] }
+                ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
+            } else {
+                ch_annot = ch_additional_gtf
+            }
+
             ADDITIONAL_ANNOTATION (
                 VCFLIB_VCFUNIQ.out.vcf,
                 TABIX_TABIX.out.tbi,
                 PREPARE_GENOME.out.fasta,
-                ch_additional_gtf,
+                ch_annot,
                 ch_pangolin_multiqc
 
             )

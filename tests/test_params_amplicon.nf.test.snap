@@ -82,6 +82,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -1777,6 +1780,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -2815,6 +2821,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -3373,6 +3382,9 @@
                     "freyja": "2.0.0"
                 },
                 "GUNZIP_FASTA": {
+                    "gunzip": 1.13
+                },
+                "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
                 "GUNZIP_GFF": {
@@ -4843,6 +4855,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -5271,10 +5286,6 @@
                 "assembly/unicycler/quast.unicycler/transposed_report.tex",
                 "assembly/unicycler/quast.unicycler/transposed_report.tsv",
                 "assembly/unicycler/quast.unicycler/transposed_report.txt",
-                "bcftools",
-                "bcftools/SAMPLE1_PE.bcftools_stats.txt",
-                "bcftools/SAMPLE2_PE.bcftools_stats.txt",
-                "bcftools/SAMPLE3_SE.bcftools_stats.txt",
                 "fastp",
                 "fastp/SAMPLE1_PE.fastp.html",
                 "fastp/SAMPLE1_PE.fastp.json",
@@ -5309,8 +5320,6 @@
                 "fastqc/trim/SAMPLE2_PE_2_fastqc.zip",
                 "fastqc/trim/SAMPLE3_SE_fastqc.html",
                 "fastqc/trim/SAMPLE3_SE_fastqc.zip",
-                "gunzip",
-                "gunzip/GCA_009858895.3_ASM985889v3_genomic.200409.gtf",
                 "kraken2",
                 "kraken2/SAMPLE1_PE.kraken2.report.txt",
                 "kraken2/SAMPLE2_PE.kraken2.report.txt",
@@ -5406,17 +5415,6 @@
                 "multiqc/summary_variants_metrics_mqc.csv",
                 "pipeline_info",
                 "pipeline_info/nf_core_viralrecon_software_mqc_versions.yml",
-                "snpsift",
-                "snpsift/SAMPLE1_PE.snpsift.txt",
-                "snpsift/SAMPLE2_PE.snpsift.txt",
-                "snpsift/SAMPLE3_SE.snpsift.txt",
-                "tabix",
-                "tabix/SAMPLE1_PE.vcf.gz",
-                "tabix/SAMPLE1_PE.vcf.gz.tbi",
-                "tabix/SAMPLE2_PE.vcf.gz",
-                "tabix/SAMPLE2_PE.vcf.gz.tbi",
-                "tabix/SAMPLE3_SE.vcf.gz",
-                "tabix/SAMPLE3_SE.vcf.gz.tbi",
                 "variants",
                 "variants/bowtie2",
                 "variants/bowtie2/SAMPLE1_PE.ivar_trim.sorted.bam",
@@ -5545,7 +5543,35 @@
                 "variants/ivar/SAMPLE3_SE.tsv",
                 "variants/ivar/SAMPLE3_SE.vcf.gz",
                 "variants/ivar/SAMPLE3_SE.vcf.gz.tbi",
-                "variants/ivar/additional_variants_long_table.csv",
+                "variants/ivar/additional_annotation",
+                "variants/ivar/additional_annotation/SAMPLE1_PE.bcftools_query.txt",
+                "variants/ivar/additional_annotation/SAMPLE2_PE.bcftools_query.txt",
+                "variants/ivar/additional_annotation/SAMPLE3_SE.bcftools_query.txt",
+                "variants/ivar/additional_annotation/additional_variants_long_table.csv",
+                "variants/ivar/additional_annotation/snpeff",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpeff.csv",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpeff.genes.txt",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpeff.summary.html",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpeff.vcf.gz",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpeff.vcf.gz.tbi",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE1_PE.snpsift.txt",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpeff.csv",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpeff.genes.txt",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpeff.summary.html",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpeff.vcf.gz",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpeff.vcf.gz.tbi",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE2_PE.snpsift.txt",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpeff.csv",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpeff.genes.txt",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpeff.summary.html",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpeff.vcf.gz",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpeff.vcf.gz.tbi",
+                "variants/ivar/additional_annotation/snpeff/SAMPLE3_SE.snpsift.txt",
+                "variants/ivar/additional_annotation/snpeff/bcftools_stats",
+                "variants/ivar/additional_annotation/snpeff/bcftools_stats/SAMPLE1_PE.snpeff.bcftools_stats.txt",
+                "variants/ivar/additional_annotation/snpeff/bcftools_stats/SAMPLE2_PE.snpeff.bcftools_stats.txt",
+                "variants/ivar/additional_annotation/snpeff/bcftools_stats/SAMPLE3_SE.snpeff.bcftools_stats.txt",
+                "variants/ivar/additional_annotation/versions.yml",
                 "variants/ivar/bcftools_stats",
                 "variants/ivar/bcftools_stats/SAMPLE1_PE.bcftools_stats.txt",
                 "variants/ivar/bcftools_stats/SAMPLE2_PE.bcftools_stats.txt",
@@ -5711,13 +5737,9 @@
                 "SAMPLE3_SE.contigs.fa.gz:md5,deea55f084df8fc24e3e70662b59af12",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
                 "gc.icarus.txt:md5,f18a506ebd4e3630c7bb4cef61d30f21",
-                "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
-                "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
-                "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
                 "SAMPLE1_PE.fastp.json:md5,b30f375e0609d0c25c93457813351926",
                 "SAMPLE2_PE.fastp.json:md5,8f55dce7472bb33b5fe838e616f59581",
                 "SAMPLE3_SE.fastp.json:md5,a38169db5870b19514878be793d1953f",
-                "GCA_009858895.3_ASM985889v3_genomic.200409.gtf:md5,ae58fefd0c06f50294fae4a806259db0",
                 "SAMPLE1_PE.kraken2.report.txt:md5,fcf2d80b7af884ba09932056fc47601a",
                 "SAMPLE2_PE.kraken2.report.txt:md5,7d3f755a8ebf2e9280226fde73306e79",
                 "SAMPLE3_SE.kraken2.report.txt:md5,a880da38f8777aa24c9b557dc24ebfbc",
@@ -5787,15 +5809,6 @@
                 "snpeff_variant_effects_class.yaml:md5,5f31369f0e087d4fe7eddc14d908f11f",
                 "snpeff_variant_effects_impact.yaml:md5,ab3b8b418a47185b61d19a06f2a8e846",
                 "snpeff_variant_effects_region.yaml:md5,212498fd3cc6647f127fa65d7afcf754",
-                "SAMPLE1_PE.snpsift.txt:md5,129fa11a2e0b6386313f2d82939fa1b3",
-                "SAMPLE2_PE.snpsift.txt:md5,07507b522b935be5cc374af9bd0c951b",
-                "SAMPLE3_SE.snpsift.txt:md5,a0b07a1346dc1e4903153713a09e1b6d",
-                "SAMPLE1_PE.vcf.gz:md5,84f3a5f1a58f14933613c4ca0e0f2b28",
-                "SAMPLE1_PE.vcf.gz.tbi:md5,3924f864b42464800afa8d29598438d7",
-                "SAMPLE2_PE.vcf.gz:md5,4478dd7606b7185e6c50c81d01c8237f",
-                "SAMPLE2_PE.vcf.gz.tbi:md5,494452f80ae9da71eec8159866041ae8",
-                "SAMPLE3_SE.vcf.gz:md5,f468f32de5c4121a3dfed57b56f6f3f3",
-                "SAMPLE3_SE.vcf.gz.tbi:md5,6c4038f933fc0d11f49956c82cda4e84",
                 "SAMPLE1_PE.bowtie2.log:md5,20e68f8b6b41da0dffeccbb49e867be2",
                 "SAMPLE1_PE.ivar_trim.ivar.log:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SAMPLE2_PE.bowtie2.log:md5,2cc188d8003e49d74567b2f04c2f34b2",
@@ -5836,7 +5849,17 @@
                 "SAMPLE1_PE.tsv:md5,d11ff38b97ad069639067037f2f00e6a",
                 "SAMPLE2_PE.tsv:md5,81285393974428d2fed60b398aa9a6d7",
                 "SAMPLE3_SE.tsv:md5,4ae3bc88a5952e78344d98d46fecdd55",
+                "SAMPLE1_PE.bcftools_query.txt:md5,7bc46e3e15161b9e8bab7220e70b37aa",
+                "SAMPLE2_PE.bcftools_query.txt:md5,d18d3f96c0200f9290a031093cd3fdd3",
+                "SAMPLE3_SE.bcftools_query.txt:md5,f314b8c594d5078db171e555dc7043bc",
                 "additional_variants_long_table.csv:md5,c83b0dfe58a67d06de91b8bd8de9cae5",
+                "SAMPLE1_PE.snpsift.txt:md5,129fa11a2e0b6386313f2d82939fa1b3",
+                "SAMPLE2_PE.snpsift.txt:md5,07507b522b935be5cc374af9bd0c951b",
+                "SAMPLE3_SE.snpsift.txt:md5,a0b07a1346dc1e4903153713a09e1b6d",
+                "SAMPLE1_PE.snpeff.bcftools_stats.txt:md5,668d6baa7bcc9e8d0af03f1eda5bb84d",
+                "SAMPLE2_PE.snpeff.bcftools_stats.txt:md5,836e3fc377a97c270c9c184ef24f7d22",
+                "SAMPLE3_SE.snpeff.bcftools_stats.txt:md5,ab6877115fe5f2b51dfb1cdf7ca20e83",
+                "versions.yml:md5,27993db7fe2bef49f12c5570102da532",
                 "SAMPLE1_PE.bcftools_stats.txt:md5,3a2fb3019a9719ce255482f927a742c5",
                 "SAMPLE2_PE.bcftools_stats.txt:md5,d074f9ed42de2af384f54431f067cd6c",
                 "SAMPLE3_SE.bcftools_stats.txt:md5,5fd6096827f4108bfb481db29bced68e",
@@ -5872,7 +5895,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-10-17T15:39:36.270009784"
+        "timestamp": "2025-11-05T17:17:54.344478476"
     },
     "-profile test --skip_kraken2": {
         "content": [
@@ -5961,6 +5984,9 @@
                     "freyja": "2.0.0"
                 },
                 "GUNZIP_FASTA": {
+                    "gunzip": 1.13
+                },
+                "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
                 "GUNZIP_GFF": {
@@ -7006,6 +7032,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -7964,6 +7993,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -8554,6 +8586,9 @@
                     "freyja": "2.0.0"
                 },
                 "GUNZIP_FASTA": {
+                    "gunzip": 1.13
+                },
+                "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
                 "GUNZIP_GFF": {
@@ -10302,6 +10337,9 @@
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
                 },
+                "GUNZIP_GFA": {
+                    "gunzip": 1.13
+                },
                 "GUNZIP_GFF": {
                     "gunzip": 1.13
                 },
@@ -10891,6 +10929,9 @@
                     "freyja": "2.0.0"
                 },
                 "GUNZIP_FASTA": {
+                    "gunzip": 1.13
+                },
+                "GUNZIP_GFA": {
                     "gunzip": 1.13
                 },
                 "GUNZIP_GFF": {

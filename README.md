@@ -66,6 +66,10 @@ A number of improvements were made to the pipeline recently, mainly with regard 
       - Assembly report ([`PlasmidID`](https://github.com/BU-ISCIII/plasmidID))
       - Assembly assessment report ([`QUAST`](http://quast.sourceforge.net/quast))
 7. Present QC and visualisation for raw read, alignment, assembly and variant calling results ([`MultiQC`](http://multiqc.info/))
+8. _HIV resistance detection_:
+   1. Resistance detection ([sierra-local](https://github.com/PoonLab/sierra-local))
+   2. Custom annotation file generation ([liftoff](https://github.com/agshumate/Liftoff))
+   3. Codon frequency calculation (custom python scripts adapted from [codfreq](https://github.com/hivdb/codfreq))
 
 ### Nanopore
 
@@ -145,8 +149,25 @@ nextflow run nf-core/viralrecon \
    --primer_set_version 3 \
    --fastq_dir fastq_pass/ \
    --sequencing_summary sequencing_summary.txt \
-   -profile -profile <docker/singularity/.../institute>
+   -profile <docker/singularity/.../institute>
 ```
+
+#### HIV analysis:
+
+```bash
+nextflow run nf-core/viralrecon \
+   --input samplesheet.csv \
+   --outdir <OUTDIR> \
+   --platform illumina \
+   --protocol 'amplicon/metagenomic' \
+   --genome 'codfreq' \
+   --primer_bed <path/to/primers/bed> \ # only for amplicon data
+   --nextclade_dataset_tag '<LATEST_HIV_TAG>' \
+   --kraken2_db <path/to/host/database> \
+   -profile hiv,<docker/singularity/.../institute>
+```
+
+If you want to know more about the paramenters and references in profile `hiv`, check the documentation in [usage](./docs/usage.md#hiv-profile-and-recomended-params).
 
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
