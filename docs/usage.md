@@ -375,7 +375,7 @@ The goal is to adapt the viralrecon framework to ensure accurate minor variant c
 
 The HIV profile (`-profile hiv`) introduces specific adjustments compared to a standard `viralrecon` run, mainly in the variant calling and consensus generation steps, to align with the requirements of HIV resistance interpretation pipelines.
 
-⚠️ By deffault, de novo assembly is deactivated for HIV as the resistance detection is only performed for the consensus genome through mapping approach, which has been already benchmarked agains Standford's [HIVdb](https://hivdb.stanford.edu/hivdb/by-reads/) results.
+⚠️ By default, de novo assembly is deactivated for HIV as the resistance detection is only performed for the consensus genome through mapping approach, which has been already benchmarked agains Stanford's [HIVdb](https://hivdb.stanford.edu/hivdb/by-reads/) results.
 
 #### **Reference genome**
 
