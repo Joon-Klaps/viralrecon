@@ -5,6 +5,7 @@ keywords:
   - hiv
   - resistance
   - fasta
+  - consensus
 components:
   - sierralocal
   - resistance_tables
