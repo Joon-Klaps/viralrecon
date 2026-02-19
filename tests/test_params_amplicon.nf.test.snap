@@ -56,7 +56,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTQC": {
                     "fastqc": "0.12.1"
@@ -1748,7 +1748,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -2801,7 +2801,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -3352,7 +3352,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -4823,7 +4823,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -5954,7 +5954,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -7973,7 +7973,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -8556,7 +8556,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -10317,7 +10317,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
@@ -10899,7 +10899,7 @@
                     "getchromsizes": "1.22.1"
                 },
                 "CUTADAPT": {
-                    "cutadapt": 5
+                    "cutadapt": 5.0
                 },
                 "FASTP": {
                     "fastp": "1.0.1"
