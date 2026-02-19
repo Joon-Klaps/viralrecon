@@ -1183,7 +1183,6 @@ workflow VIRALRECON {
                 params.freyja_lineages_meta,
                 params.freyja_lineages_topology,
             )
-            ch_versions       = ch_versions.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.versions)
             ch_multiqc_files  = ch_multiqc_files.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.demix.collect{it[1]}.ifEmpty([]))
         }
 
